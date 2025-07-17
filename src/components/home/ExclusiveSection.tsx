@@ -79,7 +79,7 @@ export default function ExclusiveSection() {
           ))}
         </div>
         <div className="mx-auto mt-12 w-full text-center">
-          <Button text="See More Peptides" />
+          <Button text="See More Peptides" borderLeanr="gradient-border" />
         </div>
       </div>
     </section>

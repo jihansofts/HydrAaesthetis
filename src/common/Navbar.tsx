@@ -64,7 +64,7 @@ export default function Navbar() {
         </div>
 
         <div>
-          <Button text=" Go To Service" />
+          <Button text=" Go To Service" borderLeanr="gradient-border" />
         </div>
 
         {/* Mobile menu button */}

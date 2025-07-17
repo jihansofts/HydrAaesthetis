@@ -5,7 +5,7 @@ import { IoIosStar } from "react-icons/io";
 export default function Hero() {
   return (
     <div className="container mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-between gap-8 md:px-0 px-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0 px-5">
         <div className="flex flex-col space-y-5 justify-center items-start pr-20">
           <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px]  font-extrabold">
             Revitalize your body. Renew your confidence.
@@ -24,7 +24,7 @@ export default function Hero() {
           </div>
 
           <div className="mt-5">
-            <Button text=" Go To Service" />
+            <Button text=" Go To Service" borderLeanr="gradient-border" />
           </div>
         </div>
         <div>

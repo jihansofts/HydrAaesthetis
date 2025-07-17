@@ -19,7 +19,7 @@
   --color-bgColor: var(--background);
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  --font-family-inter: var(--font-inter);
+  --font-inter: var(--font-inter);
 
   /* Register gradient colors in theme */
   --color-gradient-from: var(--gradient-from);
@@ -81,5 +81,5 @@
 body {
   background-color: var(--color-bgColor);
   color: var(--color-primary);
-  font-family: var(--font-family-inter);
+  font-family: var(--font-inter);
 }
