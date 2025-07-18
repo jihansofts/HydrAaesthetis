@@ -1,58 +1,55 @@
-"use client";
-import React from "react";
-import Link from "next/link";
 import Button from "@/common/Button";
 import PeptideCard from "@/common/PeptideCard";
+import React from "react";
 
 const peptides = [
   {
-    title: "AOD 9604",
+    title: "Vitamin C",
     slug: "aod-9604",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "BPC-157",
+    title: "Thiamin (B1)",
     slug: "bpc-157",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "CEREBROLYSIN",
+    title: "Thiamin (B1)",
     slug: "cerebrolysin",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "CJC1295+IPAMORELIN",
+    title: "Vitamin C",
     slug: "cjc1295-ipamorelin",
-    desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: " AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "AOD 9604",
+    title: "Vitamin C",
     slug: "aod-9604",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "BPC-157",
+    title: "Thiamin (B1)",
     slug: "bpc-157",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "CEREBROLYSIN",
+    title: "Thiamin (B1)",
     slug: "cerebrolysin",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "CJC1295+IPAMORELIN",
+    title: "Vitamin C",
     slug: "cjc1295-ipamorelin",
-    desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
 ];
-
-export default function ExclusiveSection() {
+export default function VitaminsSection() {
   return (
     <section className="bg-bgColor py-20">
       <div className="container mx-auto px-6">
         <h2 className="text-white font-inter text-center text-[36px] md:text-[56px] font-extrabold mb-12">
-          Exclusive Peptides
+          Vitamins
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
