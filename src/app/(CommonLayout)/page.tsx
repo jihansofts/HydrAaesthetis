@@ -1,3 +1,4 @@
+import BotoxSection from "@/components/home/BotoxSection";
 import DripsSection from "@/components/home/DripsSection";
 import ExclusiveSection from "@/components/home/ExclusiveSection";
 import HeroSection from "@/components/home/HeroSection";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hormone />
       <VitaminsSection/>
       <DripsSection/>
+      <BotoxSection/>
     </main>
   );
 }

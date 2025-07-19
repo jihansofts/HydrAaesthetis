@@ -50,7 +50,7 @@ const peptides = [
 export default function ExclusiveSection() {
   return (
     <section className="bg-bgColor py-20">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-5">
         <h2 className="text-white font-inter text-center text-[36px] md:text-[56px] font-extrabold mb-12">
           Exclusive Peptides
         </h2>

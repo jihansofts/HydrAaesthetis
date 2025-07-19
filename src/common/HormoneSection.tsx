@@ -1,5 +1,3 @@
-// components/TreatmentSection.tsx
-
 "use client";
 
 import React from "react";
@@ -10,6 +8,8 @@ interface TreatmentSectionProps {
   title: string;
   desc: string;
   image: string;
+  bgBtnColor: string;
+  textColor: string;
   buttonText: string;
   reverse?: boolean;
 }
@@ -18,6 +18,8 @@ export default function HormoneSection({
   title,
   desc,
   image,
+  bgBtnColor,
+  textColor,
   buttonText,
   reverse = false,
 }: TreatmentSectionProps) {
@@ -46,11 +48,7 @@ export default function HormoneSection({
                 {desc}
               </p>
             </div>
-            <ButtonXl
-              text={buttonText}
-              bg="bg-gradient"
-              textColor="text-bgColor"
-            />
+            <ButtonXl text={buttonText} bg={bgBtnColor} textColor={textColor} />
           </div>
         </>
       ) : (
@@ -67,8 +65,8 @@ export default function HormoneSection({
             </div>
             <ButtonXl
               text={buttonText}
-              bg="bg-gradient"
-              textColor="text-bgColor"
+              bg={bgBtnColor}
+              textColor={textColor}
             />
           </div>
 

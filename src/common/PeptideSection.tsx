@@ -42,7 +42,7 @@ export default function PeptideSection({
             <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 mr-20">
               {desc}
             </p>
-            <ButtonXl text={buttonText} bg="bg-bgColor" />
+            <ButtonXl text={buttonText} bg="bg-bgColor" textColor="text-gradient" />
           </div>
         </>
       ) : (
@@ -57,7 +57,7 @@ export default function PeptideSection({
                 {desc}
               </p>
             </div>
-            <ButtonXl text={buttonText} bg="bg-bgColor" />
+            <ButtonXl text={buttonText} bg="bg-bgColor" textColor="text-gradient" />
           </div>
           {/* Image */}
           <div className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">

@@ -4,7 +4,7 @@ import Button from "./Button";
 import { IoIosStar } from "react-icons/io";
 export default function Hero() {
   return (
-    <div className="container mx-auto">
+    <div className="container px-5 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0 px-5">
         <div className="flex flex-col space-y-5 justify-center items-start pr-20">
           <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px]  font-extrabold">
