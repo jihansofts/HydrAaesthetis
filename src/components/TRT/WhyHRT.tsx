@@ -1,6 +1,6 @@
 import React from "react";
-import whyHRT1 from "../../assets/trt/whyhrt1.png";
-import whyHRT2 from "../../assets/trt/whyhrt2.png";
+import Image from "next/image";
+
 
 const WhyHRT = () => {
   return (
@@ -8,17 +8,21 @@ const WhyHRT = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
         <div className="relative order-1 h-full min-h-[500px]">
           <div className="absolute top-0 left-0 w-6/12 sm:w-3/12 md:w-7/12 lg:w-5/12 z-10">
-            <img
-              src={whyHRT1}
+            <Image
+              src="/images/whyhrt1.png"
               alt="HRT benefits"
+              width={500}
+              height={500}
               className="w-full h-auto rounded-xl shadow-2xl object-cover"
             />
           </div>
 
           <div className="absolute bottom-2/12 right-1/12 w-7/12 sm:w-3/12 md:w-7/12 lg:w-5/12 z-0">
-            <img
-              src={whyHRT2}
+            <Image
+              src="/images/whyhrt2.png"
               alt="HRT treatment"
+              width={500}
+              height={500}
               className="w-full h-auto rounded-xl shadow-2xl object-cover"
             />
           </div>
@@ -41,8 +45,7 @@ const WhyHRT = () => {
             relative overflow-hidden 
             font-bold py-4 px-8 rounded-lg 
             text-black
-           bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]"
-          >
+           bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]">
             <span className="relative z-10">Request Now</span>
           </button>
         </div>

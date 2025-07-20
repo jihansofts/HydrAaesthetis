@@ -1,22 +1,22 @@
 import React from "react";
-import acivei1 from "../../assets/trt/acive1.png";
-import acivei2 from "../../assets/trt/acive2.png";
-import acivei3 from "../../assets/trt/acive3.png";
+import Image from "next/image";
+
 
 const Achieve = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-4">
           Achieve Results in Only 3 Easy Steps
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
-              src={acivei1}
+            <Image
+              src="/images/acive1.png"
+              width={500}
+              height={500}
               alt="Blood Work"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -33,11 +33,12 @@ const Achieve = () => {
           </div>
         </div>
 
-       
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
-              src={acivei2}
+            <Image
+              width={500}
+              height={500}
+              src="/images/acive2.png"
               alt="Book Consultation"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -56,8 +57,10 @@ const Achieve = () => {
 
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
-              src={acivei3}
+            <Image
+              src="/images/acive3.png"
+              width={500}
+              height={500}
               alt="Begin Your Journey"
               className="w-full h-full object-cover rounded-lg"
             />
@@ -79,8 +82,7 @@ const Achieve = () => {
             relative overflow-hidden 
             font-bold py-3  px-16 rounded-lg 
             text-black
-           bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]"
-        >
+           bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]">
           <span className="relative z-10">Get Started</span>
         </button>
       </div>

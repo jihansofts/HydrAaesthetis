@@ -41,7 +41,7 @@ export default function DripsCard({
         </Link>
       </p>
 
-      <button className="bg-gradient-to-r font-inter from-[#E0C57C] to-[#BFA15A] text-[#1E1E1E] font-semibold py-2 rounded-md transition hover:opacity-90">
+      <button className="bg-gradient-to-r font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-semibold py-2 rounded-md transition hover:opacity-90">
         Book Consultation
       </button>
     </div>

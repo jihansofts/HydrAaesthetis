@@ -1,7 +1,8 @@
 import React from "react";
-import varietie1 from "../../assets/trt/varietie1.png?url";
-import varietie2 from "../../assets/trt/varietie2.png?url";
-import varietie3 from "../../assets/trt/varietie3.png?url";
+import Image from "next/image";
+import varietie1 from "../../../public/images/varietie1.png";
+import varietie2 from "../../../public/images/varietie1.png";
+import varietie3 from "../../../public/images/varietie1.png";
 const Varieties = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -14,10 +15,12 @@ const Varieties = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
+            <Image
               src={varietie1}
               alt="Blood Work"
               className="w-full h-full object-cover rounded-lg"
+              width={500}
+              height={500}
             />
           </div>
           <div className="p-6">
@@ -34,10 +37,12 @@ const Varieties = () => {
 
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
+            <Image
               src={varietie2}
               alt="Book Consultation"
               className="w-full h-full object-cover rounded-lg"
+              width={500}
+              height={500}
             />
           </div>
           <div className="p-6">
@@ -54,10 +59,12 @@ const Varieties = () => {
 
         <div className="shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
           <div className="h-48 overflow-hidden rounded-lg">
-            <img
+            <Image
               src={varietie3}
               alt="Begin Your Journey"
               className="w-full h-full object-cover rounded-lg"
+              width={500}
+              height={500}
             />
           </div>
           <div className="p-6">
@@ -78,8 +85,7 @@ const Varieties = () => {
                 relative overflow-hidden 
                 font-bold py-3  px-16 rounded-lg 
                 text-black
-               bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]"
-        >
+               bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539]">
           <span className="relative z-10">Book Consultations</span>
         </button>
       </div>

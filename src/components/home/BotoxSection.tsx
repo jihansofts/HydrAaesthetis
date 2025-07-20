@@ -10,8 +10,7 @@ export default function BotoxSection() {
         <Image
           src="/images/botox-bg.png"
           alt="Botox Background"
-          layout="fill"
-          objectFit="cover"
+          fill
           className="w-full h-full object-cover"
         />
       </div>

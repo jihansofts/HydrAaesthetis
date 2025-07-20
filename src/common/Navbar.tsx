@@ -14,6 +14,7 @@ const navLinks = [
 const services = [
   {
     label: "TRT (Testosterone Therapy)",
+    href: "/trt",
     submenu: [
       "Injectable (TRT)",
       "Oral (TRT)",
@@ -92,7 +93,7 @@ export default function Navbar() {
                 {item.submenu.map((sub, i) => (
                   <a
                     key={i}
-                    href="#"
+                    href={item.href || "#"}
                     className="block text-[16px] font-medium px-4 py-2 hover:bg-[#d6b36b]/20">
                     {sub}
                   </a>
