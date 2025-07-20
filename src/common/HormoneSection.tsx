@@ -39,12 +39,12 @@ export default function HormoneSection({
           </div>
 
           {/* Text */}
-          <div className="lg:col-span-7 ml-10 md:col-span-12 space-y-10">
-            <div className="max-w-3xl">
+          <div className="lg:col-span-7 lg:ml-10 md:ml-0 md:col-span-12 space-y-10">
+            <div className="lg:max-w-3xl md:max-w-full">
               <h3 className="lg:text-[48px] text-white md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
                 {title}
               </h3>
-              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 mr-20">
+              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 lg:mr-20 md:mr-0">
                 {desc}
               </p>
             </div>
@@ -59,15 +59,11 @@ export default function HormoneSection({
               <h3 className="lg:text-[48px] text-white md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
                 {title}
               </h3>
-              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 mr-20">
+              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 lg:mr-20 md:mr-0">
                 {desc}
               </p>
             </div>
-            <ButtonXl
-              text={buttonText}
-              bg={bgBtnColor}
-              textColor={textColor}
-            />
+            <ButtonXl text={buttonText} bg={bgBtnColor} textColor={textColor} />
           </div>
 
           {/* Image */}

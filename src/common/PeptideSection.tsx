@@ -17,7 +17,7 @@ export default function PeptideSection({
   desc,
   image,
   reverse = false,
-  buttonText 
+  buttonText,
 }: PeptideSectionProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-12  lg:grid-cols-12 items-center gap-8 gap-x-10 lg:mt-20 md:mt-8 pt-10">
@@ -42,7 +42,11 @@ export default function PeptideSection({
             <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 mr-20">
               {desc}
             </p>
-            <ButtonXl text={buttonText} bg="bg-bgColor" textColor="text-gradient" />
+            <ButtonXl
+              text={buttonText}
+              bg="bg-bgColor"
+              textColor="text-gradient"
+            />
           </div>
         </>
       ) : (
@@ -53,11 +57,15 @@ export default function PeptideSection({
               <h3 className="lg:text-[48px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
                 {title}
               </h3>
-              <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 mr-20">
+              <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 lg:mr-20 md:mr-0">
                 {desc}
               </p>
             </div>
-            <ButtonXl text={buttonText} bg="bg-bgColor" textColor="text-gradient" />
+            <ButtonXl
+              text={buttonText}
+              bg="bg-bgColor"
+              textColor="text-gradient"
+            />
           </div>
           {/* Image */}
           <div className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">

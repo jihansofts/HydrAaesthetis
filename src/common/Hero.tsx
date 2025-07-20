@@ -2,25 +2,29 @@ import React from "react";
 import Image from "next/image";
 import Button from "./Button";
 import { IoIosStar } from "react-icons/io";
-export default function Hero() {
+
+interface HeroProps {
+  title?: string;
+  subtitle?: string;
+  description?: string;
+}
+export default function Hero({ title, subtitle, description }: HeroProps) {
   return (
     <div className="container px-5 mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0 px-5">
-        <div className="flex flex-col space-y-5 justify-center items-start pr-20">
-          <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px]  font-extrabold">
-            Revitalize your body. Renew your confidence.
+        <div className="flex flex-col space-y-5 justify-center items-start lg:pr-20 md:pr-0 pr-0">
+          <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">
+            {title || "Welcome to Hydra Aesthetics"}
           </h2>
           <p className="text-white md:text-[16px] text-[14px] font-medium leading-9">
-            Welcome to Hydra Aesthetics – your destination for wellness and
-            beauty. From Botox and fillers to IV hydration, hormone therapy, and
-            vitamin infusions, we offer personalized treatments to help you look
-            and feel your best.
+            {description || "Your journey to wellness and beauty starts here."}
           </p>
-          <div className="relative inline-block lg:text-[22px] md:text-[18px] sm:text-[16px] text-[14px] lg:w-[440px] md:w-[380px] sm:w-[300px] w-[300px] font-extrabold text-white z-10">
-            <span className="relative z-10 ml-3">
-              What type of services do you want?
+
+          <div className="relative inline-block font-extrabold text-white  z-10">
+            <span className="relative inline-block ml-1 lg:text-[22px] md:text-[18px] sm:text-[16px] text-[14px]">
+              {subtitle || "Explore Our Services"}
+              <span className="absolute bottom-[-2px] p-2 left-[-8px] right-[-8px] h-[10px] bg-[#D9C79B69] z-[-1] "></span>
             </span>
-            <span className="absolute left-0 bottom-1 w-full h-[10px] bg-[#D9C79B69] z-0"></span>
           </div>
 
           <div className="mt-5">

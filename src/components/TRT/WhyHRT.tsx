@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 
-
 const WhyHRT = () => {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-        <div className="relative order-1 h-full min-h-[500px]">
-          <div className="absolute top-0 left-0 w-6/12 sm:w-3/12 md:w-7/12 lg:w-5/12 z-10">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-5 py-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-1 gap-6  items-center">
+        <div className="relative h-full min-h-[500px]">
+          {/* Top Left Image - Stack on small, absolute on lg+ */}
+          <div className="lg:absolute lg:top-0 lg:left-0 w-full sm:w-[80%] md:w-[70%] lg:w-[320px] mx-auto lg:mx-0 mb-6 lg:mb-0 z-10">
             <Image
               src="/images/whyhrt1.png"
               alt="HRT benefits"
@@ -17,7 +17,8 @@ const WhyHRT = () => {
             />
           </div>
 
-          <div className="absolute bottom-2/12 right-1/12 w-7/12 sm:w-3/12 md:w-7/12 lg:w-5/12 z-0">
+          {/* Bottom Right Image - Stack on small, absolute on lg+ */}
+          <div className="lg:absolute lg:bottom-[10%] lg:right-[5%] w-full sm:w-[80%] md:w-[70%] lg:w-[320px] mx-auto lg:mx-0 z-10">
             <Image
               src="/images/whyhrt2.png"
               alt="HRT treatment"
@@ -28,7 +29,7 @@ const WhyHRT = () => {
           </div>
         </div>
 
-        <div className="order-2 md:pl-10">
+        <div className=" md:pl-10">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Why Try Hormone Replacement Therapy (HRT) ?
           </h2>
