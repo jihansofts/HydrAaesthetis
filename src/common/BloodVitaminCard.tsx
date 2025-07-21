@@ -18,7 +18,7 @@ export default function BloodVitaminCard({
     <div
       key={index}
       className="overflow-hidden transition-transform duration-300 hover:scale-95">
-      <div className="h-96 overflow-hidden rounded-lg">
+      <div className="h-96  overflow-hidden rounded-lg">
         <Image
           src={image}
           width={500}

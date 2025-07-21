@@ -1,8 +1,15 @@
+import HeroLossWeight from "@/components/LoseWeight/HeroLossWeight";
+import OurVarieties from "@/components/LoseWeight/OurVarieties";
+import WidthLoss from "@/components/LoseWeight/WidthLoss";
+import Achieve from "@/components/TRT/Achieve";
+
 export default function Page() {
-    return (
-        <main>
-            <h1 className="text-3xl font-bold">Lose Weight</h1>
-            <p className="mt-4">Discover effective weight loss solutions tailored for you.</p>
-        </main>
-    );
+  return (
+    <main>
+      <HeroLossWeight />
+      <WidthLoss />
+      <Achieve />
+      <OurVarieties />
+    </main>
+  );
 }
