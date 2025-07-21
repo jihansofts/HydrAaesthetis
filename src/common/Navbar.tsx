@@ -36,10 +36,11 @@ const services = [
   },
   {
     label: "Lose Weight",
+    href: "/lose-weight",
     submenu: [
-      { label: "Trizepatide", href: "/lose-weight/plan-a" },
-      { label: "Trizepatide + B12", href: "/lose-weight/plan-b" },
-      { label: "Labs", href: "/lose-weight/plan-c" },
+      { label: "Trizepatide", href: "/lose-weight" },
+      { label: "Trizepatide + B12", href: "/lose-weight" },
+      { label: "Labs", href: "/lose-weight" },
     ],
   },
   {
@@ -143,12 +144,14 @@ export default function Navbar() {
           <div className="pt-4 border-t border-primaryGradient">
             {services.map((item, index) => (
               <div key={index} className="mb-2">
-                <button
+                <Link
+                  href={item.href || "#"}
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
                   className="flex justify-between items-center w-full text-left">
                   {item.label}
+
                   {item.submenu.length > 0 && (
                     <FiChevronDown
                       className={`transition-transform ${
@@ -156,9 +159,9 @@ export default function Navbar() {
                       }`}
                     />
                   )}
-                </button>
+                </Link>
                 {openIndex === index && item.submenu.length > 0 && (
-                  <div className="ml-4 mt-2 space-y-1">
+                  <div className="ml-4 flex flex-col justify-start items-start mt-2 space-y-1">
                     {item.submenu.map((sub, i) => (
                       <a
                         key={i}
@@ -167,6 +170,13 @@ export default function Navbar() {
                         {sub.label}
                       </a>
                     ))}
+                    {item.submenu.length > 0 && (
+                      <Link
+                        href={item.href || "#"}
+                        className="bg-gradient w-[20px] cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
+                        View All
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
