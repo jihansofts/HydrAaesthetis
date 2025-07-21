@@ -30,10 +30,10 @@ const WhyHRT = () => {
         </div>
 
         <div className=" md:pl-10">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+          <h2 className="text-[32px] font-inter lg:text-[48px] md:text-4xl font-bold text-white mb-6">
             Why Try Hormone Replacement Therapy (HRT) ?
           </h2>
-          <p className="text-lg text-gray-200 mb-8">
+          <p className="text-[16px] font-inter font-normal text-[#FFFFFFC9] mb-8">
             Hormone Replacement Therapy (HRT) helps restore hormonal balance,
             easing symptoms like fatigue, low libido, mood swings, and poor
             sleep. It supports overall well-being, boosts energy, sharpens
