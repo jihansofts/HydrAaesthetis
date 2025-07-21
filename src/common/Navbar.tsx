@@ -173,7 +173,7 @@ export default function Navbar() {
                     {item.submenu.length > 0 && (
                       <Link
                         href={item.href || "#"}
-                        className="bg-gradient w-32 cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
+                        className="bg-gradient  cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
                         View All
                       </Link>
                     )}
