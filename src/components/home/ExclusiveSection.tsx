@@ -7,42 +7,42 @@ import PeptideCard from "@/common/PeptideCard";
 const peptides = [
   {
     title: "AOD 9604",
-    slug: "aod-9604",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "BPC-157",
-    slug: "bpc-157",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "CEREBROLYSIN",
-    slug: "cerebrolysin",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "CJC1295+IPAMORELIN",
-    slug: "cjc1295-ipamorelin",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "AOD 9604",
-    slug: "aod-9604",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "BPC-157",
-    slug: "bpc-157",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "CEREBROLYSIN",
-    slug: "cerebrolysin",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "CJC1295+IPAMORELIN",
-    slug: "cjc1295-ipamorelin",
+    slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
     desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
 ];

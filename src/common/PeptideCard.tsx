@@ -19,11 +19,13 @@ export default function PeptideCard({ title, desc, slug }: PeptideCardProps) {
 
       <p className="text-[16px] font-inter font-normal text-white mb-4">
         {desc}{" "}
-        <Link
-          href={`/peptides/${slug}`}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://drive.google.com/file/d/${slug}`}
           className="text-[#d6b36b] font-inter font-medium underline hover:text-[#cbb688]">
           Read More
-        </Link>
+        </a>
       </p>
 
       <button className="mt-auto bg-gradient text-[#1E1E1E] hover:bg-[#cbb688]/10 px-4 py-2 rounded-md font-semibold transition">

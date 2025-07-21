@@ -1,6 +1,5 @@
-import ButtonXl from "@/common/ButtonXl";
+
 import HormoneSection from "@/common/HormoneSection";
-import Image from "next/image";
 import React from "react";
 
 export default function Hormone() {
