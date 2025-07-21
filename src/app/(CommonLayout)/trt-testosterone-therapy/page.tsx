@@ -1,4 +1,3 @@
-import Hero from "@/common/Hero";
 import Achieve from "@/components/TRT/Achieve";
 import HeroTrtSection from "@/components/TRT/HeroTrtSection";
 

@@ -6,7 +6,7 @@ import Button from "./Button";
 import Link from "next/link";
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "Shop Our Products", href: "#" },
   { label: "Locations", href: "#" },
   { label: "The Company", href: "#" },
@@ -37,16 +37,19 @@ const services = [
   {
     label: "Lose Weight",
     submenu: [
-      { label: "Plan A", href: "/lose-weight/plan-a" },
-      { label: "Plan B", href: "/lose-weight/plan-b" },
+      { label: "Trizepatide", href: "/lose-weight/plan-a" },
+      { label: "Trizepatide + B12", href: "/lose-weight/plan-b" },
+      { label: "Labs", href: "/lose-weight/plan-c" },
     ],
   },
   {
     label: "Blood Work",
-    submenu: [{ label: "Blood Option 1", href: "/blood-work/option-1" }],
+    href: "/blood-work",
+    submenu: [{ label: "Quest Diagnostics Labs", href: "/blood-work" }],
   },
   {
     label: "Supplements & Vitamins",
+    href: "/vitamins",
     submenu: [], // No submenu items, but you can add if needed
   },
 ];
@@ -96,14 +99,14 @@ export default function Navbar() {
         {services.map((item, index) => (
           <div className="relative group" key={index}>
             <Link
-              href="/trt-testosterone-therapy"
+              href={item.href || "#"}
               className="flex items-center cursor-pointer gap-1 hover:text-[#d6b36b]">
               {item.label}
               {item.submenu.length > 0 && <FiChevronDown />}
             </Link>
             {/* Dropdown */}
             {item.submenu.length > 0 && (
-              <div className="absolute border-2  py-5 px-5 border-[#C1AC7D] left-0 top-full mt-2 bg-[#1f1f1f] text-white rounded-2xl shadow-lg min-w-[180px] z-50 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-700 ease-in-out">
+              <div className="absolute border-2  py-5 px-5 w-48 border-[#C1AC7D] left-0 top-full mt-2 bg-[#1f1f1f] text-white rounded-2xl shadow-lg min-w-[180px] z-50 opacity-0 scale-95 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:pointer-events-auto transition-all duration-700 ease-in-out">
                 {item.submenu.map((sub, i) => (
                   <a
                     key={i}
@@ -112,11 +115,13 @@ export default function Navbar() {
                     {sub.label}
                   </a>
                 ))}
-                <Link
-                  href="/trt-testosterone-therapy"
-                  className="bg-gradient cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
-                  View All
-                </Link>
+                {item.submenu.length > 0 && (
+                  <Link
+                    href={item.href || "#"}
+                    className="bg-gradient w-1/2 cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
+                    View All
+                  </Link>
+                )}
               </div>
             )}
           </div>

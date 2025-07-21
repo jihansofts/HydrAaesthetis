@@ -10,13 +10,13 @@ interface HeroProps {
 }
 export default function Hero({ title, subtitle, description }: HeroProps) {
   return (
-    <div className="container px-5 mx-auto">
+    <div className="container px-5 mx-auto py-10">
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0 px-5">
-        <div className="flex flex-col space-y-5 justify-center items-start lg:pr-20 md:pr-0 pr-0">
+        <div className="flex flex-col space-y-5 justify-center items-start lg:pr-10 md:pr-0 pr-0">
           <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">
             {title || "Welcome to Hydra Aesthetics"}
           </h2>
-          <p className="text-white md:text-[16px] text-[14px] font-medium leading-9">
+          <p className="text-[#FFFFFFC9] md:text-[16px] text-[14px] font-medium leading-9">
             {description || "Your journey to wellness and beauty starts here."}
           </p>
 
@@ -31,15 +31,16 @@ export default function Hero({ title, subtitle, description }: HeroProps) {
             <Button text=" Go To Service" borderLeanr="gradient-border" />
           </div>
         </div>
-        <div>
+        {/* Image Section */}
+        <div className="lg:absolute lg:right-0 lg:top-20 w-full lg:w-[50%] mt-10 lg:mt-0">
           <Image
             src="/images/hero.png"
             alt="hero"
             width={500}
             height={500}
-            className="w-full h-full"
+            className="w-full object-center h-full"
           />
-          <div className="flex items-center gap-x-5 justify-center">
+          <div className="flex items-center gap-x-5 justify-center mt-4">
             <h4 className="lg:text-[40px] md:text-[36px] sm:text-[24px] font-extrabold text-white">
               4.97/5
             </h4>
