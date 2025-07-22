@@ -5,7 +5,7 @@ import ButtonXl from "@/common/ButtonXl";
 import PeptideSection from "@/common/PeptideSection";
 export default function NicotinamideSection() {
   return (
-    <section className="py-20 bg-gradient">
+    <section id="nicotinamide" className="py-20 bg-gradient">
       <div className="container mx-auto lg:px-5 px-5">
         <PeptideSection
           title="Nicotinamide adenine dinucleotide (NAD+)"

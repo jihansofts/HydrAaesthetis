@@ -35,7 +35,9 @@ export default function DripsCard({
       <p className="text-[15px] text-white mb-4">
         {desc.slice(0, 50)}...{" "}
         <Link
-          href={slug}
+          target="_blank"
+          rel="noopener noreferrer"
+          href={`https://drive.google.com/file/d/${slug}`}
           className="text-[#D6B36B] font-inter font-semibold hover:underline">
           Read More
         </Link>

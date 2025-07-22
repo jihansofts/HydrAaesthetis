@@ -26,24 +26,24 @@ const peptides = [
     desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
-    title: "AOD 9604",
+    title: "DIHEXA",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "Dihexa is a peptide variant derived from angiotensin IV which has been found to potently improve cognitive function in animal models of disease such as Alzheimer’sAngiotensin IV is a derivative of the potent vasoconstrictor....",
   },
   {
-    title: "BPC-157",
+    title: "DSIP",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "DSIP is a well-known neuromodulator and natural somnogenic nonapeptide with many other physiological functions. It is typically found in the brain and easily passes the blood-brain barrier....",
   },
   {
-    title: "CEREBROLYSIN",
+    title: "EPITALON",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "Epithalon is the synthetic version of the polypeptide Epithalamin which is naturally produced in humans. The pineal peptide preparation is secreted in the epithalamium-epiphyseal region of the brain. Its more prominent tasks are: to regulate...",
   },
   {
-    title: "CJC1295+IPAMORELIN",
+    title: "FENBENDAZOLE",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "Fenbendazol acts by destroying microtubules that sustain the structure of cancer cells and its ability to divide and multiply. It also inhibits the cancer cells ability to process sugar and survive by the metabolism of sugar...",
   },
 ];
 
@@ -66,7 +66,11 @@ export default function ExclusiveSection() {
           ))}
         </div>
         <div className="mx-auto mt-12 w-full text-center">
-          <Button text="See More Peptides" borderLeanr="gradient-border" />
+          <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview">
+            <Button text="See More Peptides" borderLeanr="gradient-border" />
+          </a>
         </div>
       </div>
     </section>

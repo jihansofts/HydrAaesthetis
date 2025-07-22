@@ -4,44 +4,52 @@ import React from "react";
 
 const peptides = [
   {
-    title: "Vitamin C",
-    slug: "aod-9604",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Myers Cocktail",
+    image: "/images/drop.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Rejuvinate and Revive...",
   },
   {
-    title: "Thiamin (B1)",
-    slug: "bpc-157",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Immune Boost",
+    image: "/images/drop1.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Combat cough and itchy throat...",
   },
   {
-    title: "Thiamin (B1)",
-    slug: "cerebrolysin",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "NAD+",
+    image: "/images/drop2.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "A younger you...",
   },
   {
-    title: "Vitamin C",
-    slug: "cjc1295-ipamorelin",
-    desc: " AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Jet Lag",
+    image: "/images/drop3.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Beat the jet lag blues...",
   },
   {
-    title: "Vitamin C",
-    slug: "aod-9604",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Hydration",
+    image: "/images/drop4.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Say goodbye to your slump...",
   },
   {
-    title: "Thiamin (B1)",
-    slug: "bpc-157",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Hangover",
+    image: "/images/drop5.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Your solution to a long night out...",
   },
   {
-    title: "Thiamin (B1)",
-    slug: "cerebrolysin",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Beauty",
+    image: "/images/drop6.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Be runway ready...",
   },
   {
-    title: "Vitamin C",
-    slug: "cjc1295-ipamorelin",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    title: "Migraine",
+    image: "/images/drop7.png",
+    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
+    desc: "Sweet, sweet headache relief...",
   },
 ];
 export default function DripsSection() {
@@ -64,7 +72,11 @@ export default function DripsSection() {
           ))}
         </div>
         <div className="mx-auto mt-12 w-full text-center">
-          <Button text="See More IV Drips" borderLeanr="gradient-border" />
+          <a
+            target="_blank"
+            href="https://drive.google.com/file/d/1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview">
+            <Button text="See More IV Drips" borderLeanr="gradient-border" />
+          </a>
         </div>
       </div>
     </section>

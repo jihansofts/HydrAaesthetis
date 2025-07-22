@@ -4,7 +4,7 @@ import HormoneSection from "@/common/HormoneSection";
 
 export default function BotoxSection() {
   return (
-    <section className="relative py-20">
+    <section id="botox" className="relative py-20">
       {/* Background image layer */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image

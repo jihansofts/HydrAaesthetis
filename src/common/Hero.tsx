@@ -37,7 +37,12 @@ export default function Hero({ title, subtitle, description }: HeroProps) {
           </div>
 
           <div className="mt-5">
-            <Button text=" Go To Service" borderLeanr="gradient-border" />
+            <a href="tel:+18186698271">
+              <Button
+                text="Call Us +1 818 669 8271"
+                borderLeanr="gradient-border"
+              />
+            </a>
           </div>
         </motion.div>
 

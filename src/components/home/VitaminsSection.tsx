@@ -63,7 +63,9 @@ export default function VitaminsSection() {
           ))}
         </div>
         <div className="mx-auto mt-12 w-full text-center">
-          <Button text="See More Peptides" borderLeanr="gradient-border" />
+          <a target="_blank" href="https://drive.google.com/file/d/1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview">
+            <Button text="See More Peptides" borderLeanr="gradient-border" />
+          </a>
         </div>
       </div>
     </section>
