@@ -26,10 +26,8 @@ const services = [
   },
   {
     label: "HRT (Hormone Therapy)",
-    submenu: [
-      { label: "HRT Option 1", href: "/hrt/option-1" },
-      { label: "HRT Option 2", href: "/hrt/option-2" },
-    ],
+    href: "#hormone",
+    submenu: [],
   },
   {
     label: "Lose Weight",
@@ -47,7 +45,7 @@ const services = [
   },
   {
     label: "Supplements & Vitamins",
-    href: "/vitamins",
+    href: "#vitamins",
     submenu: [],
   },
 ];
@@ -128,10 +126,10 @@ export default function Navbar() {
                     </Link>
                   ))}
                   {item.submenu.length > 0 && (
-                    <div className="w-20 mx-auto mt-2 flex justify-center items-center">
+                    <div className="w-26  mt-2 flex justify-start items-start">
                       <Link
                         href={item.href || "#"}
-                        className="bg-gradient  cursor-pointer rounded-3xl text-[#1E1E1E] text-[10px] font-semibold block px-4 py-2 mx-auto">
+                        className="bg-gradient  cursor-pointer rounded-2xl text-[#1E1E1E] text-[10px] font-semibold block px-6 py-2 mx-auto">
                         View All
                       </Link>
                     </div>

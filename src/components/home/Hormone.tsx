@@ -1,10 +1,9 @@
-
 import HormoneSection from "@/common/HormoneSection";
 import React from "react";
 
 export default function Hormone() {
   return (
-    <section className="py-20 bg-bgColor">
+    <section id="hormone" className="py-20 bg-bgColor">
       <div className="container  mx-auto px-5">
         <HormoneSection
           title="Hormone Replacement (HRT)"
