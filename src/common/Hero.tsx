@@ -53,7 +53,7 @@ export default function Hero({ title, subtitle, description }: HeroProps) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
           <Image
-            src="/images/hero.png"
+            src="/images/hero.svg"
             alt="hero"
             width={500}
             height={500}
