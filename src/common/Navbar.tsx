@@ -129,7 +129,7 @@ export default function Navbar() {
                     <div className="w-26  mt-2 flex justify-start items-start">
                       <Link
                         href={item.href || "#"}
-                        className="bg-gradient  cursor-pointer rounded-2xl text-[#1E1E1E] text-[10px] font-semibold block px-6 py-2 mx-auto">
+                        className="bg-gradient mr-4 cursor-pointer rounded-2xl text-[#1E1E1E] text-[10px] font-semibold block px-6 py-2 mx-auto">
                         View All
                       </Link>
                     </div>

@@ -1,9 +1,9 @@
-// components/DripsCard.tsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface DripsCardProps {
   image: string;
@@ -19,12 +19,17 @@ export default function DripsCard({
   slug,
 }: DripsCardProps) {
   return (
-    <div className="bg-[#2a2a2a] w-full p-6 rounded-lg text-white flex flex-col justify-between border border-[#CAB485]">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.1, duration: 0.5 }}
+      className="bg-[#2a2a2a] w-full p-6 rounded-lg text-white flex flex-col justify-between border border-[#CAB485]">
       <div className="flex justify-start mb-4">
         <Image
           src={image}
           alt={title}
-          width={80}
+          width={60}
           height={80}
           className="object-contain"
         />
@@ -46,6 +51,6 @@ export default function DripsCard({
       <button className="bg-gradient-to-r font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-semibold py-2 rounded-md transition hover:opacity-90">
         Book Consultation
       </button>
-    </div>
+    </motion.div>
   );
 }

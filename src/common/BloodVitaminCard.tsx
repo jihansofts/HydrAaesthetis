@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface BloodVitaminCardProps {
   index?: number; // Optional index prop for mapping
@@ -15,7 +16,11 @@ export default function BloodVitaminCard({
   description,
 }: BloodVitaminCardProps) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.1, duration: 0.5 }}
       key={index}
       className="overflow-hidden transition-transform duration-300 hover:scale-95">
       <div className="h-96  overflow-hidden rounded-lg">
@@ -35,6 +40,6 @@ export default function BloodVitaminCard({
           {description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }

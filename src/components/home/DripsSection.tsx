@@ -1,7 +1,8 @@
+"use client";
 import Button from "@/common/Button";
 import DripsCard from "@/common/DripsCard";
 import React from "react";
-
+import { motion } from "framer-motion";
 const peptides = [
   {
     title: "Myers Cocktail",
@@ -56,14 +57,19 @@ export default function DripsSection() {
   return (
     <section className="bg-bgColor py-20">
       <div className="container mx-auto px-6">
-        <h2 className="text-white font-inter text-center text-[36px] md:text-[56px] font-extrabold mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-white font-inter text-center text-[36px] md:text-[56px] font-extrabold mb-12">
           IV Drips
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {peptides.map((item, index) => (
             <DripsCard
-              image="/images/drop.png"
+              image={item.image}
               key={index}
               title={item.title}
               desc={item.desc}

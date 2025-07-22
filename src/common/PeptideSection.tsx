@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import ButtonXl from "./ButtonXl";
+import { motion } from "framer-motion";
 
 interface PeptideSectionProps {
   title: string;
@@ -25,7 +26,11 @@ export default function PeptideSection({
       {reverse ? (
         <>
           {/* Image */}
-          <div className="lg:col-span-5 md:flex-col-reverse md:col-span-12 bg-primary py-16 px-10 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-5 md:flex-col-reverse md:col-span-12 bg-primary py-16 px-10 rounded-lg">
             <Image
               src={image}
               alt={title}
@@ -33,9 +38,13 @@ export default function PeptideSection({
               height={500}
               className="w-full h-full"
             />
-          </div>
+          </motion.div>
           {/* Text */}
-          <div className="lg:col-span-7 md:col-span-12 space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-7 md:col-span-12 space-y-5">
             <h3 className="lg:text-[48px] mr-10 md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
               {title}
             </h3>
@@ -47,12 +56,16 @@ export default function PeptideSection({
               bg="bg-bgColor"
               textColor="text-gradient"
             />
-          </div>
+          </motion.div>
         </>
       ) : (
         <>
           {/* Text */}
-          <div className="lg:col-span-7 md:flex-col-reverse md:col-span-12 space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-7 md:flex-col-reverse md:col-span-12 space-y-5">
             <div className="max-w-3xl">
               <h3 className="lg:text-[48px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
                 {title}
@@ -66,9 +79,9 @@ export default function PeptideSection({
               bg="bg-bgColor"
               textColor="text-gradient"
             />
-          </div>
+          </motion.div>
           {/* Image */}
-          <div className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">
+          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">
             <Image
               src={image}
               alt={title}
@@ -76,7 +89,7 @@ export default function PeptideSection({
               height={500}
               className="w-full h-full"
             />
-          </div>
+          </motion.div>
         </>
       )}
     </div>
