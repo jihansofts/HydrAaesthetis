@@ -105,7 +105,7 @@ export default function Navbar() {
             onMouseLeave={() => setHoveredMenu(null)}>
             <Link
               href={item.href || "#"}
-              className="flex items-center cursor-pointer gap-1 hover:text-[#d6b36b]">
+              className="flex font-inter text-[16px] font-medium items-center cursor-pointer gap-1 hover:text-[#d6b36b]">
               {item.label}
               {item.submenu.length > 0 && <FiChevronDown />}
             </Link>
@@ -123,7 +123,7 @@ export default function Navbar() {
                     <Link
                       key={i}
                       href={sub.href || "#"}
-                      className="block text-sm text-gray-300 hover:text-white mb-2">
+                      className="block text-[16px] font-inter font-medium text-gray-300 hover:text-white mb-2">
                       {sub.label}
                     </Link>
                   ))}
@@ -163,7 +163,7 @@ export default function Navbar() {
                   onClick={() =>
                     setOpenIndex(openIndex === index ? null : index)
                   }
-                  className="flex justify-between items-center w-full text-left">
+                  className="flex font-inter font-medium text-[16px] justify-between items-center w-full text-left">
                   {item.label}
                   {item.submenu.length > 0 && (
                     <FiChevronDown
@@ -179,7 +179,7 @@ export default function Navbar() {
                       <a
                         key={i}
                         href={sub.href || "#"}
-                        className="block text-sm text-gray-300 hover:text-white">
+                        className="block text-[16px] text-gray-300 hover:text-white">
                         {sub.label}
                       </a>
                     ))}
