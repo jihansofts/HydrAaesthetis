@@ -1,3 +1,4 @@
+"use client";
 import BotoxSection from "@/components/home/BotoxSection";
 import DripsSection from "@/components/home/DripsSection";
 import ExclusiveSection from "@/components/home/ExclusiveSection";

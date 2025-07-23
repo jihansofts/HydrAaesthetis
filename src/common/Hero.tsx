@@ -14,8 +14,8 @@ interface HeroProps {
 
 export default function Hero({ title, subtitle, description }: HeroProps) {
   return (
-    <div className="container px-5 mx-auto py-10">
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0 px-5">
+    <div className="container px-5 mx-auto lg:py-10 md:py-5 py-2 sm:py-2">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0">
         {/* Left Content */}
         <motion.div
           className="flex flex-col space-y-5 justify-center items-start lg:pr-10 md:pr-0 pr-0"

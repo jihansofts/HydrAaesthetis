@@ -3,13 +3,16 @@ import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { HiMenu, HiX } from "react-icons/hi";
 import Button from "./Button";
+import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { usePathname, useRouter } from "next/navigation";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Shop Our Products", href: "#nicotinamide" },
-  { label: "Women’s Choice", href: "#botox" },
+  { label: "Shop Our Products", href: "/#nicotinamide" },
+  { label: "Women’s Choice", href: "/#botox" },
+  { label: "Men’s Choice", href: "/#hormone" },
 ];
 
 const services = [
@@ -51,9 +54,29 @@ const services = [
 ];
 
 export default function Navbar() {
+  const router = useRouter();
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+
+  const navigateToHash = (e: React.MouseEvent, href: string) => {
+    // Only handle if it's a hash link
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      if (pathname !== "/") {
+        // Navigate to home page with hash
+        router.push(`/${href}`);
+      } else {
+        // Scroll to section on home page
+        const section = document.querySelector(href);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }
+    // Regular links will handle navigation normally
+  };
 
   return (
     <div className="bg-bgColor text-white w-full">
@@ -61,7 +84,18 @@ export default function Navbar() {
       <div className="container mx-auto flex justify-between items-center px-6 md:px-16 py-8">
         <div className="text-2xl font-bold text-white">
           <Link href="/" className="hover:text-[#d6b36b]">
-            Logo<span className="text-[#d6b36b]">.</span>
+            <div className="flex items-center gap-x-4 justify-start">
+              <Image
+                src="/images/logo.svg"
+                alt="Hydra Aesthetics"
+                width={150}
+                height={150}
+                className="w-24 h-24"
+              />
+              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
+                Hydra Aesthetics
+              </h2>
+            </div>
           </Link>
         </div>
 
@@ -76,7 +110,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div>
+        <div className="hidden md:flex">
           <a href="tel:+18186698271">
             <Button text="Contact Us" borderLeanr="gradient-border" />
           </a>
@@ -85,7 +119,11 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <div className="md:hidden">
           <button onClick={() => setMobileOpen(!mobileOpen)}>
-            {mobileOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+            {mobileOpen ? (
+              <HiX className="text-[#d6b36b]" size={24} />
+            ) : (
+              <HiMenu className="text-[#d6b36b]" size={24} />
+            )}
           </button>
         </div>
       </div>
@@ -102,7 +140,8 @@ export default function Navbar() {
             onMouseEnter={() => setHoveredMenu(item.label)}
             onMouseLeave={() => setHoveredMenu(null)}>
             <Link
-              href={item.href || "#"}
+              href={item.href}
+              onClick={(e) => navigateToHash(e, item.href)}
               className="flex font-inter text-[16px] font-medium items-center cursor-pointer gap-1 hover:text-[#d6b36b]">
               {item.label}
               {item.submenu.length > 0 && <FiChevronDown />}
@@ -192,6 +231,11 @@ export default function Navbar() {
                 )}
               </div>
             ))}
+            <div className="mt-4">
+              <a href="tel:+18186698271">
+                <Button text="Contact Us" borderLeanr="gradient-border" />
+              </a>
+            </div>
           </div>
         </div>
       )}
