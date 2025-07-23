@@ -4,6 +4,7 @@ import DripsSection from "@/components/home/DripsSection";
 import ExclusiveSection from "@/components/home/ExclusiveSection";
 import HeroSection from "@/components/home/HeroSection";
 import Hormone from "@/components/home/Hormone";
+import HydraAest from "@/components/home/HydraAest";
 import NicotinamideSection from "@/components/home/NicotinamideSection";
 import VitaminsSection from "@/components/home/VitaminsSection";
 import React from "react";
@@ -15,9 +16,10 @@ export default function Home() {
       <ExclusiveSection />
       <NicotinamideSection />
       <Hormone />
-      <VitaminsSection/>
-      <DripsSection/>
-      <BotoxSection/>
+      <VitaminsSection />
+      <DripsSection />
+      <BotoxSection />
+      <HydraAest />
     </main>
   );
 }

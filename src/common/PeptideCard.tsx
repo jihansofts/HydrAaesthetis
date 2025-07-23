@@ -33,9 +33,13 @@ export default function PeptideCard({ title, desc, slug }: PeptideCardProps) {
         </a>
       </p>
 
-      <button className="mt-auto bg-gradient text-[#1E1E1E] hover:bg-[#cbb688]/10 px-4 py-2 rounded-md font-semibold transition">
-        Book Consultation
-      </button>
+      <a
+        target="_blank"
+        href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
+        <button className="bg-gradient-to-r px-8 py-3 font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-bold text-[16px] rounded-md transition hover:opacity-90">
+          Book Consultation
+        </button>
+      </a>
     </motion.div>
   );
 }

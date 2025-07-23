@@ -111,7 +111,9 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:flex">
-          <a href="tel:+18186698271">
+          <a
+            target="_blank"
+            href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
             <Button text="Contact Us" borderLeanr="gradient-border" />
           </a>
         </div>

@@ -12,6 +12,7 @@ interface TreatmentSectionProps {
   bgBtnColor: string;
   textColor: string;
   buttonText: string;
+  contentColor: string;
   reverse?: boolean;
 }
 
@@ -19,6 +20,7 @@ export default function HormoneSection({
   title,
   desc,
   image,
+  contentColor,
   bgBtnColor,
   textColor,
   buttonText,
@@ -50,10 +52,12 @@ export default function HormoneSection({
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
             className="lg:col-span-7 lg:ml-10 md:ml-0 md:col-span-12 space-y-10">
             <div className="lg:max-w-3xl md:max-w-full">
-              <h3 className="lg:text-[48px] text-white md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
+              <h3
+                className={`lg:text-[48px] ${contentColor} md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter`}>
                 {title}
               </h3>
-              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 lg:mr-20 md:mr-0">
+              <p
+                className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}>
                 {desc}
               </p>
             </div>
@@ -63,12 +67,18 @@ export default function HormoneSection({
       ) : (
         <>
           {/* Text */}
-          <motion.div initial={{ opacity: 0, x: -100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }} className="lg:col-span-7 md:col-span-12 space-y-10">
+          <motion.div
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+            className="lg:col-span-7 md:col-span-12 space-y-10">
             <div className="max-w-3xl">
-              <h3 className="lg:text-[48px] text-white md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
+              <h3
+                className={`lg:text-[48px] ${contentColor} md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter`}>
                 {title}
               </h3>
-              <p className="text-[16px] font-inter font-medium leading-7 text-white mt-5 lg:mr-20 md:mr-0">
+              <p
+                className={`text-[16px] font-inter font-medium leading-7 ${contentColor}  mt-5 lg:mr-20 md:mr-0`}>
                 {desc}
               </p>
             </div>
@@ -76,7 +86,11 @@ export default function HormoneSection({
           </motion.div>
 
           {/* Image */}
-          <motion.div initial={{ opacity: 0, x: 100 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="lg:col-span-5 md:col-span-12 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-5 md:col-span-12 rounded-lg">
             <Image
               src={image}
               alt={title}

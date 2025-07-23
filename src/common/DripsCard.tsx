@@ -48,9 +48,13 @@ export default function DripsCard({
         </Link>
       </p>
 
-      <button className="bg-gradient-to-r font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-semibold py-2 rounded-md transition hover:opacity-90">
-        Book Consultation
-      </button>
+      <a
+        target="_blank"
+        href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
+        <button className="bg-gradient-to-r px-8 py-3 font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-bold text-[16px] rounded-md transition hover:opacity-90">
+          Book Consultation
+        </button>
+      </a>
     </motion.div>
   );
 }

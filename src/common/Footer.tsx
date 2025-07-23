@@ -57,7 +57,7 @@ const Footer = () => {
                   West Hollywood
                 </h3>
                 <p className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                  2505 Santa Monica blvd, <br /> Santa Monica 90404
+                  8205 Santa Monica blvd, <br /> Santa Monica 90404
                 </p>
               </div>
             </li>

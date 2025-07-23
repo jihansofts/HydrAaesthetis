@@ -7,19 +7,11 @@ import { motion } from "framer-motion";
 
 export default function BotoxSection() {
   return (
-    <section id="botox" className="relative py-20">
+    <section id="botox" className="relative  bg-gradient py-20">
       {/* Background image layer */}
-      <div className="absolute inset-0 w-full h-full z-0">
-        <Image
-          src="/images/botox-bg.png"
-          alt="Botox Background"
-          fill
-          className="w-full h-full object-cover"
-        />
-      </div>
 
       {/* Content layer */}
-      <div className="relative z-10 container mx-auto px-5 space-y-20">
+      <div className="relative  z-10 container mx-auto px-5 space-y-20">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -30,8 +22,9 @@ export default function BotoxSection() {
             image="/images/face1.png"
             buttonText="Book Consultation"
             desc="At Hydra Aesthetics, our Botox treatments are a safe, effective, and non-surgical way to refresh your look and reduce the appearance of fine lines and wrinkles. Whether you're looking to smooth forehead lines, frown lines, crow’s feet, or other signs of aging, our skilled professionals use precise techniques to ensure natural-looking, subtle results. With minimal discomfort and no downtime, Botox is a quick and convenient solution for maintaining a youthful, confident appearance. Let us help you look as vibrant as you feel."
-            textColor="text-[#AB3279]"
-            bgBtnColor="bg-white"
+            contentColor="text-[#1E1E1E]"
+            textColor="text-gradient"
+            bgBtnColor="bg-bgColor"
           />
         </motion.div>
 
@@ -45,8 +38,9 @@ export default function BotoxSection() {
             image="/images/face2.png"
             buttonText="Book Consultation"
             desc="At Hydra Aesthetics, our Botox treatments are a safe, effective, and non-surgical way to refresh your look and reduce the appearance of fine lines and wrinkles. Whether you're looking to smooth forehead lines, frown lines, crow’s feet, or other signs of aging, our skilled professionals use precise techniques to ensure natural-looking, subtle results. With minimal discomfort and no downtime, Botox is a quick and convenient solution for maintaining a youthful, confident appearance. Let us help you look as vibrant as you feel."
-            textColor="text-[#AB3279]"
-            bgBtnColor="bg-white"
+            contentColor="text-[#1E1E1E]"
+            textColor="text-gradient"
+            bgBtnColor="bg-bgColor"
             reverse
           />
         </motion.div>
