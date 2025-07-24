@@ -7,7 +7,7 @@ export default function Hormone() {
       <div className="container  mx-auto px-5">
         <HormoneSection
           title="Hormone Replacement (HRT)"
-          desc="Welcome to Hydra Aesthetics – your trusted destination for beauty, wellness, and rejuvenation. We offer a range of advanced treatments including Botox, fillers, IV hydration, hormone replacement therapy (HRT & TRT), microneedling, PRP, peptides, and vitamin infusions. Whether you're looking to refresh your appearance, boost energy, or restore hormonal balance, our expert team is here to guide you every step of the way. Experience personalized care designed to help you look and feel your absolute best. Ask ChatGPT"
+          desc="At Hydra Aesthetics, we believe that you are in charge of your body and encourage you to trust us build a professional relationship to guide you through your transformation so that you are not alone. We are with you every step of the way and are passionate about your success and achievements you attain with us. Whether you're looking to refresh your appearance, boost energy, or restore hormonal balance, with our customized plan utilizing Peptide therapy, Testosterone therapy. our expert team is here to guide you every step of the way. Experience personalized care designed to help you look and feel your absolute best."
           contentColor="text-white"
           image="/images/hormone1.png"
           textColor="text-[#1E1E1E]"
