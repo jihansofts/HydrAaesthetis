@@ -60,15 +60,16 @@ export default function BotoxSection() {
 
               <p
                 className={`text-[16px] font-inter font-medium leading-7 text-[#1E1E1E] mt-5 lg:mr-20 md:mr-0`}>
-                At Hydra Aesthetics, your wellness and beauty journey is our
-                priority. We offer a comprehensive range of treatments—from
-                hormone therapy and weight loss programs to vitamin injections,
-                fillers, and advanced skincare solutions like microneedling with
-                PRP. Our expert team combines medical precision with a
-                personalized approach to help you feel confident, energized, and
-                naturally radiant. Whether you&apos;re seeking subtle
-                enhancements or transformative results, Hydra Aesthetics
-                delivers care that’s tailored to you—every step of the way.
+                At Hydra Aesthetics, we specialize in advanced skincare
+                solutions to help you achieve smoother, firmer, and more radiant
+                skin. Our microneedling with PRP (Platelet-Rich Plasma)
+                treatment stimulates natural collagen production, improving skin
+                texture, reducing fine lines, acne scars, and enhancing overall
+                tone. This minimally invasive procedure uses your body’s own
+                healing power—paired with expert technique—to rejuvenate your
+                skin from the inside out. Whether you’re looking for subtle
+                refreshment or deeper skin renewal, our experienced team will
+                tailor the treatment to your individual goals.
               </p>
             </div>
             <ButtonXl
