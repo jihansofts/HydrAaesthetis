@@ -26,9 +26,9 @@ export default function Hero({ title, description }: HeroProps) {
           <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">
             {title || "Welcome to Hydra Aesthetics"}
           </h2>
-          <p className="text-[#FFFFFFC9] md:text-[16px] text-[14px] font-medium leading-9">
-            {description || "Your journey to wellness and beauty starts here."}
-          </p>
+          <p
+            className="text-[#FFFFFFC9] md:text-[16px] text-[14px] font-medium leading-9"
+            dangerouslySetInnerHTML={{ __html: description || "" }}/>
 
           <ul className="space-y-4 flex  items-start justify-start ">
             {/* Glendale Location */}

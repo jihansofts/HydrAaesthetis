@@ -6,8 +6,8 @@ export default function HeroSection() {
     <section className="lg:py-20 md:py-10 py-10 sm:py-10 bg-primary relative">
       <Hero
         title="Revitalize Your Body. Renew Your Confidence."
-        description="Welcome to Hydra Aesthetics –  IV hydration, Vitamin infusion, hormone therapies, PRP, and many more services we offer personalized treatments to help you look and feel your best. (ask for package deals for more info…)"
-        subtitle="What type of services do you want?"
+        description="<strong class='text-white'>Welcome to Hydra Aesthetics</strong> – your destination for IV hydration, vitamin infusions, hormone therapy, PRP treatments, and more. <br /><strong class='text-white'>Ask about our package deals to save on your journey to optimal health and beauty!"
+        subtitle="What type of services do you want? </strong>"
       />
     </section>
   );

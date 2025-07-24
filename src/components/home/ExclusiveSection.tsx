@@ -8,22 +8,22 @@ const peptides = [
   {
     title: "AOD 9604",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. stated for research at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
   },
   {
     title: "BPC-157",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "BPC 157 is a peptide chain composed of 15 amino acids, it is a partial sequence of body protection compound (BPC) that is discovered in and isolated from human gastric juice found in the...",
   },
   {
     title: "CEREBROLYSIN",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: "AOD 9604 is a modified form of amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "Cerebrolysin is a nootropic drug which consists of low-molecular peptides which possesses neuroprotective and neurotrophic repair properties. The active fragment of Cerebrolysin is made of proteins...",
   },
   {
     title: "CJC1295+IPAMORELIN",
     slug: "1L0mIaJnEuZTKZ_NpZGAoh5ScIvPuEeP-/preview",
-    desc: " amino acids 176-191 of the GH polypeptide. Investigators at Monash University discovered that the fat-reducing effects of GH appear to be controlled by a small region near one end of the GH molecule...",
+    desc: "At Prime Peptides we combine our CJC 1295 & Ipamorelin which provides as synergistic effect, which has five times the benefits of using them alone. The combination allows a maximized release of GH...",
   },
   {
     title: "DIHEXA",
