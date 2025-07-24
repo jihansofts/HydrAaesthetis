@@ -33,7 +33,7 @@ const services = [
     submenu: [],
   },
   {
-    label: "Lose Weight",
+    label: "Weight Lose",
     href: "/weight-lose",
     submenu: [
       { label: "Trizepatide", href: "/weight-lose" },
@@ -47,7 +47,7 @@ const services = [
     submenu: [{ label: "Quest Diagnostics Labs", href: "/blood-work" }],
   },
   {
-    label: "Supplements & Vitamins",
+    label: "Vitamin Shots",
     href: "#vitamins",
     submenu: [],
   },

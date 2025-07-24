@@ -5,6 +5,7 @@ import ExclusiveSection from "@/components/home/ExclusiveSection";
 import HeroSection from "@/components/home/HeroSection";
 import Hormone from "@/components/home/Hormone";
 import HydraAest from "@/components/home/HydraAest";
+import Magic from "@/components/home/Magic";
 import NicotinamideSection from "@/components/home/NicotinamideSection";
 import VitaminsSection from "@/components/home/VitaminsSection";
 import React from "react";
@@ -19,6 +20,7 @@ export default function Home() {
       <VitaminsSection />
       <DripsSection />
       <BotoxSection />
+      <Magic />
       <HydraAest />
     </main>
   );

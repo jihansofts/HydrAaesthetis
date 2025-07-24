@@ -9,6 +9,7 @@ interface PeptideSectionProps {
   title: string;
   desc: string;
   image: string;
+  descList?: string[];
   reverse?: boolean;
   buttonText: string;
 }
@@ -17,6 +18,7 @@ export default function PeptideSection({
   title,
   desc,
   image,
+  descList,
   reverse = false,
   buttonText,
 }: PeptideSectionProps) {
@@ -48,9 +50,11 @@ export default function PeptideSection({
             <h3 className="lg:text-[48px] mr-10 md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter">
               {title}
             </h3>
+
             <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 mr-20">
               {desc}
             </p>
+
             <ButtonXl
               text={buttonText}
               bg="bg-bgColor"
@@ -73,6 +77,13 @@ export default function PeptideSection({
               <p className="text-[16px] font-inter font-medium leading-7 text-bgColor mt-5 lg:mr-20 md:mr-0">
                 {desc}
               </p>
+              {descList && (
+                <ul className="list-disc ml-6 space-y-2 text-[16px] font-inter font-medium leading-7 text-black mt-5 lg:mr-20 md:mr-0">
+                  {descList.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              )}
             </div>
             <ButtonXl
               text={buttonText}
@@ -81,7 +92,11 @@ export default function PeptideSection({
             />
           </motion.div>
           {/* Image */}
-          <motion.div initial={{ opacity: 0, x: 50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, ease: "easeOut" }} className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:col-span-5 md:col-span-12 bg-primary py-16 px-10 rounded-lg">
             <Image
               src={image}
               alt={title}

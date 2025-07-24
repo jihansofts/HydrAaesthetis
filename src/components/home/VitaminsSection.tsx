@@ -4,7 +4,7 @@ import React from "react";
 
 const peptides = [
   {
-    title: "Vitamin C",
+    title: "Vitamin (C)",
     slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
     desc: "Strengthen your immune system, boost collagen production, and fight oxidative stress with powerful Vitamin C injections. Perfect for enhancing skin health, recovery, and overall wellness. A natural way to stay healthy, radiant, and resilient...",
   },
@@ -14,12 +14,12 @@ const peptides = [
     desc: "Support your nervous system, improve energy levels, and enhance mental clarity with Thiamin (Vitamin B1) injections. Essential for converting food into fuel and maintaining healthy nerve function.Great for reducing fatigue, brain fog....",
   },
   {
-    title: "Vitamin B12",
+    title: "Vitamin (B12)",
     slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
     desc: "Boost energy, improve mood, and support metabolism with fast-acting B12 injections. Perfect for fighting fatigue and enhancing overall wellness. Ideal for those looking to stay sharp, active, and naturally energized every day...",
   },
   {
-    title: "Vitamin B6",
+    title: "Vitamin (B6)",
     slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
     desc: "Boost brain function, support mood regulation, and promote heart health with Vitamin B6 injections. This essential nutrient helps balance hormones and improves immune function. Ideal for reducing stress, enhancing focus...",
   },

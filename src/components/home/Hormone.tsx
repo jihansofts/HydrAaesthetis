@@ -18,7 +18,7 @@ export default function Hormone() {
         <HormoneSection
           title="Testosterone Replacement (TRT)"
           desc="At Hydra Aesthetics, our Testosterone Replacement Therapy (TRT) is designed to help men restore vitality, improve energy, and regain hormonal balance. If you're experiencing fatigue, low libido, or mood changes, our expert-guided TRT treatments offer a safe and effective solution to help you feel stronger, more focused, and revitalized."
-          image="/images/hormone1.png"
+          image="/images/hormone2.png"
           bgBtnColor="bg-gradient"
           contentColor="text-white"
           buttonText="Book Consultation"

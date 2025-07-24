@@ -17,7 +17,7 @@ const peptides = [
     desc: "Combat cough and itchy throat...",
   },
   {
-    title: "NAD+",
+    title: "Migraine",
     image: "/images/drop2.png",
     slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
     desc: "A younger you...",
@@ -47,7 +47,7 @@ const peptides = [
     desc: "Be runway ready...",
   },
   {
-    title: "Migraine",
+    title: "Customise yours",
     image: "/images/drop7.png",
     slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
     desc: "Sweet, sweet headache relief...",

@@ -9,7 +9,14 @@ export default function NicotinamideSection() {
       <div className="container mx-auto lg:px-5 px-5">
         <PeptideSection
           title="Nicotinamide adenine dinucleotide (NAD+)"
-          desc="At Hydra Aesthetics, our Testosterone Replacement Therapy (TRT) is designed to restore vitality, improve energy, and regain hormonal balance. If you're experiencing fatigue, low libido, or mood changes, our expert-guided TRT treatments offer a safe and effective solution."
+          desc="NAD is a coenzyme found in all living cells. It plays a crucial role in cellular energy metabolism, DNA repair, and mitochondrial function. Levels of NAD⁺ decline with age and stress, contributing to aging and disease. It comes in various forms of administering commonly via IV, Subcutaneous, and Intramsucular inections. Its Vitals core benefits include Boosts energy and mitochondrial function"
+          descList={[
+            "Enhances cognitive clarity and memory",
+            "Reduces fatigue and brain fog",
+            "Supports anti-aging and longevity",
+            "May reduce anxiety/depression ",
+            "Improves recovery from substance use (in some cases)",
+          ]}
           image="/images/nico.png"
           buttonText="Contact for More Info"
         />

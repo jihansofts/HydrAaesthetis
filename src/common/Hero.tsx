@@ -19,7 +19,7 @@ export default function Hero({ title, description }: HeroProps) {
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0">
         {/* Left Content */}
         <motion.div
-          className="flex flex-col space-y-5 justify-center items-start lg:pr-10 md:pr-0 pr-0"
+          className="flex flex-col max-w-2xl space-y-5 justify-center items-start lg:pr-10 md:pr-0 pr-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}>
