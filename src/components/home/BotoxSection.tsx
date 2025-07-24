@@ -38,7 +38,7 @@ export default function BotoxSection() {
             title="Fillers / Muscle relaxers"
             image="/images/face2.png"
             buttonText="Book Consultation"
-            desc="At Hydra Aesthetics, our Botox treatments are a safe, effective, and non-surgical way to refresh your look and reduce the appearance of fine lines and wrinkles. Whether you're looking to smooth forehead lines, frown lines, crow’s feet, or other signs of aging, our skilled professionals use precise techniques to ensure natural-looking, subtle results. With minimal discomfort and no downtime, Botox is a quick and convenient solution for maintaining a youthful, confident appearance. Let us help you look as vibrant as you feel."
+            desc="At Hydra Aesthetics, we believe confidence starts with feeling your best—both inside and out. Our clinic offers a full range of personalized treatments, including hormone therapy, vitamin injections, weight loss solutions, and advanced aesthetic services like dermal fillers and skincare. Whether you're looking to boost energy, improve your appearance, or enhance overall wellness, our expert team is here to guide you every step of the way. With Hydra Aesthetics, you’ll experience modern care that’s tailored to your goals, delivered with compassion and professionalism."
             contentColor="text-[#1E1E1E]"
             textColor="text-gradient"
             bgBtnColor="bg-bgColor"
