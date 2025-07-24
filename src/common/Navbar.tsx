@@ -11,8 +11,8 @@ import { usePathname, useRouter } from "next/navigation";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Shop Our Products", href: "/#nicotinamide" },
-  { label: "Women’s Choice", href: "/#botox" },
-  { label: "Men’s Choice", href: "/#hormone" },
+  // { label: "Women’s Choice", href: "/#botox" },
+  // { label: "Men’s Choice", href: "/#hormone" },
 ];
 
 const services = [

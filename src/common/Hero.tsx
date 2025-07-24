@@ -36,7 +36,7 @@ export default function Hero({ title, description }: HeroProps) {
               <FaMapMarkerAlt className="text-[#C4AC7B] mt-1 mr-3 flex-shrink-0 text-xl" />
               <div>
                 <p className="bg-gradient-to-r font-bold font-inter from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                  8205 Santa Monica blvd, <br /> Santa Monica 90404
+                  8205 Santa Monica blvd, <br /> Santa Monica 90046
                 </p>
                 <p className="bg-gradient-to-r font-inter font-medium mt-2 text-[12px] from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
                   ( Aesthetics, Procedure, Services )
