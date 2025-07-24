@@ -8,9 +8,9 @@
     --font-inter: "Inter", sans-serif;
 
     /* Define gradient colors directly (no CSS vars) */
-    --gradient-from: #cbb688;
-    --gradient-via: #d3c299;
-    --gradient-to: #91754b;
+    --gradient-from: #CAB587;
+    --gradient-via: #D3C29A;
+    --gradient-to: #8D7146;
     --gradient-direction: to right;
   }
 }
