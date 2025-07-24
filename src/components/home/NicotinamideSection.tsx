@@ -5,8 +5,8 @@ import ButtonXl from "@/common/ButtonXl";
 import PeptideSection from "@/common/PeptideSection";
 export default function NicotinamideSection() {
   return (
-    <section id="nicotinamide" className="py-20 bg-gradient">
-      <div className="container mx-auto lg:px-5 px-5">
+    <section id="nicotinamide" className="py-10  bg-gradient">
+      <div className="container mx-auto lg:px-5 px-5 pb-20">
         <PeptideSection
           title="Nicotinamide adenine dinucleotide (NAD+)"
           desc="NAD is a coenzyme found in all living cells. It plays a crucial role in cellular energy metabolism, DNA repair, and mitochondrial function. Levels of NAD⁺ decline with age and stress, contributing to aging and disease. It comes in various forms of administering commonly via IV, Subcutaneous, and Intramsucular inections. Its Vitals core benefits include Boosts energy and mitochondrial function"
