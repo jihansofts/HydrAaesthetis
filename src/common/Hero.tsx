@@ -28,7 +28,8 @@ export default function Hero({ title, description }: HeroProps) {
           </h2>
           <p
             className="text-[#FFFFFFC9] md:text-[16px] text-[14px] font-medium leading-9"
-            dangerouslySetInnerHTML={{ __html: description || "" }}/>
+            dangerouslySetInnerHTML={{ __html: description || "" }}
+          />
 
           <ul className="space-y-4 flex  items-start justify-start ">
             {/* Glendale Location */}
@@ -91,7 +92,7 @@ export default function Hero({ title, description }: HeroProps) {
             height={500}
             className="w-full object-center h-full"
           />
-          <div className="flex  items-center gap-x-5 justify-center mt-4">
+          {/* <div className="flex  items-center gap-x-5 justify-center mt-4">
             <h4 className="lg:text-[40px] md:text-[36px] sm:text-[24px] font-extrabold text-white">
               4.97/5
             </h4>
@@ -99,7 +100,7 @@ export default function Hero({ title, description }: HeroProps) {
             <span className="lg:text-[24px] md:text-[18px] sm:text-[16px] text-[16px] font-bold text-white">
               From 500+ Customer reviews
             </span>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </div>

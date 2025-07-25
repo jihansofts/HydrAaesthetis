@@ -33,12 +33,12 @@ const services = [
     submenu: [],
   },
   {
-    label: "Weight Lose",
-    href: "/weight-lose",
+    label: "Weight Loss",
+    href: "/weight-loss",
     submenu: [
-      { label: "Trizepatide", href: "/weight-lose" },
-      { label: "Trizepatide + B12", href: "/weight-lose" },
-      { label: "Labs", href: "/weight-lose" },
+      { label: "Trizepatide", href: "/weight-loss" },
+      { label: "Trizepatide + B12", href: "/weight-loss" },
+      { label: "Labs", href: "/weight-loss" },
     ],
   },
   {
