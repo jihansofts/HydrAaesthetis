@@ -23,7 +23,7 @@ export default function Hero({ title, description }: HeroProps) {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}>
-          <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">
+          <h2 className="text-white lg:text-[40px] md:text-[32px] sm:text-[32px] text-[32px] font-extrabold">
             {title || "Welcome to Hydra Aesthetics"}
           </h2>
           <p
