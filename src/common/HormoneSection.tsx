@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 
 interface TreatmentSectionProps {
   title: string;
-  desc: string;
+  desc: string[];
   image: string;
   bgBtnColor: string;
   textColor: string;
@@ -56,10 +56,20 @@ export default function HormoneSection({
                 className={`lg:text-[48px] ${contentColor} md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter`}>
                 {title}
               </h3>
-              <p
-                className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}>
-                {desc}
-              </p>
+              {Array.isArray(desc) ? (
+                desc.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
+                ))
+              ) : (
+                <p
+                  className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}
+                  dangerouslySetInnerHTML={{ __html: desc }}
+                />
+              )}
             </div>
             <ButtonXl text={buttonText} bg={bgBtnColor} textColor={textColor} />
           </motion.div>
@@ -77,10 +87,20 @@ export default function HormoneSection({
                 className={`lg:text-[48px] ${contentColor} md:text-[56px] sm:text-[40px] text-[32px] font-extrabold font-inter`}>
                 {title}
               </h3>
-              <p
-                className={`text-[16px] font-inter font-medium leading-7 ${contentColor}  mt-5 lg:mr-20 md:mr-0`}>
-                {desc}
-              </p>
+              {Array.isArray(desc) ? (
+                desc.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}
+                    dangerouslySetInnerHTML={{ __html: paragraph }}
+                  />
+                ))
+              ) : (
+                <p
+                  className={`text-[16px] font-inter font-medium leading-7 ${contentColor} mt-5 lg:mr-20 md:mr-0`}
+                  dangerouslySetInnerHTML={{ __html: desc }}
+                />
+              )}
             </div>
             <ButtonXl text={buttonText} bg={bgBtnColor} textColor={textColor} />
           </motion.div>

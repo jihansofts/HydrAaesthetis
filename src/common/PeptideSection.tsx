@@ -10,6 +10,7 @@ interface PeptideSectionProps {
   desc: string;
   image: string;
   descList?: string[];
+  pList?: string[];
   reverse?: boolean;
   buttonText: string;
 }
@@ -19,6 +20,7 @@ export default function PeptideSection({
   desc,
   image,
   descList,
+  pList,
   reverse = false,
   buttonText,
 }: PeptideSectionProps) {
@@ -83,6 +85,13 @@ export default function PeptideSection({
                     <li key={index}>{item}</li>
                   ))}
                 </ul>
+              )}
+              {pList && (
+                <div className="list-disc ml-6 space-y-2 text-[16px] font-inter font-medium leading-7 text-black mt-5 lg:mr-20 md:mr-0">
+                  {pList.map((item, index) => (
+                    <p key={index}>{item}</p>
+                  ))}
+                </div>
               )}
             </div>
             <ButtonXl

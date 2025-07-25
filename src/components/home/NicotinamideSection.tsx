@@ -8,21 +8,25 @@ export default function NicotinamideSection() {
     <section id="nicotinamide" className="py-10  bg-gradient">
       <div className="container mx-auto lg:px-5 px-5 pb-20">
         <PeptideSection
-          title="Nicotinamide adenine dinucleotide (NAD+)"
-          desc="NAD is a coenzyme found in all living cells. It plays a crucial role in cellular energy metabolism, DNA repair, and mitochondrial function. Levels of NAD⁺ decline with age and stress, contributing to aging and disease. It comes in various forms of administering commonly via IV, Subcutaneous, and Intramsucular inections. Its Vitals core benefits include Boosts energy and mitochondrial function"
+          title="Nicotinamide Adenine Dinucleotide (NAD+)"
+          desc="NAD+ is a vital coenzyme found in every cell, essential for energy production, DNA repair, and overall cellular health. As we age or experience stress, NAD+ levels naturally decline, which can impact energy, brain function, and aging. At Hydra Aesthetics, we offer NAD+ therapy through IV, subcutaneous, or intramuscular injections to help you: "
           descList={[
-            "Enhances cognitive clarity and memory",
-            "Reduces fatigue and brain fog",
-            "Supports anti-aging and longevity",
-            "May reduce anxiety/depression ",
-            "Improves recovery from substance use (in some cases)",
+            "Boost energy and support mitochondrial health",
+            "Enhance mental clarity and memory",
+            "Reduce fatigue and brain fog",
+            "Support healthy aging and longevity",
+            "Potentially ease anxiety and depression",
+            "Aid recovery in certain cases of substance use",
+          ]}
+          pList={[
+            "Feel revitalized from the inside out with NAD+ therapy tailored for your wellness goals.",
           ]}
           image="/images/nico.png"
           buttonText="Contact for More Info"
         />
         <PeptideSection
           title="Glutathione"
-          desc="At Hydra Aesthetics, our Glutathione treatments help detoxify your body, brighten your skin, and support immune function. It's a powerful antioxidant that works at the cellular level to restore health and radiance."
+          desc="Our Glutathione treatments at Hydra Aesthetics help detoxify your body, brighten your skin, and boost your immune system. As a powerful antioxidant, it works deep within your cells to restore health, enhance radiance, and promote overall wellness."
           image="/images/glut.png"
           buttonText="Contact for More Info"
           reverse

@@ -5,7 +5,7 @@ export default function Magic() {
     <section className="lg:py-20 md:py-10 bg-[#252525] py-10 sm:py-10">
       <div className="container mx-auto px-5">
         <h1 className="text-gradient font-inter text-center text-[36px] md:text-[56px] font-bold mb-12">
-          See Our Work
+          Transformations
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 ">
           <div className="flex flex-col items-center justify-center">

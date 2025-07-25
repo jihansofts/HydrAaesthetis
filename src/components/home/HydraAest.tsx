@@ -16,19 +16,19 @@ export default function HydraAest() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}>
             <h2 className="text-white lg:text-[64px] md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">
-              Hydra Aesthetics At Home.
+              Hydra Aesthetics At Home
             </h2>
             <p className="text-[#FFFFFFC9] md:text-[16px] text-[14px] font-medium leading-9">
-              Skip the waiting rooms—our mobile services bring expert care
-              straight to your door. Whether you need lab work, vitamin
-              injections, or consultations, our licensed professionals deliver
-              safe, convenient, and discreet treatment in the comfort of your
-              home or office. It’s healthcare on your schedule, designed for
-              your lifestyle.
+              Skip the waiting rooms—our mobile services bring expert care right
+              to your doorstep. Whether it’s lab work, vitamin injections, or
+              consultations, our licensed professionals provide safe,
+              convenient, and discreet treatments in the comfort of your home or
+              office. Healthcare on your schedule, tailored to fit your
+              lifestyle.
             </p>
             <span className="text-white text-[16px] font-inter font-black">
-              Additional medical services may qualify ask our dedicated
-              Healthcare Providers for more info.
+              Additional medical services may be available—ask our dedicated
+              healthcare team for details.
             </span>
             {/* 
             <div className="relative inline-block font-extrabold text-white z-10">
