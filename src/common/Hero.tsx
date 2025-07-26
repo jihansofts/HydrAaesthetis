@@ -16,10 +16,10 @@ interface HeroProps {
 export default function Hero({ title, description }: HeroProps) {
   return (
     <div className="container px-5 mx-auto pb-10 ">
-      <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0">
+      <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5  md:px-0">
         {/* Left Content */}
         <motion.div
-          className="flex flex-col max-w-2xl space-y-5 justify-center items-start lg:pr-10 md:pr-0 pr-0"
+          className="flex flex-col max-w-2xl space-y-5 justify-between items-start lg:pr-10 md:pr-0 pr-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}>
@@ -31,7 +31,7 @@ export default function Hero({ title, description }: HeroProps) {
             dangerouslySetInnerHTML={{ __html: description || "" }}
           />
 
-          <ul className="space-y-4 flex  items-start justify-start ">
+          <ul className="flex flex-col sm:flex-row sm:flex-wrap lg:gap-6 md:gap-4 sm:gap-2 gap-2 items-start justify-start">
             {/* Glendale Location */}
             <li className="flex items-start justify-center md:justify-start">
               <FaMapMarkerAlt className="text-[#C4AC7B] mt-1 mr-3 flex-shrink-0 text-xl" />
@@ -69,9 +69,10 @@ export default function Hero({ title, description }: HeroProps) {
             </span>
           </div> */}
 
-          <div className="mt-5">
-            <a href="tel:+18186698271">
+          <div className="mt-2">
+            <a className="block" href="tel:+18186698271">
               <Button
+                bg="bg-bgColor"
                 text="Call Us +1 818 669 8271"
                 borderLeanr="gradient-border"
               />
@@ -81,7 +82,7 @@ export default function Hero({ title, description }: HeroProps) {
 
         {/* Image Section */}
         <motion.div
-          className=""
+          className="md:mt-0 mt-10"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>

@@ -9,11 +9,13 @@ import Magic from "@/components/home/Magic";
 import NicotinamideSection from "@/components/home/NicotinamideSection";
 import VitaminsSection from "@/components/home/VitaminsSection";
 import React from "react";
+import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
+      <WhyChooseUs />
       <ExclusiveSection />
       <NicotinamideSection />
       <Hormone />

@@ -6,7 +6,7 @@ import PeptideSection from "@/common/PeptideSection";
 export default function NicotinamideSection() {
   return (
     <section id="nicotinamide" className="py-10  bg-gradient">
-      <div className="container mx-auto lg:px-5 px-5 pb-20">
+      <div id="nad" className="container  mx-auto lg:px-5 px-5 pb-20">
         <PeptideSection
           title="Nicotinamide Adenine Dinucleotide (NAD+)"
           desc="NAD+ is a vital coenzyme found in every cell, essential for energy production, DNA repair, and overall cellular health. As we age or experience stress, NAD+ levels naturally decline, which can impact energy, brain function, and aging. At Hydra Aesthetics, we offer NAD+ therapy through IV, subcutaneous, or intramuscular injections to help you: "
