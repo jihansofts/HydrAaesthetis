@@ -20,7 +20,7 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
     },
     {
       title: "Convenience",
-      desc: "Flexible appointments at our spa or in the comfort of your home.",
+      desc: "Flexible appointments at our Hydra Aesthetics or in the comfort of your home.",
     },
   ];
 
@@ -39,7 +39,7 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
   ];
 
   return (
-    <section className="bg-primary text-white py-16 px-4 text-center">
+    <section className="bg-[#2E2E2E] text-white py-16 px-4 text-center">
       <div className="mx-auto container max-w-7xl py-10">
         <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-6">
           Why Choose Us
@@ -58,11 +58,11 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
         </ul>
 
         {/* Scroll target for serviceRef */}
-        <div ref={serviceRef} className="pt-24" id="our-services">
+        <div ref={serviceRef} className="pt-20" id="our-services">
           <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
             Our Services
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-20 gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-16 gap-4 max-w-7xl mx-auto">
             {services.map((service, index) => (
               <div
                 onClick={() => {

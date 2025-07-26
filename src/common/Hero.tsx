@@ -15,11 +15,11 @@ interface HeroProps {
 
 export default function Hero({ title, description }: HeroProps) {
   return (
-    <div className="container px-5 mx-auto pb-10 ">
+    <div className="container px-5 mx-auto  ">
       <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5  md:px-0">
         {/* Left Content */}
         <motion.div
-          className="flex flex-col max-w-2xl space-y-5 justify-between items-start lg:pr-10 md:pr-0 pr-0"
+          className="flex flex-col max-w-2xl space-y-10 justify-center items-start lg:pr-10 md:pr-0 pr-0"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}>
@@ -82,7 +82,7 @@ export default function Hero({ title, description }: HeroProps) {
 
         {/* Image Section */}
         <motion.div
-          className="md:mt-0 mt-10"
+          className="md:mt-0 sm:mt-5 mt-2 w-full md:w-[800px] md:h-[800px] "
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
@@ -91,7 +91,7 @@ export default function Hero({ title, description }: HeroProps) {
             alt="hero"
             width={500}
             height={500}
-            className="w-full object-center h-full"
+            className="w-full object-center h-full lg:mt-20 md:mt-10 sm:mt-10 mt-10 lg:w-[700px] md:h-[600px]"
           />
           {/* <div className="flex  items-center gap-x-5 justify-center mt-4">
             <h4 className="lg:text-[40px] md:text-[36px] sm:text-[24px] font-extrabold text-white">
