@@ -24,13 +24,15 @@ export default function NicotinamideSection() {
           image="/images/nico.png"
           buttonText="Contact for More Info"
         />
-        <PeptideSection
-          title="Glutathione"
-          desc="Our Glutathione treatments at Hydra Aesthetics help detoxify your body, brighten your skin, and boost your immune system. As a powerful antioxidant, it works deep within your cells to restore health, enhance radiance, and promote overall wellness."
-          image="/images/glut.png"
-          buttonText="Contact for More Info"
-          reverse
-        />
+        <div id="glutathione">
+          <PeptideSection
+            title="Glutathione"
+            desc="Our Glutathione treatments at Hydra Aesthetics help detoxify your body, brighten your skin, and boost your immune system. As a powerful antioxidant, it works deep within your cells to restore health, enhance radiance, and promote overall wellness."
+            image="/images/glut.png"
+            buttonText="Contact for More Info"
+            reverse
+          />
+        </div>
         {/* <div className="grid grid-cols-1 md:grid-cols-12  lg:grid-cols-12 justify-center items-center gap-8 gap-x-10">
           <div className="lg:col-span-7 md:col-span-12 space-y-5">
             <h3 className="lg:text-[48px] font-inter md:text-[56px] sm:text-[40px] text-[32px] font-extrabold">

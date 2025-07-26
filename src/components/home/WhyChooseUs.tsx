@@ -59,13 +59,18 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
 
         {/* Scroll target for serviceRef */}
         <div ref={serviceRef} className="pt-24" id="our-services">
-          <h2 className="lg:text-[56px] md:text-[32px] font-extrabold mb-2">
+          <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
             Our Services
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-20 gap-4 max-w-7xl mx-auto">
             {services.map((service, index) => (
               <div
-                id={service.id}
+                onClick={() => {
+                  const element = document.getElementById(service.id);
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
                 key={index}
                 className="bg-gradient-to-r cursor-pointer from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E]  font-bold py-3 px-4 rounded-lg lg:text-[16px] md:text-[12px] text-[12px] shadow-md hover:scale-105 transition-transform duration-300">
                 {service.title}

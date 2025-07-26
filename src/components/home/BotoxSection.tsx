@@ -14,6 +14,7 @@ export default function BotoxSection() {
       {/* Content layer */}
       <div className="relative  z-10 container mx-auto px-5 space-y-20">
         <motion.div
+          id="botox"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -32,6 +33,7 @@ export default function BotoxSection() {
         </motion.div>
 
         <motion.div
+          id="fillers"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -50,7 +52,9 @@ export default function BotoxSection() {
           />
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 justify-between items-center gap-8 py-10">
+        <div
+          id="microneedling"
+          className="grid grid-cols-1 md:grid-cols-12 lg:grid-cols-12 justify-between items-center gap-8 py-10">
           {/* Text */}
           <motion.div
             initial={{ opacity: 0, x: -100 }}

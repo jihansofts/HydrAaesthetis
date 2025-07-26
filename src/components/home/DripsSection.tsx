@@ -56,7 +56,7 @@ const peptides = [
 export default function DripsSection() {
   return (
     <section className="bg-bgColor py-20">
-      <div className="container mx-auto px-6">
+      <div id="iv-drips" className="container mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -7,7 +7,9 @@ import ButtonXl from "@/common/ButtonXl";
 export default function HydraAest() {
   return (
     <section className="lg:py-20 pb-5 md:py-10 py-5 sm:py-5 bg-[#2E2E2E] relative">
-      <div className="container px-5 mx-auto lg:py-10 md:py-5 py-2 sm:py-2">
+      <div
+        id="aesthetics-home"
+        className="container px-5 mx-auto lg:py-10 md:py-5 py-2 sm:py-2">
         <div className="grid grid-cols-1 md:grid-cols-2 justify-between xl:gap-2 lg:gap-5 md:px-0">
           {/* Left Content */}
           <motion.div
