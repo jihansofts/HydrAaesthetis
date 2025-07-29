@@ -33,7 +33,7 @@ export default function Hero({ title, description }: HeroProps) {
 
           <ul className="flex flex-col sm:flex-row sm:flex-wrap lg:gap-6 md:gap-4 sm:gap-2 gap-2 items-start justify-start">
             {/* Glendale Location */}
-            <li className="flex items-start justify-center md:justify-start">
+            {/* <li className="flex items-start justify-center md:justify-start">
               <FaMapMarkerAlt className="text-[#C4AC7B] mt-1 mr-3 flex-shrink-0 text-xl" />
               <div>
                 <p className="bg-gradient-to-r font-bold font-inter from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
@@ -43,11 +43,11 @@ export default function Hero({ title, description }: HeroProps) {
                   ( Aesthetics, Procedure, Services )
                 </p>
               </div>
-            </li>
-            <li className="flex items-start justify-center md:justify-start">
+            </li> */}
+            {/* <li className="flex items-start justify-center md:justify-start">
               <FaClinicMedical className="text-[#252525] mt-1 mr-3 flex-shrink-0 text-xl" />
               <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent"></span>
-            </li>
+            </li> */}
 
             {/* Burbank Location */}
             <li className="flex items-start justify-center md:justify-start">

@@ -2,11 +2,13 @@
 import React, { useState } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { HiMenu, HiX } from "react-icons/hi";
+import { TbShoppingBagPlus } from "react-icons/tb";
 import Button from "./Button";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
+import { useAppContext } from "@/context/AppContext";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -54,6 +56,11 @@ const services = [
 ];
 
 export default function Navbar() {
+  const { cartItems } = useAppContext();
+  const itemQuantity = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
   const router = useRouter();
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -110,7 +117,15 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex">
+        <div className="hidden md:flex justify-center items-center space-x-5">
+          <Link href="/order" className="col-span-1 relative">
+            <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
+            {itemQuantity > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                {itemQuantity}
+              </span>
+            )}
+          </Link>
           <a
             target="_blank"
             href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">

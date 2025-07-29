@@ -7,9 +7,10 @@ import Hormone from "@/components/home/Hormone";
 import HydraAest from "@/components/home/HydraAest";
 import Magic from "@/components/home/Magic";
 import NicotinamideSection from "@/components/home/NicotinamideSection";
-import VitaminsSection from "@/components/home/VitaminsSection";
+
 import React from "react";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
+import VitaminsSection from "@/components/home/VitaminsSection";
 
 export default function Home() {
   return (

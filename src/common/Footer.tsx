@@ -50,7 +50,7 @@ const Footer = () => {
 
           <ul className="space-y-4 flex flex-col items-start justify-start ">
             {/* Glendale Location */}
-            <li className="flex items-start justify-center md:justify-start">
+            {/* <li className="flex items-start justify-center md:justify-start">
               <FaMapMarkerAlt className="text-[#C4AC7B] mt-1 mr-3 flex-shrink-0 text-xl" />
               <div>
                 <h3 className="font-bold text-lg mb-1 bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
@@ -66,7 +66,7 @@ const Footer = () => {
               <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
                 ( Aesthetics, Procedure, Services )
               </span>
-            </li>
+            </li> */}
 
             {/* Burbank Location */}
             <li className="flex items-start justify-center md:justify-start">

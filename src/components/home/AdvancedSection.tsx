@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Button from "@/common/Button";
-import PeptideCard from "@/common/PeptideCard";
+import PeptideCard from "@/common/TherapiesCard";
 
 const peptides = [
   {
