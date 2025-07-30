@@ -38,8 +38,8 @@ const OrderPage: React.FC = () => {
           <div className="text-center">
             <p className="text-xl mb-4">Your cart is empty</p>
             <Link
-              href="/products"
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-md font-medium">
+              href="/#vitamins"
+              className="inline-block bg-[#C4AC7B] text-white py-2 px-6 rounded-md font-medium">
               Continue Shopping
             </Link>
           </div>
@@ -121,6 +121,12 @@ const OrderPage: React.FC = () => {
                       <span className="font-bold">
                         ${(item.price * item.quantity).toFixed(2)}
                       </span>
+                      <button
+                        onClick={() => removeItem(item.productId)}
+                        className="text-[#CAB485] hover:text-red-300 ml-2"
+                        aria-label="Remove item">
+                        Remove
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -136,14 +142,9 @@ const OrderPage: React.FC = () => {
 
             {/* Checkout Button */}
             <div className="flex items-center justify-center mt-10">
-              {/* <button
-                onClick={handleCheckout}
-                className="border border-[#CAB485] text-[#CAB485] hover:bg-[#CAB485] hover:text-black px-6 py-2 rounded-md transition-all">
-                Proceed To Check Out
-              </button> */}
-
               <button
-                className={`text-[16px] border-gradient cursor-pointer font-bold text-gradient px-8 py-4 rounded-lg bg-[#2E2E2E] `}>
+                onClick={handleCheckout}
+                className="border cursor-pointer border-[#CAB485] text-[#CAB485] hover:bg-[#CAB485] hover:text-black px-6 py-2 rounded-md transition-all">
                 Proceed To Check Out
               </button>
             </div>

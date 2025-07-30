@@ -18,7 +18,7 @@ const CheckOut = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-4">
+    <div className="min-h-screen bg-[#252525] text-white p-4">
       <div className="container mx-auto max-w-4xl">
         <h1 className="text-3xl font-bold mb-8 text-center">Payment Method</h1>
 
@@ -44,7 +44,7 @@ const CheckOut = () => {
         </div>
 
         {activeTab === "card" && (
-          <div className="bg-gray-800 p-6 rounded-lg">
+          <div className="bg-[#2E2E2E] p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Card Details</h2>
             <form className="space-y-4">
               <div>
@@ -56,7 +56,7 @@ const CheckOut = () => {
                   name="name"
                   value={cardDetails.name}
                   onChange={handleCardChange}
-                  className="w-full bg-gray-700 rounded-md p-3 text-white"
+                  className="w-full bg-[#252525] rounded-md p-3 text-white"
                   placeholder="John Doe"
                   required
                 />
@@ -70,7 +70,7 @@ const CheckOut = () => {
                   name="number"
                   value={cardDetails.number}
                   onChange={handleCardChange}
-                  className="w-full bg-gray-700 rounded-md p-3 text-white"
+                  className="w-full bg-[#252525] rounded-md p-3 text-white"
                   placeholder="1234 5678 9012 3456"
                   required
                 />
@@ -85,7 +85,7 @@ const CheckOut = () => {
                     name="expiry"
                     value={cardDetails.expiry}
                     onChange={handleCardChange}
-                    className="w-full bg-gray-700 rounded-md p-3 text-white"
+                    className="w-full bg-[#252525] rounded-md p-3 text-white"
                     placeholder="MM/YY"
                     required
                   />
@@ -97,7 +97,7 @@ const CheckOut = () => {
                     name="cvv"
                     value={cardDetails.cvv}
                     onChange={handleCardChange}
-                    className="w-full bg-gray-700 rounded-md p-3 text-white"
+                    className="w-full bg-[#252525] rounded-md p-3 text-white"
                     placeholder="123"
                     required
                   />
@@ -119,7 +119,7 @@ const CheckOut = () => {
         )}
 
         {activeTab === "paypal" && (
-          <div className="bg-gray-800 p-6 rounded-lg">
+          <div className="bg-[#2E2E2E] p-6 rounded-lg">
             <h2 className="text-xl font-semibold mb-4">Pay with PayPal</h2>
             <div className="space-y-4">
               <p className="text-gray-300 mb-6">
