@@ -20,7 +20,7 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
     },
     {
       title: "Convenience",
-      desc: "Flexible appointments at our Hydra Aesthetics or in the comfort of your home.",
+      desc: "Flexible appointments at Hydra Aesthetics or in the comfort of your home",
     },
   ];
 
