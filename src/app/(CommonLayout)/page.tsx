@@ -11,6 +11,7 @@ import NicotinamideSection from "@/components/home/NicotinamideSection";
 import React from "react";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import VitaminsSection from "@/components/home/VitaminsSection";
+import Microneedling from "@/components/home/Microneedling";
 
 export default function Home() {
   return (
@@ -23,6 +24,7 @@ export default function Home() {
       <VitaminsSection />
       <BotoxSection />
       <DripsSection />
+      <Microneedling />
       <Magic />
       <HydraAest />
     </main>
