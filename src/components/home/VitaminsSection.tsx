@@ -91,7 +91,7 @@ const VitaminsSection: React.FC = () => {
     <section id="vitamins" className="bg-bgColor py-20">
       <div className="container mx-auto px-6">
         <h2 className="text-white font-inter text-center text-[36px] md:text-[56px] font-extrabold mb-12">
-          Vitamins & Nutrient Injections
+          Vitamins Injections
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
