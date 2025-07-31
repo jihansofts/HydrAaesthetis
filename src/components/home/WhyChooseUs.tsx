@@ -34,7 +34,7 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
     // { id: "fillers", title: "Fillers & Muscle Relaxers" },
     { id: "microneedling", title: "Microneedling & PRP" },
     { id: "iv-drips", title: "IV Drips" },
-    { id: "botox", title: "Botox & Toxins" },
+    { id: "botox", title: "Botox & Fillers" },
     { id: "aesthetics-home", title: "Hydra Aesthetics At Home" },
   ];
 

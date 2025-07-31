@@ -17,12 +17,12 @@ export default function Home() {
     <main>
       <HeroSection />
       <WhyChooseUs />
+      <Hormone />
       <ExclusiveSection />
       <NicotinamideSection />
-      <Hormone />
       <VitaminsSection />
-      <DripsSection />
       <BotoxSection />
+      <DripsSection />
       <Magic />
       <HydraAest />
     </main>

@@ -123,7 +123,7 @@ const OrderPage: React.FC = () => {
                       </span>
                       <button
                         onClick={() => removeItem(item.productId)}
-                        className="text-[#CAB485] hover:text-red-300 ml-2"
+                        className="text-[#CAB485] cursor-pointer hover:text-red-300 ml-2"
                         aria-label="Remove item">
                         Remove
                       </button>
