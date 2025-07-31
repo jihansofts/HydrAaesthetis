@@ -25,14 +25,14 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
   ];
 
   const services = [
-    { id: "advanced-peptides", title: "Advanced Peptide Therapies" },
-    { id: "nad", title: "Nicotinamide Adenine Dinucleotide (NAD+)" },
     { id: "hrt", title: "Hormone Replacement Therapy (HRT)" },
     { id: "trt", title: "Testosterone Replacement Therapy (TRT)" },
-    { id: "vitamins", title: "Vitamins & Nutrient Injections" },
-    { id: "fillers", title: "Fillers & Muscle Relaxers" },
-    { id: "microneedling", title: "Microneedling & PRP" },
+    { id: "advanced-peptides", title: "Advanced Peptide Therapies" },
+    { id: "nad", title: "Nicotinamide Adenine Dinucleotide (NAD+)" },
     { id: "glutathione", title: "Glutathione" },
+    { id: "vitamins", title: "Vitamins Injections" },
+    // { id: "fillers", title: "Fillers & Muscle Relaxers" },
+    { id: "microneedling", title: "Microneedling & PRP" },
     { id: "iv-drips", title: "IV Drips" },
     { id: "botox", title: "Botox & Toxins" },
     { id: "aesthetics-home", title: "Hydra Aesthetics At Home" },
