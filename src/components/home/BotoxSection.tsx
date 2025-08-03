@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
+
 import HormoneSection from "@/common/HormoneSection";
 import { motion } from "framer-motion";
-import ButtonXl from "@/common/ButtonXl";
+
 
 export default function BotoxSection() {
   return (

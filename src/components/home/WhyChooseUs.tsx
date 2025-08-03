@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React from "react";
 
 interface WhyChooseUsProps {
   serviceRef?: React.RefObject<HTMLDivElement>;

@@ -1,4 +1,3 @@
-import Button from "@/common/Button";
 import { motion } from "framer-motion";
 import React from "react";
 import Image from "next/image";
@@ -32,13 +31,7 @@ export default function HydraAest() {
               Additional medical services may be available—ask our dedicated
               healthcare team for details.
             </span>
-            {/* 
-            <div className="relative inline-block font-extrabold text-white z-10">
-              <span className="relative inline-block ml-1 lg:text-[22px] md:text-[18px] sm:text-[16px] text-[14px]">
-                {subtitle || "Explore Our Services"}
-                <span className="absolute bottom-[-2px] p-2 left-[-8px] right-[-8px] h-[10px] bg-[#D9C79B69] z-[-1]"></span>
-              </span>
-            </div> */}
+      
 
             <div className="mt-5">
               <ButtonXl
@@ -62,15 +55,7 @@ export default function HydraAest() {
               height={500}
               className="w-full object-center h-full"
             />
-            {/* <div className="flex items-center gap-x-5 justify-center mt-4">
-              <h4 className="lg:text-[40px] md:text-[36px] sm:text-[24px] font-extrabold text-white">
-                4.97/5
-              </h4>
-              <IoIosStar className="text-[#D9C79B] text-[40px]" />
-              <span className="lg:text-[24px] md:text-[18px] sm:text-[16px] text-[16px] font-bold text-white">
-                From 500+ Customer reviews
-              </span>
-            </div> */}
+
           </motion.div>
         </div>
       </div>

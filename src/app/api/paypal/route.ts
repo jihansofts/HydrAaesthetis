@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import paypal from "@paypal/checkout-server-sdk";
 import { NextRequest } from "next/server";
 
@@ -60,7 +59,6 @@ export async function POST(request: NextRequest) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         [key: string]: any;
       };
-      [key: string]: any;
     }
 
     const approvalLink: string | undefined = (

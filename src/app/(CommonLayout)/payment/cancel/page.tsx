@@ -10,8 +10,6 @@ export default function PaymentSuccess() {
   const { clearCart } = useAppContext();
 
   useEffect(() => {
-    const sessionId = searchParams.get("session_id");
-    const paymentId = searchParams.get("paymentId");
 
     // Verify payment and clear cart
     

@@ -1,6 +1,4 @@
 import React from "react";
-import Image from "next/image";
-
 const dataCard = [
   {
     image: "/images/varietie1.png",

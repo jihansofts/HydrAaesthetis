@@ -23,7 +23,7 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
   const itemQuantity = cartItem ? cartItem.quantity : 0;
 
   const handleAddToCart = () => {
-    addToCart({ productId, title, desc, slug, price, quantity: 1 });
+    addToCart({ productId, title, price, quantity: 1 });
   };
 
   return (

@@ -3,9 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import Button from "./Button";
-import { IoIosStar } from "react-icons/io";
+
 import { motion } from "framer-motion";
-import { FaClinicMedical, FaMapMarkerAlt } from "react-icons/fa";
+import {  FaMapMarkerAlt } from "react-icons/fa";
 
 interface HeroProps {
   title?: string;

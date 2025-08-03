@@ -1,11 +1,10 @@
 import React from "react";
 import Image from "next/image";
-import logo from "../assets/trt/footer.png";
 import {
   FaPhone,
   FaMapMarkerAlt,
   FaEnvelope,
-  FaClinicMedical,
+
 } from "react-icons/fa";
 import { LuMessageSquareText } from "react-icons/lu";
 

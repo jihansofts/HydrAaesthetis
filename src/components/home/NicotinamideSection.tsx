@@ -1,7 +1,5 @@
 import React from "react";
-import Image from "next/image";
-import Button from "@/common/Button";
-import ButtonXl from "@/common/ButtonXl";
+
 import PeptideSection from "@/common/PeptideSection";
 export default function NicotinamideSection() {
   return (
