@@ -10,8 +10,7 @@ const OrderPage: React.FC = () => {
     cartItems,
     userDetails,
     updateUserDetails,
-    increaseQuantity,
-    decreaseQuantity,
+
     removeItem,
     cartTotal,
   } = useAppContext();
@@ -19,8 +18,18 @@ const OrderPage: React.FC = () => {
   const [formData, setFormData] = useState(userDetails);
   const router = useRouter();
 
+  // const handleCheckout = () => {
+  //   updateUserDetails(formData);
+  //   router.push("/checkout");
+  // };
+  // In your OrderPage component, modify the handleCheckout function:
   const handleCheckout = () => {
     updateUserDetails(formData);
+
+    // Store data in sessionStorage before redirecting
+    sessionStorage.setItem("userDetails", JSON.stringify(formData));
+    sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
+
     router.push("/checkout");
   };
 
