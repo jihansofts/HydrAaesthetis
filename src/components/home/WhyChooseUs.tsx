@@ -47,20 +47,24 @@ const WhyChooseUs = ({
       <div className="mx-auto container max-w-7xl py-10">
         {showWhyChoose && (
           <>
-            <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
+            <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-6">
               Why Choose Us
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-16 gap-4 max-w-7xl mx-auto">
-              {benefits.map((benefit, index) => (
-                <div
-                  key={index}
-                  className="bg-[#CAB485] text-[#1E1E1E]  font-bold py-3 px-4 rounded-lg lg:text-[16px] md:text-[12px] text-[12px] shadow-md">
-                  {benefit.title}
-                </div>
+            <ul className="space-y-3 max-w-6xl list-disc text-start mx-auto ">
+              {benefits.map((item, index) => (
+                <li
+                  className="lg:text-[26px] md:text-[16px] text-[12px]  font-normal font-inter"
+                  key={index}>
+                  <span className="font-extrabold font-inter lg:text-[26px] md:text-[16px] text-[12px] ">
+                    {item.title}:
+                  </span>{" "}
+                  {item.desc}
+                </li>
               ))}
-            </div>
+            </ul>
           </>
         )}
+
         {/* Scroll target for serviceRef */}
         <div ref={serviceRef} className="pt-20" id="our-services">
           <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
