@@ -29,15 +29,16 @@ const WhyChooseUs = ({
   ];
 
   const services = [
+    { id: "iv-drips", title: "IV Drips" },
     { id: "hrt", title: "Hormone Replacement Therapy (HRT)" },
     { id: "trt", title: "Testosterone Replacement Therapy (TRT)" },
     { id: "advanced-peptides", title: "Advanced Peptide Therapies" },
-    { id: "nad", title: "Nicotinamide Adenine Dinucleotide (NAD+)" },
+    { id: "nad", title: "NAD+" },
     { id: "glutathione", title: "Glutathione" },
     { id: "vitamins", title: "Vitamins Injections" },
     // { id: "fillers", title: "Fillers & Muscle Relaxers" },
     { id: "microneedling", title: "Microneedling & PRP" },
-    { id: "iv-drips", title: "IV Drips" },
+
     { id: "botox", title: "Botox & Fillers" },
     { id: "aesthetics-home", title: "Hydra Aesthetics At Home" },
   ];
