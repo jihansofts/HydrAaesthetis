@@ -2,9 +2,13 @@ import React from "react";
 
 interface WhyChooseUsProps {
   serviceRef?: React.RefObject<HTMLDivElement>;
+  showWhyChoose?: boolean; //
 }
 
-const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
+const WhyChooseUs = ({
+  serviceRef,
+  showWhyChoose = true,
+}: WhyChooseUsProps) => {
   const benefits = [
     {
       title: "Expert Care",
@@ -41,22 +45,22 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
   return (
     <section className="bg-[#2E2E2E] text-white py-16 px-4 text-center">
       <div className="mx-auto container max-w-7xl py-10">
-        <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-6">
-          Why Choose Us
-        </h2>
-        <ul className="space-y-3 max-w-6xl list-disc text-start mx-auto ">
-          {benefits.map((item, index) => (
-            <li
-              className="lg:text-[26px] md:text-[16px] text-[12px]  font-normal font-inter"
-              key={index}>
-              <span className="font-extrabold font-inter lg:text-[26px] md:text-[16px] text-[12px] ">
-                {item.title}:
-              </span>{" "}
-              {item.desc}
-            </li>
-          ))}
-        </ul>
-
+        {showWhyChoose && (
+          <>
+            <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
+              Why Choose Us
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mt-16 gap-4 max-w-7xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <div
+                  key={index}
+                  className="bg-[#CAB485] text-[#1E1E1E]  font-bold py-3 px-4 rounded-lg lg:text-[16px] md:text-[12px] text-[12px] shadow-md">
+                  {benefit.title}
+                </div>
+              ))}
+            </div>
+          </>
+        )}
         {/* Scroll target for serviceRef */}
         <div ref={serviceRef} className="pt-20" id="our-services">
           <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">

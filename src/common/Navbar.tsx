@@ -19,20 +19,33 @@ const navLinks = [
 
 const services = [
   {
+    label: "IV Drips",
+    href: "/#iv-drips",
+    submenu: [],
+  },
+  {
+    label: "Vitamin Shots",
+    href: "#vitamins",
+    submenu: [
+      { label: "Most Popular", href: "/#vitamins" },
+      { label: "Exclusives", href: "/#nicotinamide" },
+    ],
+  },
+  {
     label: "TRT (Testosterone Therapy)",
     href: "/trt-testosterone-therapy",
     submenu: [
       { label: "Injectable (TRT)", href: "/trt-testosterone-therapy" },
-      { label: "Oral (TRT)", href: "/trt-testosterone-therapy" },
       { label: "Cream (TRT)", href: "/trt-testosterone-therapy" },
-      { label: "Blood Tests", href: "/trt-testosterone-therapy" },
-      { label: "HCG", href: "/trt-testosterone-therapy" },
+      { label: "Blood work up", href: "/trt-testosterone-therapy" },
+      // { label: "Blood Tests", href: "/trt-testosterone-therapy" },
+      // { label: "HCG", href: "/trt-testosterone-therapy" },
     ],
   },
   {
     label: "HRT (Hormone Therapy)",
     href: "#hormone",
-    submenu: [],
+    submenu: [{ label: "Advance Peptide Therapy", href: "/#hormone" }],
   },
   {
     label: "Weight Loss",
@@ -40,18 +53,13 @@ const services = [
     submenu: [
       { label: "Trizepatide", href: "/weight-loss" },
       { label: "Trizepatide + B12", href: "/weight-loss" },
-      { label: "Labs", href: "/weight-loss" },
+      { label: "Blood work up", href: "/weight-loss" },
     ],
   },
   {
     label: "Blood Work",
     href: "/blood-work",
     submenu: [{ label: "Quest Diagnostics Labs", href: "/blood-work" }],
-  },
-  {
-    label: "Vitamin Shots",
-    href: "#vitamins",
-    submenu: [],
   },
 ];
 

@@ -18,15 +18,16 @@ export default function Home() {
     <main>
       <HeroSection />
       <WhyChooseUs />
+      <DripsSection />
       <Hormone />
       <ExclusiveSection />
       <NicotinamideSection />
       <VitaminsSection />
       <BotoxSection />
-      <DripsSection />
       <Microneedling />
       <Magic />
       <HydraAest />
+      <WhyChooseUs showWhyChoose={false} />
     </main>
   );
 }

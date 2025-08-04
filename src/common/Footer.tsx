@@ -42,7 +42,7 @@ const Footer = () => {
             <li className="flex items-center justify-center md:justify-start">
               <FaEnvelope className="text-[#D0BB8F] mr-3 text-xl" />
               <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                avmedcorp@yahoo.com
+                hydramedspa@yahoo.com
               </span>
             </li>
           </ul>
