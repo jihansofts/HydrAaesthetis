@@ -37,7 +37,7 @@ const CheckOut = () => {
         sessionStorage.getItem("cartItems") || JSON.stringify(cartItems)
       );
       console.log("api call");
-      const response = await fetch("/api/stripe", {
+      const response = await fetch("/api/paypal", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,6 @@ const CheckOut = () => {
     <div className="min-h-screen bg-[#252525] text-white p-4">
       <div className="container mx-auto max-w-4xl">
         <h1 className="text-3xl font-bold mb-8 text-center">Payment Method</h1>
-
         {/* Error message display */}
         {error && (
           <div className="bg-red-500/20 text-red-300 p-3 rounded-md mb-6">
@@ -102,7 +101,7 @@ const CheckOut = () => {
                 : "text-gray-400 hover:text-white"
             }`}
             onClick={() => setActiveTab("card")}>
-            Credit/Debit Card
+            Paypal
           </button>
           <button
             className={`py-3 px-6 font-medium ${

@@ -12,12 +12,13 @@ import React from "react";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 import VitaminsSection from "@/components/home/VitaminsSection";
 import Microneedling from "@/components/home/Microneedling";
+import OurService from "@/components/home/OurService";
 
 export default function Home() {
   return (
     <main>
       <HeroSection />
-      <WhyChooseUs />
+      <OurService />
       <DripsSection />
       <Hormone />
       <ExclusiveSection />
@@ -27,7 +28,7 @@ export default function Home() {
       <Microneedling />
       <Magic />
       <HydraAest />
-      <WhyChooseUs showWhyChoose={false} />
+      <WhyChooseUs />
     </main>
   );
 }

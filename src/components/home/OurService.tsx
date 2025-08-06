@@ -2,16 +2,29 @@ import React from "react";
 
 interface WhyChooseUsProps {
   serviceRef?: React.RefObject<HTMLDivElement>;
-  showWhyChoose?: boolean; //
 }
-
-const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
+export default function OurService({ serviceRef }: WhyChooseUsProps) {
+  const benefits = [
+    {
+      title: "Expert Care",
+      desc: "Our licensed professionals tailor every treatment to your unique needs.",
+    },
+    {
+      title: "Premium Quality",
+      desc: "We use only the highest-grade ingredients and advanced techniques.",
+    },
+    {
+      title: "Personalized Approach",
+      desc: "Wellness and beauty plans designed just for you.",
+    },
+    {
+      title: "Convenience",
+      desc: "Flexible appointments at Hydra Aesthetics or in the comfort of your home",
+    },
+  ];
   const services = [
-    { id: "iv-drips", title: "IV Drips" },
-    { id: "hrt", title: "Hormone Replacement Therapy (HRT)" },
-    { id: "trt", title: "Testosterone Replacement Therapy (TRT)" },
-    { id: "advanced-peptides", title: "Advanced Peptide Therapies" },
     { id: "nad", title: "NAD+" },
+    { id: "advanced-peptides", title: " Peptide " },
     { id: "glutathione", title: "Glutathione" },
     { id: "vitamins", title: "Vitamins Injections" },
     // { id: "fillers", title: "Fillers & Muscle Relaxers" },
@@ -20,12 +33,27 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
     { id: "botox", title: "Botox & Fillers" },
     { id: "aesthetics-home", title: "Hydra Aesthetics At Home" },
   ];
-
   return (
     <section className="bg-[#2E2E2E] text-white py-16 px-4 text-center">
       <div className="mx-auto container max-w-7xl py-10">
+        <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-6">
+          Why Choose Us
+        </h2>
+        <ul className="space-y-3 max-w-6xl list-disc text-start mx-auto ">
+          {benefits.map((item, index) => (
+            <li
+              className="lg:text-[26px] md:text-[16px] text-[12px]  font-normal font-inter"
+              key={index}>
+              <span className="font-extrabold font-inter lg:text-[26px] md:text-[16px] text-[12px] ">
+                {item.title}:
+              </span>{" "}
+              {item.desc}
+            </li>
+          ))}
+        </ul>
+
         {/* Scroll target for serviceRef */}
-        <div ref={serviceRef} id="our-services">
+        <div ref={serviceRef} className="pt-20" id="our-services">
           <h2 className="lg:text-[56px] md:text-[32px] text-[32px] font-extrabold mb-2">
             Our Services
           </h2>
@@ -48,6 +76,4 @@ const WhyChooseUs = ({ serviceRef }: WhyChooseUsProps) => {
       </div>
     </section>
   );
-};
-
-export default WhyChooseUs;
+}
