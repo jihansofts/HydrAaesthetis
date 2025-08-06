@@ -45,13 +45,20 @@ const CheckOut = () => {
               }}
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
-                console.log("Payment approved:", details);
+                console.log("✅ Payment successful:", details);
+
+                await fetch("/api/send-order-email", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json" },
+                  body: JSON.stringify({
+                    userDetails,
+                    cartItems,
+                    total: cartTotal,
+                    paymentId: details?.id,
+                  }),
+                });
 
                 alert("Payment completed successfully!");
-              }}
-              onError={(err) => {
-                console.error("PayPal error:", err);
-                setError("PayPal payment failed. Please try again.");
               }}
             />
           </PayPalScriptProvider>

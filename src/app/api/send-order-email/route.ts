@@ -4,7 +4,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   try {
-    const { userDetails, sessionId, cartItems } = await req.json();
+    const { userDetails, total, paymentInfo, cartItems } = await req.json();
 
     const itemsHtml = cartItems
       .map(
@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
       )
       .join("");
 
-    if (!userDetails || !sessionId) {
+    if (!userDetails || !total || !paymentInfo || !cartItems) {
       return new Response(JSON.stringify({ error: "Missing required data" }), {
         status: 400,
       });
@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
         <p><strong>Phone:</strong> ${userDetails.phone}</p>
         <p><strong>Location:</strong> ${userDetails.address}</p>
         <ul>${itemsHtml}</ul>
-        <p><strong>Session ID:</strong> ${sessionId}</p>
+        <p><strong>Total:</strong> $${total}</p><p><strong>Payment Method:</strong> ${paymentInfo}</p>
       `,
     };
 
