@@ -46,7 +46,6 @@ const CheckOut = () => {
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
                 console.log("✅ Payment successful:", details);
-
                 await fetch("/api/send-order-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -57,8 +56,7 @@ const CheckOut = () => {
                     paymentId: details?.id,
                   }),
                 });
-
-                alert("Payment completed successfully!");
+                window.location.href = "/";
               }}
             />
           </PayPalScriptProvider>
