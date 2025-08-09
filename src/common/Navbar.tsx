@@ -107,7 +107,7 @@ export default function Navbar() {
                 height={150}
                 className="w-24 h-24"
               />
-              <h2 className="text-2xl font-bold bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
+              <h2 className="text-2xl hidden md:flex font-bold bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
                 Hydra Aesthetics
               </h2>
             </div>
@@ -125,7 +125,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <div className="hidden md:flex justify-center items-center space-x-5">
+        <div className=" flex justify-center items-center space-x-5">
           <Link href="/order" className="col-span-1 relative">
             <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
             {itemQuantity > 0 && (
@@ -134,11 +134,13 @@ export default function Navbar() {
               </span>
             )}
           </Link>
-          <a
-            target="_blank"
-            href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
-            <Button text="Contact Us" borderLeanr="gradient-border" />
-          </a>
+          <div className="hidden md:flex">
+            <a
+              target="_blank"
+              href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
+              <Button text="Contact Us" borderLeanr="gradient-border" />
+            </a>
+          </div>
         </div>
 
         {/* Mobile menu button */}
