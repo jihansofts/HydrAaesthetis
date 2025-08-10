@@ -1,11 +1,12 @@
 "use client";
+
 import React, { useState } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAppContext } from "@/context/AppContext";
 
 const CheckOut = () => {
   const { cartItems, cartTotal, userDetails } = useAppContext();
-  const [error, setError] = useState<string>("");
+  const [error] = useState<string>("");
 
   return (
     <div className="min-h-screen bg-[#252525] text-white p-4">
@@ -26,10 +27,7 @@ const CheckOut = () => {
 
           <PayPalScriptProvider
             options={{
-              clientId:
-                process.env.NODE_ENV === "production"
-                  ? process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!
-                  : process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE || "",
             }}>
             <PayPalButtons
               style={{ layout: "vertical", color: "gold" }}
