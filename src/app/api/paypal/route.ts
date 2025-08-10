@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
 
   try {
     // 1️⃣ Create PayPal order
-    // const order = await client.execute(request);
+    const order = await client.execute(request);
 
     // 2️⃣ Save order in MongoDB
     // const newOrder = await Order.create({
@@ -62,9 +62,7 @@ export async function POST(req: NextRequest) {
 
     // 3️⃣ Return PayPal order ID to frontend
     return NextResponse.json({
-      success: true,
-      message: "Order created successfully",
-      status: 200,
+      id: order.result.id,
     });
   } catch (err) {
     console.error("PayPal Error:", err);
