@@ -1,7 +1,6 @@
 import paypal from "@paypal/checkout-server-sdk";
 
 import { NextRequest, NextResponse } from "next/server";
-import { connectDB } from "@/lib/mongoose";
 // import Order from "@/model/Order";
 
 const environment = new paypal.core.LiveEnvironment(
@@ -22,7 +21,7 @@ const environment = new paypal.core.LiveEnvironment(
 
 const client = new paypal.core.PayPalHttpClient(environment);
 export async function POST(req: NextRequest) {
-  await connectDB(); // connect to MongoDB
+  // connect to MongoDB
 
   const body = await req.json();
   const { cartItems, userDetails } = body;
