@@ -30,10 +30,13 @@ export default function Page() {
     try {
       setLoading(true);
 
-      const res = await fetch("/api/product", {
-        method: "POST",
-        body: formData,
-      });
+      const res = await fetch(
+        "https://hydr-aaesthetis-git-test-jihan-uddins-projects.vercel.app/api/product",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       if (!res.ok) {
         const err = await res.json();
