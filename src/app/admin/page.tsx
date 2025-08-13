@@ -1,97 +1,157 @@
 "use client";
 import Button from "@/common/Button";
-import React from "react";
+import { getUserFromToken } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import React, { useState } from "react";
 
 export default function Page() {
+  const [category, setCategory] = useState("");
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+
+    if (!name || !price || !image) {
+      alert("Please fill in all required fields");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("category", category);
+    formData.append("name", name);
+    formData.append("price", price);
+    formData.append("description", description);
+    if (image) formData.append("image", image);
+    console.log(formData);
+    try {
+      setLoading(true);
+
+      const res = await fetch("/api/product", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.error || "Failed to create product");
+      }
+
+      const data = await res.json();
+      alert("Product added successfully!");
+      console.log("New Product:", data);
+
+      // Reset form
+      setCategory("");
+      setName("");
+      setPrice("");
+      setDescription("");
+      setImage(null);
+    } catch (error) {
+      console.log(
+        error instanceof Error ? error.message : "Failed to create product"
+      );
+    } finally {
+      console.log("Form submitted");
+      setLoading(false);
+    }
+  }
+
   return (
-    <div className="min-h-screen text-white">
+    <form
+      onSubmit={handleSubmit}
+      className="min-h-screen text-white"
+      encType="multipart/form-data">
       <div className="container mx-auto px-4 sm:px-6 md:px-16 py-8">
-        {/* Form grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left side - Form */}
+          {/* Left - Form */}
           <div className="space-y-5">
-            {/* Title */}
             <h1 className="text-3xl sm:text-[40px] font-extrabold mb-8">
               Provide Information
             </h1>
+
             <div>
-              <label className="block text-lg sm:text-[20px] font-bold mb-2 text-white">
+              <label className="block text-lg font-bold mb-2 text-white">
                 Category Of Product
               </label>
-              <select className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 sm:py-4 text-white focus:outline-none focus:border-[#C5AE7D]">
-                <option value="option1">IV Drips</option>
-                <option value="option2">Vitamins</option>
+              <select
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white">
+                <option value="">Select category</option>
+                <option value="drop">IV Drips</option>
+                <option value="vitamin">Vitamins</option>
               </select>
             </div>
+
             <div>
-              <label className="block text-lg sm:text-[20px] font-bold mb-2 text-white">
+              <label className="block text-lg font-bold mb-2 text-white">
                 Name Of The Product
               </label>
               <input
                 type="text"
-                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5AE7D]"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"
               />
             </div>
 
             <div>
-              <label className="block text-lg sm:text-[20px] font-bold mb-2 text-white">
+              <label className="block text-lg font-bold mb-2 text-white">
                 Enter Price
               </label>
               <input
                 type="text"
-                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5AE7D]"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"
               />
             </div>
 
             <div>
-              <label className="block text-lg sm:text-[20px] font-bold mb-2 text-white">
+              <label className="block text-lg font-bold mb-2 text-white">
                 Description
               </label>
               <textarea
                 rows={5}
-                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white focus:outline-none focus:border-[#C5AE7D]"></textarea>
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"></textarea>
             </div>
           </div>
 
-          {/* Right side - Image Upload */}
-          <div className="bg-[#2E2E2E] rounded-lg p-6 sm:p-10 flex flex-col items-center justify-center mt-6 lg:mt-0">
-            <h3 className="text-2xl sm:text-[32px] font-inter font-bold text-white mb-6 sm:mb-10 text-center">
+          {/* Right - Image Upload */}
+          <div className="bg-[#2E2E2E] rounded-lg p-6 flex flex-col items-center justify-center mt-6 lg:mt-0">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
               Upload Image
             </h3>
-            <label className="w-full h-56 sm:h-80 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md hover:bg-gray-700 transition">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-10 w-10 text-[#D6A553] mb-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
-                />
-              </svg>
-              <span className="text-[#D6A553] text-center px-2">
-                Drag & drop or click to{" "}
-                <span className="underline">choose from files</span>
-              </span>
-              <input type="file" className="hidden" />
+            <label className="w-full h-56 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md">
+              <span className="text-[#D6A553]">Choose a file</span>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  if (e.target.files) setImage(e.target.files[0]);
+                }}
+                className="hidden"
+              />
             </label>
+            {image && <p className="mt-2">{image.name}</p>}
           </div>
         </div>
 
-        {/* Button */}
+        {/* Submit Button */}
         <div className="flex justify-center mt-8">
-          <a target="_blank" href="">
-            <Button
-              text="Add Product"
-              bg="bg-[#2E2E2E]"
-              borderLeanr="gradient-border"
-            />
-          </a>
+          <Button
+            text={loading ? "Uploading..." : "Add Product"}
+            bg="bg-[#2E2E2E]"
+            borderLeanr="gradient-border"
+          />
         </div>
       </div>
-    </div>
+    </form>
   );
 }

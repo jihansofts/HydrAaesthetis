@@ -1,9 +1,10 @@
+// app/admin/layout.tsx
 import { ReactNode } from "react";
+import { getUserFromToken } from "@/lib/auth";
+import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { requireRole } from "@/lib/roleCheck";
-import { redirect } from "next/navigation";
-import { TbShoppingBagPlus } from "react-icons/tb"; // For the notification icon
+import { TbShoppingBagPlus } from "react-icons/tb";
 import Button from "@/common/Button";
 
 export default async function AdminLayout({
@@ -11,9 +12,11 @@ export default async function AdminLayout({
 }: {
   children: ReactNode;
 }) {
-  try {
-    await requireRole(["admin", "moderator"]);
-  } catch {
+  // Get user from cookies (works in layouts)
+  const user = await getUserFromToken();
+
+  // Protect route
+  if (!user || !["admin", "moderator"].includes(user.role)) {
     redirect("/login");
   }
 
@@ -45,22 +48,15 @@ export default async function AdminLayout({
             </h3>
           </div>
 
-          <div className=" flex justify-center items-center space-x-5">
+          <div className="flex justify-center items-center space-x-5">
             <Link href="/order" className="col-span-1 flex gap-x-3 relative">
               <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
                 Check Orders
               </span>
               <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
-              {/* {itemQuantity > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
-                {itemQuantity}
-              </span>
-            )} */}
             </Link>
             <div className="hidden md:flex">
-              <a
-                target="_blank"
-                href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
+              <a target="_blank" href="">
                 <Button text="Add Moderators" borderLeanr="gradient-border" />
               </a>
             </div>
