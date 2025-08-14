@@ -16,7 +16,7 @@ export default async function AdminLayout({
   const user = await getUserFromToken();
 
   if (!user) {
-    redirect("/admin/login");
+    redirect("/login");
   }
 
   return (
