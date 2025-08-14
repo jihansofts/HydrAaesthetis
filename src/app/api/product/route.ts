@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-import { ProductModel } from "@/model/Product"; // your model import
-import { connectDB } from "@/lib/mongoose"; // your DB connection
+import { ProductModel } from "@/model/Product";
+import { connectDB } from "@/lib/mongoose";
 import { requireRole } from "@/lib/roleCheck";
 
 interface FormDataFields {
@@ -22,10 +22,10 @@ export const config = {
 export const POST = requireRole(["admin", "moderator"])(
   async (req: Request) => {
     await connectDB();
+
     try {
       // Parse the form data
       const formData = await req.formData();
-
       const formDataObj: Partial<FormDataFields> = {
         name: formData.get("name") as string,
         category: formData.get("category") as string,
@@ -34,7 +34,7 @@ export const POST = requireRole(["admin", "moderator"])(
         image: formData.get("image") as File,
       };
 
-      // Validate required fields (except image for vitamins)
+      // Validate universal required fields
       if (!formDataObj.name || !formDataObj.price || !formDataObj.category) {
         return NextResponse.json(
           { error: "Missing required fields (name, price, category)" },
@@ -44,8 +44,26 @@ export const POST = requireRole(["admin", "moderator"])(
 
       let imagePath = "";
 
-      // Only process image if category is "drop"
+      // Drop-specific validation
       if (formDataObj.category === "drop") {
+        // Description required and max 40 characters
+        if (!formDataObj.description) {
+          return NextResponse.json(
+            { error: "Description is required for drop products" },
+            { status: 400 }
+          );
+        }
+        if (formDataObj.description.length > 40) {
+          return NextResponse.json(
+            {
+              error:
+                "Description must be 40 characters or less for drop products",
+            },
+            { status: 400 }
+          );
+        }
+
+        // Image required
         if (!formDataObj.image) {
           return NextResponse.json(
             { error: "Image is required for drop products" },
@@ -54,26 +72,25 @@ export const POST = requireRole(["admin", "moderator"])(
         }
 
         // Create upload directory if it doesn't exist
-        await fs.mkdir(path.join(process.cwd(), "public/images"), {
-          recursive: true,
-        });
+        const uploadDir = path.join(process.cwd(), "public/images");
+        await fs.mkdir(uploadDir, { recursive: true });
 
-        // Process file upload
+        // Save the uploaded file
         const file = formDataObj.image;
         const buffer = await file.arrayBuffer();
         const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-        const filepath = path.join(process.cwd(), "public/images", filename);
+        const filepath = path.join(uploadDir, filename);
         await fs.writeFile(filepath, Buffer.from(buffer));
 
-        imagePath = `/images/${filename}`; // use relative path for public
+        imagePath = `/images/${filename}`; // relative path for DB
       }
 
-      // Create product in DB
+      // For vitamins: description optional, image optional
       const productData = {
         name: formDataObj.name,
         category: formDataObj.category,
         price: Number(formDataObj.price),
-        description: formDataObj.description,
+        description: formDataObj.description || "",
         image: imagePath, // empty string for vitamins
       };
 
@@ -88,7 +105,6 @@ export const POST = requireRole(["admin", "moderator"])(
     }
   }
 );
-
 export async function GET(req: NextRequest) {
   await connectDB();
 

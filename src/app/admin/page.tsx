@@ -14,7 +14,8 @@ export default function Page() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!name || !price || !image) {
+    // Validation
+    if (!name || !price || !category || (category === "drop" && !image)) {
       alert("Please fill in all required fields");
       return;
     }
@@ -24,15 +25,13 @@ export default function Page() {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
-    if (image) formData.append("image", image);
-    console.log(formData);
+    if (image && category === "drop") formData.append("image", image);
+
     try {
       setLoading(true);
 
       const res = await fetch(`${baseUrl}/api/product`, {
         method: "POST",
-        headers: { "Content-Type": "multipart/form-data" },
-
         body: formData,
       });
 
@@ -56,7 +55,6 @@ export default function Page() {
         error instanceof Error ? error.message : "Failed to create product"
       );
     } finally {
-      console.log("Form submitted");
       setLoading(false);
     }
   }
@@ -119,29 +117,34 @@ export default function Page() {
               <textarea
                 rows={5}
                 value={description}
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => {
+                  if (category === "drop" && e.target.value.length > 40) return;
+                  setDescription(e.target.value);
+                }}
                 className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"></textarea>
             </div>
           </div>
 
-          {/* Right - Image Upload */}
-          <div className="bg-[#2E2E2E] rounded-lg p-6 flex flex-col items-center justify-center mt-6 lg:mt-0">
-            <h3 className="text-2xl font-bold text-white mb-6 text-center">
-              Upload Image
-            </h3>
-            <label className="w-full h-56 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md">
-              <span className="text-[#D6A553]">Choose a file</span>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files) setImage(e.target.files[0]);
-                }}
-                className="hidden"
-              />
-            </label>
-            {image && <p className="mt-2">{image.name}</p>}
-          </div>
+          {/* Right - Image Upload (only for drops) */}
+          {category === "drop" && (
+            <div className="bg-[#2E2E2E] rounded-lg p-6 flex flex-col items-center justify-center mt-6 lg:mt-0">
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                Upload Image
+              </h3>
+              <label className="w-full h-56 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md">
+                <span className="text-[#D6A553]">Choose a file</span>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files) setImage(e.target.files[0]);
+                  }}
+                  className="hidden"
+                />
+              </label>
+              {image && <p className="mt-2">{image.name}</p>}
+            </div>
+          )}
         </div>
 
         {/* Submit Button */}
