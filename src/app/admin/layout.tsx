@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import Button from "@/common/Button";
-import { cookies } from "next/headers";
+import { getUserFromToken } from "@/lib/auth";
 
 export default async function AdminLayout({
   children,
@@ -13,11 +13,10 @@ export default async function AdminLayout({
   children: ReactNode;
 }) {
   // Get user from cookies (works in layouts)
-  const token = (await cookies()).get("token")?.value;
+  const user = await getUserFromToken();
 
-  // Protect route
-  if (!token) {
-    return redirect("/admin/login");
+  if (!user) {
+    redirect("/admin/login");
   }
 
   return (

@@ -1,6 +1,6 @@
 "use client";
 import Button from "@/common/Button";
-// import { baseUrl } from "@/helper/config";
+import { baseUrl } from "@/helper/config";
 import React, { useState } from "react";
 
 export default function Page() {
@@ -14,9 +14,14 @@ export default function Page() {
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    // Validation
-    if (!name || !price || !category || (category === "drop" && !image)) {
+    if (!name || !price || !image) {
       alert("Please fill in all required fields");
+      return;
+    }
+
+    // Drop product description validation
+    if (category === "drop" && description.length > 40) {
+      alert("Description must be 40 characters or less for drop products.");
       return;
     }
 
@@ -25,23 +30,24 @@ export default function Page() {
     formData.append("name", name);
     formData.append("price", price);
     formData.append("description", description);
-    if (image && category === "drop") formData.append("image", image);
+    if (image) formData.append("image", image);
 
     try {
       setLoading(true);
 
-      const res = await fetch(`/api/product`, {
+      const res = await fetch(`${baseUrl}/api/product`, {
         method: "POST",
+        // ❌ Don't set Content-Type manually for FormData
         body: formData,
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || "Failed to create product");
+        throw new Error(data.error || "Failed to create product");
       }
 
-      const data = await res.json();
-      alert("Product added successfully!");
+      alert("✅ Product added successfully!");
       console.log("New Product:", data);
 
       // Reset form
@@ -51,7 +57,7 @@ export default function Page() {
       setDescription("");
       setImage(null);
     } catch (error) {
-      console.log(
+      console.error(
         error instanceof Error ? error.message : "Failed to create product"
       );
     } finally {
@@ -117,34 +123,29 @@ export default function Page() {
               <textarea
                 rows={5}
                 value={description}
-                onChange={(e) => {
-                  if (category === "drop" && e.target.value.length > 40) return;
-                  setDescription(e.target.value);
-                }}
+                onChange={(e) => setDescription(e.target.value)}
                 className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"></textarea>
             </div>
           </div>
 
-          {/* Right - Image Upload (only for drops) */}
-          {category === "drop" && (
-            <div className="bg-[#2E2E2E] rounded-lg p-6 flex flex-col items-center justify-center mt-6 lg:mt-0">
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                Upload Image
-              </h3>
-              <label className="w-full h-56 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md">
-                <span className="text-[#D6A553]">Choose a file</span>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files) setImage(e.target.files[0]);
-                  }}
-                  className="hidden"
-                />
-              </label>
-              {image && <p className="mt-2">{image.name}</p>}
-            </div>
-          )}
+          {/* Right - Image Upload */}
+          <div className="bg-[#2E2E2E] rounded-lg p-6 flex flex-col items-center justify-center mt-6 lg:mt-0">
+            <h3 className="text-2xl font-bold text-white mb-6 text-center">
+              Upload Image
+            </h3>
+            <label className="w-full h-56 border-2 border-dashed border-[#D6A553] flex flex-col items-center justify-center cursor-pointer bg-[#494D47] rounded-md">
+              <span className="text-[#D6A553]">Choose a file</span>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  if (e.target.files) setImage(e.target.files[0]);
+                }}
+                className="hidden"
+              />
+            </label>
+            {image && <p className="mt-2">{image.name}</p>}
+          </div>
         </div>
 
         {/* Submit Button */}

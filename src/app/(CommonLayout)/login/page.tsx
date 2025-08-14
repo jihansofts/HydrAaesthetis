@@ -1,6 +1,4 @@
 "use client";
-
-import { baseUrl } from "@/helper/config";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -22,7 +20,6 @@ export default function LoginPage() {
       });
 
       const data = await res.json();
-      console.log(data);
 
       if (res.ok) {
         const token = data.token;

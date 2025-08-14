@@ -1,8 +1,8 @@
 import { NextResponse, NextRequest } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-import { ProductModel } from "@/model/Product";
-import { connectDB } from "@/lib/mongoose";
+import { ProductModel } from "@/model/Product"; // your model import
+import { connectDB } from "@/lib/mongoose"; // your DB connection
 import { requireRole } from "@/lib/roleCheck";
 
 interface FormDataFields {
@@ -13,19 +13,20 @@ interface FormDataFields {
   image: File;
 }
 
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
+// export const config = {
+//   api: {
+//     bodyParser: false,
+//   },
+// };
 
 export const POST = requireRole(["admin", "moderator"])(
   async (req: Request) => {
     await connectDB();
-
     try {
       // Parse the form data
       const formData = await req.formData();
+
+      // Convert FormData to typed object
       const formDataObj: Partial<FormDataFields> = {
         name: formData.get("name") as string,
         category: formData.get("category") as string,
@@ -34,64 +35,33 @@ export const POST = requireRole(["admin", "moderator"])(
         image: formData.get("image") as File,
       };
 
-      // Validate universal required fields
-      if (!formDataObj.name || !formDataObj.price || !formDataObj.category) {
+      // Validate required fields
+      if (!formDataObj.image || !formDataObj.name || !formDataObj.price) {
         return NextResponse.json(
-          { error: "Missing required fields (name, price, category)" },
+          { error: "Missing required fields (name, price, image)" },
           { status: 400 }
         );
       }
 
-      let imagePath = "";
+      // Create upload directory if it doesn't exist
+      await fs.mkdir(path.join(process.cwd(), "public/images"), {
+        recursive: true,
+      });
 
-      // Drop-specific validation
-      if (formDataObj.category === "drop") {
-        // Description required and max 40 characters
-        if (!formDataObj.description) {
-          return NextResponse.json(
-            { error: "Description is required for drop products" },
-            { status: 400 }
-          );
-        }
-        if (formDataObj.description.length > 40) {
-          return NextResponse.json(
-            {
-              error:
-                "Description must be 40 characters or less for drop products",
-            },
-            { status: 400 }
-          );
-        }
+      // Process file upload
+      const file = formDataObj.image;
+      const buffer = await file.arrayBuffer();
+      const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
+      const filepath = path.join(process.cwd(), "public/images", filename);
+      await fs.writeFile(filepath, Buffer.from(buffer));
 
-        // Image required
-        if (!formDataObj.image) {
-          return NextResponse.json(
-            { error: "Image is required for drop products" },
-            { status: 400 }
-          );
-        }
-
-        // Create upload directory if it doesn't exist
-        const uploadDir = path.join(process.cwd(), "public/images");
-        await fs.mkdir(uploadDir, { recursive: true });
-
-        // Save the uploaded file
-        const file = formDataObj.image;
-        const buffer = await file.arrayBuffer();
-        const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-        const filepath = path.join(uploadDir, filename);
-        await fs.writeFile(filepath, Buffer.from(buffer));
-
-        imagePath = `/images/${filename}`; // relative path for DB
-      }
-
-      // For vitamins: description optional, image optional
+      // Create product in DB
       const productData = {
         name: formDataObj.name,
         category: formDataObj.category,
         price: Number(formDataObj.price),
-        description: formDataObj.description || "",
-        image: imagePath, // empty string for vitamins
+        description: formDataObj.description,
+        image: `/public/images/${filename}`,
       };
 
       const newProduct = await ProductModel.create(productData);
@@ -105,6 +75,7 @@ export const POST = requireRole(["admin", "moderator"])(
     }
   }
 );
+
 export async function GET(req: NextRequest) {
   await connectDB();
 
