@@ -31,6 +31,8 @@ export default function Page() {
 
       const res = await fetch(`${baseUrl}/api/product`, {
         method: "POST",
+        headers: { "Content-Type": "multipart/form-data" },
+
         body: formData,
       });
 
