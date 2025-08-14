@@ -10,7 +10,7 @@ export function requireRole(allowedRoles: string[]) {
       const user = await getUserFromToken(req);
       console.log(user);
       if (!user || !allowedRoles.includes(user.role)) {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+        return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
       }
       return handler(req, user);
     };
