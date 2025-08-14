@@ -1,7 +1,6 @@
 "use client";
 import Button from "@/common/Button";
-import { getUserFromToken } from "@/lib/auth";
-import { redirect } from "next/navigation";
+import { baseUrl } from "@/helper/config";
 import React, { useState } from "react";
 
 export default function Page() {
@@ -30,13 +29,10 @@ export default function Page() {
     try {
       setLoading(true);
 
-      const res = await fetch(
-        "https://hydr-aaesthetis-git-test-jihan-uddins-projects.vercel.app/api/product",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
+      const res = await fetch(`${baseUrl}/api/product`, {
+        method: "POST",
+        body: formData,
+      });
 
       if (!res.ok) {
         const err = await res.json();

@@ -1,11 +1,11 @@
 // app/admin/layout.tsx
 import { ReactNode } from "react";
-import { getUserFromToken } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { TbShoppingBagPlus } from "react-icons/tb";
 import Button from "@/common/Button";
+import { cookies } from "next/headers";
 
 export default async function AdminLayout({
   children,
@@ -13,11 +13,11 @@ export default async function AdminLayout({
   children: ReactNode;
 }) {
   // Get user from cookies (works in layouts)
-  const user = await getUserFromToken();
+  const token = (await cookies()).get("token")?.value;
 
   // Protect route
-  if (!user || !["admin", "moderator"].includes(user.role)) {
-    redirect("/login");
+  if (!token) {
+    return redirect("/admin/login");
   }
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import { baseUrl } from "@/helper/config";
 import { useState } from "react";
 
 export default function LoginPage() {
@@ -14,16 +15,14 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch(
-        "https://hydr-aaesthetis-git-test-jihan-uddins-projects.vercel.app/api/user/auth",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const res = await fetch(`${baseUrl}/api/user/auth}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await res.json();
+      console.log(data);
 
       if (!res.ok) throw new Error(data.error || "Login failed");
 
