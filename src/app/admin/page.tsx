@@ -30,7 +30,7 @@ export default function Page() {
     try {
       setLoading(true);
 
-      const res = await fetch(`${baseUrl}/api/product`, {
+      const res = await fetch(`/api/product`, {
         method: "POST",
         body: formData,
       });
