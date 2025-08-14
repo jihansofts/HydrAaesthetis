@@ -15,7 +15,7 @@ export default function LoginPage() {
     setError("");
 
     try {
-      const res = await fetch(`${baseUrl}/api/user/auth`, {
+      const res = await fetch(`/api/user/auth`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -24,13 +24,20 @@ export default function LoginPage() {
       const data = await res.json();
       console.log(data);
 
-      if (!res.ok) throw new Error(data.error || "Login failed");
+      if (res.ok) {
+        const token = data.token;
 
-      // Save JWT token in localStorage or cookies
-      localStorage.setItem("token", data.token);
+        // Set cookie (expires in 7 days)
+        document.cookie = `token=${token}; path=/; max-age=${
+          7 * 24 * 60 * 60
+        }; SameSite=Lax`;
 
-      // Redirect to admin dashboard
-      window.location.href = "/admin";
+        // Optionally also save in localStorage
+        localStorage.setItem("token", token);
+
+        // Redirect
+        window.location.href = "/admin";
+      }
     } catch (error) {
       setError((error as Error).message);
     } finally {
