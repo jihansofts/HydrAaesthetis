@@ -4,15 +4,29 @@ import { IUser } from "@/model/UserModel";
 
 export function requireRole(allowedRoles: string[]) {
   return (
-    handler: (req: NextRequest, user: IUser) => Promise<NextResponse>
+    handler: (
+      req: NextRequest,
+      user: IUser
+    ) => Promise<NextResponse> | NextResponse
   ) => {
     return async (req: NextRequest) => {
-      const user = await getUserFromToken(req);
-      console.log(user);
-      if (!user || !allowedRoles.includes(user.role)) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
+      const user = await getUserFromToken();
+
+      if (!user) {
+        return NextResponse.json(
+          { error: "Authentication required" },
+          { status: 401 }
+        );
       }
-      return handler(req, user);
+
+      if (!allowedRoles.includes(user.role)) {
+        return NextResponse.json(
+          { error: "Unauthorized - insufficient role" },
+          { status: 403 }
+        );
+      }
+
+      return handler(req, user); // user is now IUser
     };
   };
 }
