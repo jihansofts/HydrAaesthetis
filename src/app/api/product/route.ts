@@ -22,7 +22,6 @@ export const config = {
 export const POST = requireRole(["admin", "moderator"])(
   async (req: Request) => {
     await connectDB();
-
     try {
       // Parse the form data
       const formData = await req.formData();
@@ -53,7 +52,7 @@ export const POST = requireRole(["admin", "moderator"])(
       const file = formDataObj.image;
       const buffer = await file.arrayBuffer();
       const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-      const filepath = path.join(process.cwd(), "public/uploads", filename);
+      const filepath = path.join(process.cwd(), "public/images", filename);
       await fs.writeFile(filepath, Buffer.from(buffer));
 
       // Create product in DB
@@ -62,7 +61,7 @@ export const POST = requireRole(["admin", "moderator"])(
         category: formDataObj.category,
         price: Number(formDataObj.price),
         description: formDataObj.description,
-        image: `/uploads/${filename}`,
+        image: `/public/images/${filename}`,
       };
 
       const newProduct = await ProductModel.create(productData);

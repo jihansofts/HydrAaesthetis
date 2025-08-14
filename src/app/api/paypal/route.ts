@@ -1,23 +1,23 @@
 import paypal from "@paypal/checkout-server-sdk";
 
 import { NextRequest, NextResponse } from "next/server";
-// import Order from "@/model/Order";
+import Order from "@/model/Order";
 
-const environment = new paypal.core.LiveEnvironment(
-  process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-  process.env.PAYPAL_CLIENT_SECRET_LIVE!
-);
+// const environment = new paypal.core.LiveEnvironment(
+//   process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
+//   process.env.PAYPAL_CLIENT_SECRET_LIVE!
+// );
 
-// const environment =
-//   process.env.NODE_ENV === "production"
-//     ? new paypal.core.LiveEnvironment(
-//         process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-//         process.env.PAYPAL_CLIENT_SECRET_LIVE!
-//       )
-//     : new paypal.core.SandboxEnvironment(
-//         process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-//         process.env.PAYPAL_CLIENT_SECRET!
-//       );
+const environment =
+  process.env.NODE_ENV === "production"
+    ? new paypal.core.LiveEnvironment(
+        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
+        process.env.PAYPAL_CLIENT_SECRET_LIVE!
+      )
+    : new paypal.core.SandboxEnvironment(
+        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+        process.env.PAYPAL_CLIENT_SECRET!
+      );
 
 const client = new paypal.core.PayPalHttpClient(environment);
 export async function POST(req: NextRequest) {
@@ -51,17 +51,18 @@ export async function POST(req: NextRequest) {
     const order = await client.execute(request);
 
     // 2️⃣ Save order in MongoDB
-    // const newOrder = await Order.create({
-    //   paypalOrderId: order.result.id,
-    //   cartItems,
-    //   userDetails,
-    //   total,
-    //   status: "PENDING", // will change after capture
-    // });
+    const newOrder = await Order.create({
+      paypalOrderId: order.result.id,
+      cartItems,
+      userDetails,
+      total,
+      status: "PENDING", // will change after capture
+    });
 
     // 3️⃣ Return PayPal order ID to frontend
     return NextResponse.json({
-      id: order.result.id,
+      orderId: order.result.id,
+      newOrderId: newOrder._id,
     });
   } catch (err) {
     console.error("PayPal Error:", err);
