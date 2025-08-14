@@ -1,4 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
+import cloudinary from "@/lib/cloudinary";
 import { promises as fs } from "fs";
 import path from "path";
 import { ProductModel } from "@/model/Product"; // your model import
@@ -22,11 +23,9 @@ interface FormDataFields {
 export const POST = requireRole(["admin", "moderator"])(
   async (req: Request) => {
     await connectDB();
-    try {
-      // Parse the form data
-      const formData = await req.formData();
 
-      // Convert FormData to typed object
+    try {
+      const formData = await req.formData();
       const formDataObj: Partial<FormDataFields> = {
         name: formData.get("name") as string,
         category: formData.get("category") as string,
@@ -36,35 +35,46 @@ export const POST = requireRole(["admin", "moderator"])(
       };
 
       // Validate required fields
-      if (!formDataObj.image || !formDataObj.name || !formDataObj.price) {
+      if (
+        !formDataObj.name ||
+        !formDataObj.category ||
+        !formDataObj.price ||
+        !formDataObj.image
+      ) {
         return NextResponse.json(
-          { error: "Missing required fields (name, price, image)" },
+          { error: "Missing required fields (name, category, price, image)" },
           { status: 400 }
         );
       }
 
-      // Create upload directory if it doesn't exist
-      await fs.mkdir(path.join(process.cwd(), "public/images"), {
-        recursive: true,
-      });
-
-      // Process file upload
+      // Convert file to buffer
       const file = formDataObj.image;
-      const buffer = await file.arrayBuffer();
-      const filename = `${Date.now()}-${file.name.replace(/\s+/g, "-")}`;
-      const filepath = path.join(process.cwd(), "public/images", filename);
-      await fs.writeFile(filepath, Buffer.from(buffer));
-
+      const buffer = Buffer.from(await file.arrayBuffer());
+      interface CloudinaryResult {
+        secure_url: string;
+        public_id: string;
+      }
+      // Upload to Cloudinary
+      const result: CloudinaryResult = await new Promise((resolve, reject) => {
+        const stream = cloudinary.uploader.upload_stream(
+          { folder: "products" },
+          (error, result) => {
+            if (error) return reject(error);
+            if (!result) return reject(new Error("Cloudinary upload failed"));
+            resolve(result as CloudinaryResult);
+          }
+        );
+        stream.end(buffer);
+      });
       // Create product in DB
-      const productData = {
+      const newProduct = await ProductModel.create({
         name: formDataObj.name,
         category: formDataObj.category,
         price: Number(formDataObj.price),
         description: formDataObj.description,
-        image: `/public/images/${filename}`,
-      };
+        image: result.secure_url,
+      });
 
-      const newProduct = await ProductModel.create(productData);
       return NextResponse.json(newProduct, { status: 201 });
     } catch (error) {
       console.error("Upload error:", error);
