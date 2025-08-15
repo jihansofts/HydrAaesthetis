@@ -86,23 +86,35 @@ export const POST = requireRole(["admin", "moderator"])(
   }
 );
 
+
 export async function GET(req: NextRequest) {
   await connectDB();
 
   const { searchParams } = new URL(req.url);
+
   const category = searchParams.get("category"); // ?category=vitamin
-  const limit = parseInt(searchParams.get("limit") || "0", 10); // ?limit=5
+  const limit = parseInt(searchParams.get("limit") || "10", 10); // items per page
+  const page = parseInt(searchParams.get("page") || "1", 10); // current page
 
   const filter: Record<string, unknown> = {};
   if (category) {
     filter.category = category;
   }
 
-  let query = ProductModel.find(filter);
-  if (limit > 0) {
-    query = query.limit(limit);
-  }
+  const skip = (page - 1) * limit;
 
-  const products = await query.exec();
-  return NextResponse.json(products);
+  const [products, total] = await Promise.all([
+    ProductModel.find(filter).skip(skip).limit(limit).exec(),
+    ProductModel.countDocuments(filter).exec(),
+  ]);
+
+  return NextResponse.json({
+    products,
+    pagination: {
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    },
+  });
 }

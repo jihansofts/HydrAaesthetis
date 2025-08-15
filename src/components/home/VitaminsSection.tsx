@@ -1,91 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Button from "@/common/Button";
 import PreptideCard from "@/common/PreptideCard";
 
-// Correct type definition for card props (ensure PreptideCard expects this)
 type PreptideCardProps = {
-  productId: number;
-  title: string;
-  desc: string[];
+  productId: string;
+  index?: number; // make it optional
+  name: string;
+  description: string[];
   slug: string;
   price: number;
+  image: string;
 };
 
 const VitaminsSection: React.FC = () => {
-  const peptides: PreptideCardProps[] = [
-    {
-      productId: 1,
-      title: "Vitamin C",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Boost your immune system, enhance collagen production, and fight oxidative stress with powerful Vitamin C injections. Perfect for glowing skin, faster recovery, and overall wellness.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 2,
-      title: "Thiamin (Vitamin B1)",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Support your nervous system, increase energy, and improve mental clarity. Essential for turning food into fuel and reducing fatigue and brain fog.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 3,
-      title: "Vitamin B12",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Increase energy, lift your mood, and support metabolism with fast-acting B12 injections—ideal for staying sharp, active, and naturally energized daily.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 4,
-      title: "Vitamin B6",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Enhance brain function, balance mood, and support heart and immune health. Great for stress relief and improved focus.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 5,
-      title: "Zofran",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Fast-acting relief from nausea and vomiting caused by surgery, chemotherapy, or other treatments. Blocks brain signals that trigger nausea.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 6,
-      title: "Vitamin B Complex",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "A balanced blend of B vitamins to fuel energy, metabolism, brain health, and reduce stress for optimal vitality.",
-      ],
-      price: 200,
-    },
-    {
-      productId: 7,
-      title: "Zinc",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Strengthen your immune system, support hormone balance, and promote faster healing with zinc injections. This essential mineral plays a key role in metabolism, skin health, and cell repair. Ideal for boosting immunity...",
-      ],
-      price: 200,
-    },
-    {
-      productId: 8,
-      title: "Protonix",
-      slug: "1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview",
-      desc: [
-        "Reduces stomach acid to relieve acid reflux, GERD, and ulcers, promoting esophageal healing and comfort.",
-      ],
-      price: 200,
-    },
-  ];
+  const [vitamins, setVitamins] = useState<PreptideCardProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1); // current page
+  const [totalPages, setTotalPages] = useState(1); // total pages from API
+  const limit = 8;
+
+  const fetchVitamins = async (pageNumber: number) => {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `/api/product?category=vitamin&limit=${limit}&page=${pageNumber}`
+      );
+      const data = await res.json();
+
+      // Append new products to existing ones
+      setVitamins((prev) => [...prev, ...data.products]);
+      setTotalPages(data.pagination.totalPages);
+    } catch (error) {
+      console.error("Error fetching vitamins:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  useEffect(() => {
+    fetchVitamins(1); // fetch first page on load
+  }, []);
+
+  const handleLoadMore = () => {
+    if (page < totalPages) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+      fetchVitamins(nextPage);
+    }
+  };
 
   return (
     <section id="vitamins" className="bg-bgColor py-20">
@@ -94,26 +55,40 @@ const VitaminsSection: React.FC = () => {
           Vitamins Injections
         </h2>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {peptides.map((item) => (
-            <PreptideCard
-              key={item.productId}
-              productId={item.productId.toString()}
-              title={item.title}
-              desc={item.desc}
-              slug={item.slug}
-              price={item.price}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <p className="text-white text-center">Loading...</p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            {vitamins.map((item, index) => {
+              const fullDesc = item.description || "";
+              const shortDesc =
+                fullDesc.slice(0, 100) + (fullDesc.length > 100 ? "..." : "");
 
-        <div className="mx-auto mt-12 w-full text-center">
-          <a
-            target="_blank"
-            href="https://drive.google.com/file/d/1DH4jvwUMIMJgeR7ep8Wy1R5IhPX00NtU/preview">
-            <Button text="See More Vitamins" borderLeanr="gradient-border" />
-          </a>
-        </div>
+              return (
+                <PreptideCard
+                  key={item.productId || index} // key for React
+                  index={index} // ✅ pass index here
+                  productId={item.productId}
+                  title={item.name}
+                  desc={[shortDesc]}
+                  slug={item.slug}
+                  image={item.image}
+                  price={item.price}
+                />
+              );
+            })}
+          </div>
+        )}
+
+        {page < totalPages && (
+          <div className="mx-auto mt-12 w-full text-center">
+            <button
+              onClick={handleLoadMore}
+              className="text-[16px] cursor-pointer gradient-border font-bold text-gradient px-8 py-4 rounded-lg">
+              More Products
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
