@@ -82,26 +82,18 @@ export default function Hero({ title, description }: HeroProps) {
 
         {/* Image Section */}
         <motion.div
-          className="md:mt-0 sm:mt-5 mt-2 w-full md:w-[800px] md:h-[800px] "
+          className="md:mt-0 sm:mt-5 mt-2 w-full md:w-[800px] md:h-[800px]"
           initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
-          <Image
-            src="/images/hero.svg"
-            alt="hero"
-            width={500}
-            height={500}
-            className="w-full object-center h-full lg:mt-20 md:mt-10 sm:mt-10 mt-10 lg:w-[700px] md:h-[600px]"
+          <video
+            src="https://res.cloudinary.com/dhutuvffo/video/upload/v1755283012/Reel_1_n4g5xs.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-center lg:mt-20 md:mt-10 sm:mt-10 mt-10 lg:w-[700px] md:h-[600px]"
           />
-          {/* <div className="flex  items-center gap-x-5 justify-center mt-4">
-            <h4 className="lg:text-[40px] md:text-[36px] sm:text-[24px] font-extrabold text-white">
-              4.97/5
-            </h4>
-            <IoIosStar className="text-[#D9C79B] text-[40px]" />
-            <span className="lg:text-[24px] md:text-[18px] sm:text-[16px] text-[16px] font-bold text-white">
-              From 500+ Customer reviews
-            </span>
-          </div> */}
         </motion.div>
       </div>
     </div>
