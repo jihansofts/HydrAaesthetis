@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
 
 // Use sandbox for dev, live for prod
-const environment = new paypal.core.SandboxEnvironment(
+const environment = new paypal.core.LiveEnvironment(
   process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
   process.env.PAYPAL_CLIENT_SECRET_LIVE!
 );
