@@ -39,39 +39,55 @@
 //   return cached!.conn;
 // }
 // lib/mongoose.ts
-import mongoose, { Mongoose } from "mongoose";
+// lib/dbConnect.ts
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+import mongoose, { Mongoose, ConnectOptions } from "mongoose";
 
-if (!MONGODB_URI) {
-  throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
-  );
-}
-
-// Define a type for cached connection
 interface MongooseCache {
   conn: Mongoose | null;
   promise: Promise<Mongoose> | null;
 }
 
-// Extend NodeJS global to store cached connection (TypeScript safe)
-declare global {
-  // eslint-disable-next-line no-var
-  var _mongoose: MongooseCache | undefined;
+const MONGODB_URI = process.env.MONGODB_URI as string;
+
+if (!MONGODB_URI) {
+  throw new Error("Please define MONGODB_URI in your environment variables");
 }
 
-// Use global cache to avoid multiple connections in dev
-const cached: MongooseCache = global._mongoose ?? { conn: null, promise: null };
-global._mongoose = cached;
+declare global {
+  var mongoose: MongooseCache | undefined;
+}
+
+const cached: MongooseCache = global.mongoose || { conn: null, promise: null };
 
 export async function connectDB(): Promise<Mongoose> {
-  if (cached.conn) return cached.conn;
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(MONGODB_URI);
+  if (cached.conn) {
+    return cached.conn;
   }
 
-  cached.conn = await cached.promise;
+  if (!cached.promise) {
+    const opts: ConnectOptions = {
+      bufferCommands: false,
+      serverSelectionTimeoutMS: 5000,
+      socketTimeoutMS: 45000,
+    };
+
+    cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
+      return mongoose;
+    });
+
+    // Only assign to global in non-production environments
+    if (process.env.NODE_ENV !== "production") {
+      global.mongoose = cached;
+    }
+  }
+
+  try {
+    cached.conn = await cached.promise;
+  } catch (e) {
+    cached.promise = null;
+    throw e;
+  }
+
   return cached.conn;
 }
