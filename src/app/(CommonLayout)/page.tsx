@@ -13,6 +13,7 @@ import WhyChooseUs from "@/components/home/WhyChooseUs";
 import VitaminsSection from "@/components/home/VitaminsSection";
 import Microneedling from "@/components/home/Microneedling";
 import OurService from "@/components/home/OurService";
+import ItemCard from "@/common/ItemCard";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <HeroSection />
       <OurService />
       <DripsSection />
+      <ItemCard/>
       <Hormone />
       <ExclusiveSection />
       <NicotinamideSection />

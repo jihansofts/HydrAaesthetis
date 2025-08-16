@@ -1,60 +1,85 @@
-"use client";
-
 import React from "react";
-import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import { useAppContext } from "@/context/AppContext";
+import Image from "next/image";
 
-interface DripsCardProps {
-  image: string;
+type PreptideCardProps = {
+  productId: string;
+  index: number;
   title: string;
-  desc: string;
+  desc: string[];
   slug: string;
-}
+  price: number;
+  image: string;
+};
 
-export default function DripsCard({
-  image,
+const DripsCard: React.FC<PreptideCardProps> = ({
+  productId,
+  index,
   title,
   desc,
   slug,
-}: DripsCardProps) {
+  price,
+  image,
+}) => {
+  const { addToCart, cartItems } = useAppContext();
+  const cartItem = cartItems.find((item) => item.productId === productId);
+  const itemQuantity = cartItem ? cartItem.quantity : 0;
+
+  const handleAddToCart = () => {
+    addToCart({ productId, title, price, quantity: 1 });
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: 0.1, duration: 0.5 }}
-      className="bg-[#2a2a2a] w-full p-6 rounded-lg text-white flex flex-col justify-between border border-[#CAB485]">
-      <div className="flex justify-start mb-4">
+      transition={{ delay: 0.1, duration: 0.9 }}
+      className="bg-[#2E2E2E] min-h-[300px] border border-[#CAB485] rounded-lg p-4 w-[300px] flex flex-col justify-between">
+      {/* Top section with image + price */}
+      <div key={index} className="flex justify-between items-start mb-3">
         <Image
           src={image}
-          alt={title}
-          width={60}
-          height={80}
-          className="object-contain"
+          alt={title || "Product"}
+          width={100}
+          height={100}
+          className="w-16 h-16 object-cover rounded"
         />
+        <span className="text-[#CAB485] text-xl font-bold">${price}</span>
       </div>
 
-      <h3 className="text-[24px] font-inter font-bold mb-2">{title}</h3>
+      {/* Title */}
+      <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
 
-      <p className="text-[15px] text-white mb-4">
-        {desc.slice(0, 50)}...{" "}
-        <Link
+      {/* Description */}
+      <p className="text-gray-300 text-sm leading-snug">
+        {desc}...
+        <a
           target="_blank"
           rel="noopener noreferrer"
           href={`https://drive.google.com/file/d/${slug}`}
-          className="text-[#D6B36B] font-inter font-semibold hover:underline">
+          className="text-[#D9C79B] font-medium ml-1">
           Read More
-        </Link>
+        </a>
       </p>
 
-      <a
-        target="_blank"
-        href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
-        <button className="bg-gradient-to-r px-8 py-3 font-inter from-[#CAB485] via-[#D9C9A1] to-[#8A6D42] text-[#1E1E1E] font-bold text-[16px] rounded-md transition hover:opacity-90">
-          Book Consultation
+      {/* Buttons */}
+      <div className="flex gap-3 w-full mt-4">
+        <a
+          target="_blank"
+          href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F"
+          className="bg-gradient w-full text-[#1E1E1E] font-bold text-sm py-3 px-4 rounded-md hover:opacity-90">
+          Consultation
+        </a>
+        <button
+          onClick={handleAddToCart}
+          className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">
+          Add to cart
         </button>
-      </a>
+      </div>
     </motion.div>
   );
-}
+};
+
+export default DripsCard;

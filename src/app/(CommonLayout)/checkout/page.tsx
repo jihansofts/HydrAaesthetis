@@ -5,7 +5,7 @@ import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAppContext } from "@/context/AppContext";
 
 const CheckOut = () => {
-  const { cartItems, cartTotal, userDetails } = useAppContext();
+  const { cartItems, cartTotal, userDetails, clearCart } = useAppContext();
   const [error] = useState<string>("");
 
   return (
@@ -27,7 +27,7 @@ const CheckOut = () => {
 
           <PayPalScriptProvider
             options={{
-              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE || "",
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "",
             }}>
             <PayPalButtons
               style={{ layout: "vertical", color: "gold" }}
@@ -40,24 +40,23 @@ const CheckOut = () => {
                     userDetails: userDetails,
                   }),
                 });
-
                 const data = await res.json();
                 return data.id;
               }}
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
-                console.log("✅ Payment successful:", details);
-                await fetch("/api/send-order-email", {
+                clearCart();
+                const emailRes = await fetch("/api/send-order-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
-                    userDetails,
-                    cartItems,
-                    total: cartTotal,
-                    paymentId: details?.id,
+                    sessionId: details?.id,
+                    userDetails: userDetails,
+                    cartItems: cartItems,
                   }),
                 });
-                window.location.href = "/";
+                const emailData = await emailRes.json();
+                console.log("✅ Email sent:", emailData);
               }}
             />
           </PayPalScriptProvider>

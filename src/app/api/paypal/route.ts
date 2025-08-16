@@ -1,32 +1,31 @@
+// api/paypal/route.ts
 import paypal from "@paypal/checkout-server-sdk";
-
 import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
 
-// const environment = new paypal.core.LiveEnvironment(
-//   process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-//   process.env.PAYPAL_CLIENT_SECRET_LIVE!
-// );
-
-const environment =
-  process.env.NODE_ENV === "production"
-    ? new paypal.core.LiveEnvironment(
-        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-        process.env.PAYPAL_CLIENT_SECRET_LIVE!
-      )
-    : new paypal.core.SandboxEnvironment(
-        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-        process.env.PAYPAL_CLIENT_SECRET!
-      );
+// Use sandbox for dev, live for prod
+const environment = new paypal.core.SandboxEnvironment(
+  process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+  process.env.PAYPAL_CLIENT_SECRET!
+);
+// const environment =
+//   process.env.NODE_ENV === "production"
+//     ? new paypal.core.LiveEnvironment(
+//         process.env.PAYPAL_CLIENT_ID!,
+//         process.env.PAYPAL_CLIENT_SECRET!
+//       )
+//     : new paypal.core.SandboxEnvironment(
+//         process.env.PAYPAL_CLIENT_ID!,
+//         process.env.PAYPAL_CLIENT_SECRET!
+//       );
 
 const client = new paypal.core.PayPalHttpClient(environment);
-export async function POST(req: NextRequest) {
-  // connect to MongoDB
 
+export async function POST(req: NextRequest) {
   const body = await req.json();
   const { cartItems, userDetails } = body;
 
-  type CartItem = { name: string; price: number; quantity: number };
+  type CartItem = { title: string; price: number; quantity: number };
   const total = cartItems.reduce(
     (acc: number, item: CartItem) => acc + item.price * item.quantity,
     0
@@ -49,20 +48,29 @@ export async function POST(req: NextRequest) {
   try {
     // 1️⃣ Create PayPal order
     const order = await client.execute(request);
+    
 
-    // 2️⃣ Save order in MongoDB
+    // 2️⃣ Save to MongoDB aligned with schema
     const newOrder = await Order.create({
-      paypalOrderId: order.result.id,
-      cartItems,
-      userDetails,
+      paypalOrderId: order.result.id, 
+      cartItems: cartItems.map((item: CartItem) => ({
+        name: item.title,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+      userDetails: {
+        name: userDetails.fullName, // align with schema
+        email: userDetails.email,
+        address: userDetails.address || "",
+      },
       total,
-      status: "PENDING", // will change after capture
+      status: "PENDING",
     });
-
-    // 3️⃣ Return PayPal order ID to frontend
+    // 3️⃣ Return PayPal order ID
     return NextResponse.json({
-      orderId: order.result.id,
-      newOrderId: newOrder._id,
+      id: order.result.id,
+      status: order.result.status,
+      data: newOrder,
     });
   } catch (err) {
     console.error("PayPal Error:", err);

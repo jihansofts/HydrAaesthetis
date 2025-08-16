@@ -1,59 +1,55 @@
 "use client";
-import Button from "@/common/Button";
+import { useState, useEffect } from "react";
 import DripsCard from "@/common/DripsCard";
 import React from "react";
 import { motion } from "framer-motion";
-const peptides = [
-  {
-    title: "Myers Cocktail",
-    image: "/images/drop.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Rejuvenate your body and revive your energy with this classic nutrient blend.",
-  },
-  {
-    title: "Immune Boost",
-    image: "/images/drop1.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Fight off colds, coughs, and itchy throats—strengthen your defenses fast.",
-  },
-  {
-    title: "Migraine Relief",
-    image: "/images/drop2.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Ease migraine pain and restore balance for a brighter, younger-feeling you.",
-  },
-  {
-    title: "Jet Lag Recovery",
-    image: "/images/drop3.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Bounce back quickly and beat the jet lag blues after long travels.",
-  },
-  {
-    title: "Hydration Therapy",
-    image: "/images/drop4.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Rehydrate and say goodbye to fatigue and sluggishness.",
-  },
-  {
-    title: "Hangover Relief",
-    image: "/images/drop5.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Recover faster and feel refreshed after a long night out.",
-  },
-  {
-    title: "Beauty Boost",
-    image: "/images/drop6.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Glow from within and be runway-ready with skin-enhancing nutrients.",
-  },
-  {
-    title: "Custom Blend",
-    image: "/images/drop7.svg",
-    slug: "1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview",
-    desc: "Personalize your drip to target your unique needs—headache relief, energy, and more.",
-  },
-];
+
+type PreptideCardProps = {
+  productId: string;
+  index?: number;
+  name: string;
+  description: string[];
+  slug: string;
+  price: number;
+  image: string;
+};
+
 export default function DripsSection() {
+  const [vitamins, setVitamins] = useState<PreptideCardProps[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 8;
+
+  const fetchVitamins = async (pageNumber: number) => {
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `/api/product?category=drop&limit=${limit}&page=${pageNumber}`
+      );
+      const data = await res.json();
+
+      setVitamins((prev) => [...prev, ...data.products]);
+      setTotalPages(data.pagination.totalPages);
+    } catch (error) {
+      console.error("Error fetching drips:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchVitamins(1);
+  }, []);
+
+  const handleLoadMore = () => {
+    if (page < totalPages) {
+      const nextPage = page + 1;
+      setPage(nextPage);
+      fetchVitamins(nextPage);
+    }
+  };
+
   return (
     <section className="bg-bgColor py-20">
       <div id="iv-drips" className="container mx-auto px-6">
@@ -67,23 +63,48 @@ export default function DripsSection() {
         </motion.h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {peptides.map((item, index) => (
-            <DripsCard
-              image={item.image}
-              key={index}
-              title={item.title}
-              desc={item.desc}
-              slug={item.slug}
-            />
-          ))}
+          {/* Render loaded products */}
+          {vitamins.map((item, index) => {
+            const fullDesc = item.description || "";
+            const shortDesc =
+              fullDesc.slice(0, 50) + (fullDesc.length > 100 ? "..." : "");
+
+            return (
+              <DripsCard
+                key={item.productId || index}
+                index={index}
+                productId={item.productId}
+                title={item.name}
+                desc={[shortDesc]}
+                slug={item.slug}
+                image={item.image}
+                price={item.price}
+              />
+            );
+          })}
+
+          {/* Skeleton loaders while fetching */}
+          {loading &&
+            Array.from({ length: limit }).map((_, i) => (
+              <div
+                key={`skeleton-${i}`}
+                className="animate-pulse rounded-lg bg-[#2E2E2E] p-6 h-72 w-full">
+                <div className="h-40 bg-primary rounded-md mb-4"></div>
+                <div className="h-4 bg-primary rounded w-3/4 mb-2"></div>
+                <div className="h-4 bg-primary rounded w-1/2"></div>
+              </div>
+            ))}
         </div>
-        <div className="mx-auto mt-12 w-full text-center">
-          <a
-            target="_blank"
-            href="https://drive.google.com/file/d/1V-JP8f606zZmyM2tx7fTahgX_RmuR1g7/preview">
-            <Button text="See More IV Drips" borderLeanr="gradient-border" />
-          </a>
-        </div>
+
+        {page < totalPages && !loading && (
+          <div className="mx-auto mt-12 w-full text-center">
+            <button
+              onClick={handleLoadMore}
+              className="text-[16px] cursor-pointer gradient-border font-bold text-gradient px-8 py-4 rounded-lg">
+              More Products
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

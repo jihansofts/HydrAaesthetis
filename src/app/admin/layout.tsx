@@ -62,7 +62,30 @@ export default async function AdminLayout({
           </div>
         </div>
       </div>
-
+      <div className="hidden md:flex justify-center gap-8 py-8 bg-[#1f1f1f]">
+        <Link
+          href="/admin"
+          className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">
+          Add Product
+        </Link>
+        <Link
+          href="/admin/product-all"
+          className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">
+          Product List
+        </Link>
+        <Link
+          href="/admin/moderator"
+          className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">
+          Add Moderator
+        </Link>
+        {/* <Link
+        {/* <Link
+          href="/about"
+          className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer"
+        >
+          About
+        </Link> */}
+      </div>
       {/* Main Content */}
       <main className="flex-1 p-6">{children}</main>
     </div>

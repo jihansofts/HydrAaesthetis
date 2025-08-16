@@ -48,7 +48,6 @@ export default function Page() {
       }
 
       alert("✅ Product added successfully!");
-      console.log("New Product:", data);
 
       // Reset form
       setCategory("");
@@ -99,6 +98,7 @@ export default function Page() {
               <input
                 type="text"
                 value={name}
+                placeholder="name"
                 onChange={(e) => setName(e.target.value)}
                 className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white"
               />
@@ -109,6 +109,7 @@ export default function Page() {
                 Enter Price
               </label>
               <input
+                placeholder="price"
                 type="text"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
@@ -121,6 +122,7 @@ export default function Page() {
                 Description
               </label>
               <textarea
+                placeholder="description"
                 rows={5}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
