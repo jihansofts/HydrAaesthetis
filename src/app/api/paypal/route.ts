@@ -4,20 +4,20 @@ import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
 
 // Use sandbox for dev, live for prod
-const environment = new paypal.core.LiveEnvironment(
-  process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-  process.env.PAYPAL_CLIENT_SECRET_LIVE!
-);
-// const environment =
-//   process.env.NODE_ENV === "production"
-//     ? new paypal.core.LiveEnvironment(
-//         process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
-//         process.env.PAYPAL_CLIENT_SECRET_LIVE!
-//       )
-//     : new paypal.core.SandboxEnvironment(
-//         process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-//         process.env.PAYPAL_CLIENT_SECRET!
-//       );
+// const environment = new paypal.core.LiveEnvironment(
+//   process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
+//   process.env.PAYPAL_CLIENT_SECRET_LIVE!
+// );
+const environment =
+  process.env.NODE_ENV === "production"
+    ? new paypal.core.LiveEnvironment(
+        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
+        process.env.PAYPAL_CLIENT_SECRET_LIVE!
+      )
+    : new paypal.core.SandboxEnvironment(
+        process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+        process.env.PAYPAL_CLIENT_SECRET!
+      );
 
 const client = new paypal.core.PayPalHttpClient(environment);
 
