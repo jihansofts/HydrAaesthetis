@@ -2,6 +2,7 @@
 import paypal from "@paypal/checkout-server-sdk";
 import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
+import { connectDB } from "@/lib/mongoose";
 
 // Use sandbox for dev, live for prod
 // const environment = new paypal.core.LiveEnvironment(
@@ -46,6 +47,7 @@ export async function POST(req: NextRequest) {
   });
 
   try {
+    await connectDB();
     // 1️⃣ Create PayPal order
     const order = await client.execute(request);
 
