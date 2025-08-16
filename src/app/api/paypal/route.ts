@@ -4,20 +4,20 @@ import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
 
 // Use sandbox for dev, live for prod
-const environment = new paypal.core.SandboxEnvironment(
-  process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
-  process.env.PAYPAL_CLIENT_SECRET!
-);
-// const environment =
-//   process.env.NODE_ENV === "production"
-//     ? new paypal.core.LiveEnvironment(
-//         process.env.PAYPAL_CLIENT_ID!,
-//         process.env.PAYPAL_CLIENT_SECRET!
-//       )
-//     : new paypal.core.SandboxEnvironment(
-//         process.env.PAYPAL_CLIENT_ID!,
-//         process.env.PAYPAL_CLIENT_SECRET!
-//       );
+// const environment = new paypal.core.SandboxEnvironment(
+//   process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
+//   process.env.PAYPAL_CLIENT_SECRET!
+// );
+const environment =
+  process.env.NODE_ENV === "production"
+    ? new paypal.core.LiveEnvironment(
+        process.env.PAYPAL_CLIENT_ID!,
+        process.env.PAYPAL_CLIENT_SECRET!
+      )
+    : new paypal.core.SandboxEnvironment(
+        process.env.PAYPAL_CLIENT_ID!,
+        process.env.PAYPAL_CLIENT_SECRET!
+      );
 
 const client = new paypal.core.PayPalHttpClient(environment);
 
@@ -48,11 +48,10 @@ export async function POST(req: NextRequest) {
   try {
     // 1️⃣ Create PayPal order
     const order = await client.execute(request);
-    
 
     // 2️⃣ Save to MongoDB aligned with schema
     const newOrder = await Order.create({
-      paypalOrderId: order.result.id, 
+      paypalOrderId: order.result.id,
       cartItems: cartItems.map((item: CartItem) => ({
         name: item.title,
         price: item.price,
