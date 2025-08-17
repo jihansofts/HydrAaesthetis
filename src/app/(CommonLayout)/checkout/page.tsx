@@ -1,10 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAppContext } from "@/context/AppContext";
 
 const CheckOut = () => {
+  const router = useRouter();
   const { cartItems, cartTotal, userDetails, clearCart } = useAppContext();
   const [error] = useState<string>("");
 
@@ -46,7 +48,7 @@ const CheckOut = () => {
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
                 clearCart();
-                const emailRes = await fetch("/api/send-order-email", {
+                await fetch("/api/send-order-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
@@ -55,8 +57,7 @@ const CheckOut = () => {
                     cartItems: cartItems,
                   }),
                 });
-                const emailData = await emailRes.json();
-                console.log("✅ Email sent:", emailData);
+                router.push("/");
               }}
             />
           </PayPalScriptProvider>

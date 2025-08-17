@@ -36,7 +36,7 @@ const DripsCard: React.FC<PreptideCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1, duration: 0.9 }}
-      className="bg-[#2E2E2E] min-h-[300px] border border-[#CAB485] rounded-lg p-4 w-[300px] flex flex-col justify-between">
+      className="bg-[#2E2E2E] min-h-[300px] mx-auto border border-[#CAB485] rounded-lg p-4 lg:w-[300px] md:w-[300px] w-full sm:w-full flex flex-col justify-between">
       {/* Top section with image + price */}
       <div key={index} className="flex justify-between items-start mb-3">
         <Image

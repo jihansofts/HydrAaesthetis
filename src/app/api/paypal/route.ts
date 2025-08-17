@@ -62,7 +62,8 @@ export async function POST(req: NextRequest) {
       userDetails: {
         name: userDetails.fullName, // align with schema
         email: userDetails.email,
-        address: userDetails.address || "",
+        phone: userDetails.phone,
+        address: userDetails.date,
       },
       total,
       status: "PENDING",

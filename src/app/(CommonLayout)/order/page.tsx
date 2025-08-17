@@ -18,11 +18,6 @@ const OrderPage: React.FC = () => {
   const [formData, setFormData] = useState(userDetails);
   const router = useRouter();
 
-  // const handleCheckout = () => {
-  //   updateUserDetails(formData);
-  //   router.push("/checkout");
-  // };
-  // In your OrderPage component, modify the handleCheckout function:
   const handleCheckout = () => {
     updateUserDetails(formData);
 
@@ -103,16 +98,17 @@ const OrderPage: React.FC = () => {
                   </div>
                   <div>
                     <label className="block text-[20px] font-font font-inter mb-1">
-                      Location
+                      Date
                     </label>
-                    <textarea
-                      name="address"
-                      value={formData.address}
+                    <input
+                      type="date"
+                      name="date"
+                      value={formData.date}
                       onChange={handleInputChange}
-                      placeholder="Your Address"
-                      rows={3}
+                      placeholder="Date"
                       className="w-full bg-[#2E2E2E] rounded-md p-3 text-white placeholder:text-gray-400 focus:outline-none"
-                      required></textarea>
+                      required
+                    />
                   </div>
                 </form>
               </div>

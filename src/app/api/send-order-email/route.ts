@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
         <p><strong>Session ID:</strong> ${sessionId}</p>
         <p><strong>Email:</strong> ${userDetails.email}</p>
         <p><strong>Phone:</strong> ${userDetails.phone}</p>
-        <p><strong>Location:</strong> ${userDetails.address}</p>
+        <p><strong>Date:</strong> ${userDetails.date}</p>
         <ul>${itemsHtml}</ul>
    
       `,
