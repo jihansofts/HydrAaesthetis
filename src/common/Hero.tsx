@@ -4,7 +4,7 @@ import React from "react";
 import Button from "./Button";
 
 import { motion } from "framer-motion";
-import {  FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 interface HeroProps {
   title?: string;
@@ -86,7 +86,7 @@ export default function Hero({ title, description }: HeroProps) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
           <video
-            src="https://res.cloudinary.com/dhutuvffo/video/upload/v1755283012/Reel_1_n4g5xs.mp4"
+            src="https://res.cloudinary.com/dhutuvffo/video/upload/v1755445492/Reel_1_sitgv9.mp4"
             autoPlay
             loop
             muted

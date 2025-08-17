@@ -82,6 +82,7 @@ export default function Page() {
                 Category Of Product
               </label>
               <select
+                title="category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
                 className="w-full bg-[#2E2E2E] border border-[#2E2E2E] rounded-xl px-4 py-3 text-white">
