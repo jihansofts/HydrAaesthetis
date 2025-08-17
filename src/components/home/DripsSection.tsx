@@ -1,8 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
-import DripsCard from "@/common/DripsCard";
 import React from "react";
 import { motion } from "framer-motion";
+import PreptideCard from "@/common/VitaminDripsCard";
 
 type PreptideCardProps = {
   productId: string;
@@ -65,18 +65,13 @@ export default function DripsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {/* Render loaded products */}
           {vitamins.map((item, index) => {
-            const fullDesc = item.description || "";
-            const shortDesc =
-              fullDesc.slice(0, 50) + (fullDesc.length > 100 ? "..." : "");
-
             return (
-              <DripsCard
+              <PreptideCard
                 key={item.productId || index}
                 index={index}
                 productId={item.productId}
                 title={item.name}
-                desc={[shortDesc]}
-                slug={item.slug}
+                desc={item.description}
                 image={item.image}
                 price={item.price}
               />

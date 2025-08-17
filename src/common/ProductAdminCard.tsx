@@ -8,7 +8,6 @@ type PreptideCardProps = {
   index: number;
   title: string;
   desc: string[];
-  slug: string;
   price: number;
   image: string;
 };
@@ -18,7 +17,6 @@ const DripsCard: React.FC<PreptideCardProps> = ({
   index,
   title,
   desc,
-  slug,
   price,
   image,
 }) => {
@@ -53,16 +51,7 @@ const DripsCard: React.FC<PreptideCardProps> = ({
       <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
 
       {/* Description */}
-      <p className="text-gray-300 text-sm leading-snug">
-        {desc}...
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href={`https://drive.google.com/file/d/${slug}`}
-          className="text-[#D9C79B] font-medium ml-1">
-          Read More
-        </a>
-      </p>
+      <p className="text-gray-300 text-sm leading-snug">{desc}</p>
 
       {/* Buttons */}
       <div className="flex gap-3 w-full mt-4">
@@ -70,12 +59,12 @@ const DripsCard: React.FC<PreptideCardProps> = ({
           target="_blank"
           href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F"
           className="bg-gradient w-full text-[#1E1E1E] font-bold text-sm py-3 px-4 rounded-md hover:opacity-90">
-          Consultation
+          Edit
         </a>
         <button
           onClick={handleAddToCart}
           className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">
-          Add to cart
+          Delete
         </button>
       </div>
     </motion.div>

@@ -20,8 +20,8 @@ export default function Page() {
     }
 
     // Drop product description validation
-    if (category === "drop" && description.length > 40) {
-      alert("Description must be 40 characters or less for drop products.");
+    if (description.length > 110) {
+      alert("Description must be 110 characters or less for products.");
       return;
     }
 

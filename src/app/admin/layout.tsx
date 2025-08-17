@@ -48,7 +48,9 @@ export default async function AdminLayout({
           </div>
 
           <div className="flex justify-center items-center space-x-5">
-            <Link href="/order" className="col-span-1 flex gap-x-3 relative">
+            <Link
+              href="/admin/order-all"
+              className="col-span-1 flex gap-x-3 relative">
               <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
                 Check Orders
               </span>
@@ -62,7 +64,7 @@ export default async function AdminLayout({
           </div>
         </div>
       </div>
-      <div className="hidden md:flex justify-center gap-8 py-8 bg-[#1f1f1f]">
+      <div className="flex lg:flex-row flex-col md:flex-col sm:flex-col items-center justify-center gap-8 py-8 bg-[#1f1f1f]">
         <Link
           href="/admin"
           className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">

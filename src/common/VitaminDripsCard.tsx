@@ -8,7 +8,6 @@ type PreptideCardProps = {
   index: number;
   title: string;
   desc: string[];
-  slug: string;
   price: number;
   image: string;
 };
@@ -18,7 +17,6 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
   index,
   title,
   desc,
-  slug,
   price,
   image,
 }) => {
@@ -36,7 +34,7 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.1, duration: 0.9 }}
-      className="bg-[#2E2E2E] mx-auto min-h-[300px] border border-[#CAB485] rounded-lg p-4 lg:w-[300px] md:w-[300px] w-full sm:w-full flex flex-col justify-between">
+      className="bg-[#2E2E2E] mx-auto h-[360px] border border-[#CAB485] rounded-lg p-4 lg:w-[300px] md:w-[300px] w-full sm:w-full flex flex-col justify-between">
       {/* Top section with image + price */}
       <div key={index} className="flex justify-between items-start mb-3">
         <Image
@@ -54,14 +52,14 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
 
       {/* Description */}
       <p className="text-gray-300 text-sm leading-snug">
-        {desc}...
-        <a
+        {desc}
+        {/* <a
           target="_blank"
           rel="noopener noreferrer"
           href={`https://drive.google.com/file/d/${slug}`}
           className="text-[#D9C79B] font-medium ml-1">
           Read More
-        </a>
+        </a> */}
       </p>
 
       {/* Buttons */}

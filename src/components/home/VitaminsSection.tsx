@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PreptideCard from "@/common/PreptideCard";
+import PreptideCard from "@/common/VitaminDripsCard";
 
 type PreptideCardProps = {
   productId: string;
@@ -56,18 +56,13 @@ const VitaminsSection: React.FC = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-center items-center">
           {vitamins.map((item, index) => {
-            const fullDesc = item.description || "";
-            const shortDesc =
-              fullDesc.slice(0, 100) + (fullDesc.length > 100 ? "..." : "");
-
             return (
               <PreptideCard
                 key={item.productId || index}
                 index={index}
                 productId={item.productId}
                 title={item.name}
-                desc={[shortDesc]}
-                slug={item.slug}
+                desc={item.description}
                 image={item.image}
                 price={item.price}
               />
