@@ -57,9 +57,9 @@ export default async function AdminLayout({
               <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
             </Link>
             <div className="hidden md:flex">
-              <a target="_blank" href="">
+              <Link target="_blank" href="/admin/order-all">
                 <Button text="Add Moderators" borderLeanr="gradient-border" />
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -79,6 +79,11 @@ export default async function AdminLayout({
           href="/admin/moderator"
           className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">
           Add Moderator
+        </Link>
+        <Link
+          href="/admin/moderator-all"
+          className="text-[20px] font-inter font-bold text-[#d6b36b] hover:text-[#cbb688] cursor-pointer">
+          Moderator List
         </Link>
         {/* <Link
         {/* <Link

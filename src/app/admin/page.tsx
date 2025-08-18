@@ -2,8 +2,11 @@
 import Button from "@/common/Button";
 import { baseUrl } from "@/helper/config";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -47,7 +50,15 @@ export default function Page() {
         throw new Error(data.error || "Failed to create product");
       }
 
-      alert("✅ Product added successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Product Created Successfully",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      // Redirect to product page
+      router.push("/admin/product-all");
 
       // Reset form
       setCategory("");
@@ -56,9 +67,12 @@ export default function Page() {
       setDescription("");
       setImage(null);
     } catch (error) {
-      console.error(
-        error instanceof Error ? error.message : "Failed to create product"
-      );
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error instanceof Error ? error.message : "Something went wrong",
+      });
+      setLoading(false);
     } finally {
       setLoading(false);
     }

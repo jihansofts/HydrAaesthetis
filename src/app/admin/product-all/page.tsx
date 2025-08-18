@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import ProductAdminCard from "@/common/ProductAdminCard";
+import Swal from "sweetalert2";
 
 type PreptideCardProps = {
   productId: string;
@@ -50,6 +51,38 @@ export default function Page() {
     fetchVitamins(1, true);
   }, [sort]);
 
+  const handleDelete = async (id: string) => {
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: "This action cannot be undone!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    });
+
+    if (result.isConfirmed) {
+      try {
+        // ✅ Call your API to delete
+        const res = await fetch(`/api/product/${id}`, {
+          method: "DELETE",
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to delete moderator");
+        }
+
+        // ✅ Remove from UI immediately
+        setVitamins((prev) => prev.filter((item) => item.productId !== id));
+
+        Swal.fire("Deleted!", "Moderator has been deleted.", "success");
+      } catch (error) {
+        Swal.fire("Something went wrong");
+      }
+    }
+  };
+
   const handleLoadMore = () => {
     if (page < totalPages) {
       const nextPage = page + 1;
@@ -85,7 +118,7 @@ export default function Page() {
           {vitamins.map((item, index) => {
             return (
               <ProductAdminCard
-                key={item.productId || index}
+                key={item.productId}
                 index={index}
                 productId={item.productId}
                 title={item.name}

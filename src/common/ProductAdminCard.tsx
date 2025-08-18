@@ -5,6 +5,7 @@ import Image from "next/image";
 
 type PreptideCardProps = {
   productId: string;
+  key: string;
   index: number;
   title: string;
   desc: string[];
@@ -14,6 +15,7 @@ type PreptideCardProps = {
 
 const DripsCard: React.FC<PreptideCardProps> = ({
   productId,
+  key,
   index,
   title,
   desc,
@@ -62,7 +64,9 @@ const DripsCard: React.FC<PreptideCardProps> = ({
           Edit
         </a>
         <button
-          onClick={handleAddToCart}
+          onClick={() => {
+            alert(key);
+          }}
           className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">
           Delete
         </button>

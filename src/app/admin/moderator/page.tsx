@@ -1,9 +1,13 @@
 "use client";
+
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-
+import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 const AddModarator = () => {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,7 +17,44 @@ const AddModarator = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  async function handleSubmit(e: React.FormEvent) {
+    try {
+      e.preventDefault();
+      setLoading(true);
+      const res = await fetch("/api/user/moderator", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Moderator Added Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        router.push("/admin/moderator-all");
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+        setLoading(false);
 
+        setFormData({
+          name: "",
+          email: "",
+          password: "",
+        });
+      }
+    } catch (error) {
+      setLoading(false);
+      console.error("Error fetching drips:", error);
+    }
+  }
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -31,7 +72,7 @@ const AddModarator = () => {
           </h1>
         </div>
         <div>
-          <form action="" className="mt-8 space-y-4">
+          <form onSubmit={handleSubmit} className="mt-8 space-y-4">
             <div className="flex flex-col items-center justify-center space-y-4">
               <label htmlFor="name" className="text-white font-medium">
                 Name Of Moderator
@@ -93,7 +134,7 @@ const AddModarator = () => {
              font-medium py-2 px-6 rounded-md transition duration-300 cursor-pointer 
              bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] 
              bg-clip-text text-transparent">
-                Add Moderators
+                {loading ? "Adding..." : "Add Moderator"}
               </button>
             </div>
           </form>
