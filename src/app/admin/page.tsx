@@ -47,7 +47,11 @@ export default function Page() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to create product");
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: data.error || "Failed to create product",
+        });
       }
 
       Swal.fire({

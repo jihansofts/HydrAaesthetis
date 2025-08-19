@@ -50,7 +50,6 @@ export const PATCH = requireRole(["admin", "moderator"])(
         updateData.image = `/public/images/${filename}`;
       }
 
-
       const updated = await ProductModel.updateOne({ _id: id }, updateData);
 
       if (!updated) {
@@ -72,5 +71,20 @@ export const PATCH = requireRole(["admin", "moderator"])(
         { status: 500 }
       );
     }
+  }
+);
+
+export const DELETE = requireRole(["admin", "moderator"])(
+  async (req: NextRequest, params) => {
+    await connectDB();
+    const id = params.id;
+    const deleted = await ProductModel.deleteOne({ _id: id });
+    if (!deleted) {
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+    }
+    return NextResponse.json({
+      success: true,
+      message: "Product successfully deleted",
+    });
   }
 );

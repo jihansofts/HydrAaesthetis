@@ -1,10 +1,38 @@
 // app/api/send-order-email/route.ts
-import { NextRequest } from "next/server";
+import { connectDB } from "@/lib/mongoose";
+import Order from "@/model/Order";
+import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   try {
+    await connectDB();
     const { sessionId, userDetails, cartItems } = await req.json();
+    type CartItem = { title: string; price: number; quantity: number };
+    const total = cartItems.reduce(
+      (acc: number, item: CartItem) => acc + item.price * item.quantity,
+      0
+    );
+
+    
+    const newOrder = await Order.create({
+      paypalOrderId: sessionId,
+      cartItems: cartItems.map(
+        (item: { title: string; price: number; quantity: number }) => ({
+          name: item.title, // make sure your field is `title`
+          price: item.price,
+          quantity: item.quantity,
+        })
+      ),
+      userDetail: {
+        name: userDetails.fullName,
+        email: userDetails.email,
+        phone: userDetails.phone,
+        date: userDetails.date,
+      },
+      total: total,
+      status: "PAID",
+    });
 
     const itemsHtml = cartItems
       .map(
@@ -34,7 +62,7 @@ export async function POST(req: NextRequest) {
       html: `
         <h2>New Payment Received</h2>
         <p><strong>Name:</strong> ${userDetails.fullName}</p>
-        <p><strong>Session ID:</strong> ${sessionId}</p>
+        <p><strong>Order ID:</strong> ${sessionId}</p>
         <p><strong>Email:</strong> ${userDetails.email}</p>
         <p><strong>Phone:</strong> ${userDetails.phone}</p>
         <p><strong>Date:</strong> ${userDetails.date}</p>
@@ -44,14 +72,17 @@ export async function POST(req: NextRequest) {
     };
 
     await transporter.sendMail(mailOptions);
+    console.log(newOrder, "order");
 
-    return new Response(JSON.stringify({ success: true }), {
-      status: 200,
+    return NextResponse.json({
+      message: "Email sent successfully",
+      success: true,
     });
   } catch (error) {
     console.error("Email sending failed:", error);
-    return new Response(JSON.stringify({ error: "Email sending failed" }), {
-      status: 500,
-    });
+    return NextResponse.json(
+      { error: "Email sending failed" },
+      { status: 500 }
+    );
   }
 }

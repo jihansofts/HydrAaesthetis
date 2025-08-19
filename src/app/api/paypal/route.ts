@@ -1,8 +1,7 @@
 // api/paypal/route.ts
 import paypal from "@paypal/checkout-server-sdk";
 import { NextRequest, NextResponse } from "next/server";
-import Order from "@/model/Order";
-import { connectDB } from "@/lib/mongoose";
+
 
 // Use sandbox for dev, live for prod
 // const environment = new paypal.core.LiveEnvironment(
@@ -24,7 +23,7 @@ const client = new paypal.core.PayPalHttpClient(environment);
 
 export async function POST(req: NextRequest) {
   const body = await req.json();
-  const { cartItems, userDetails } = body;
+  const { cartItems } = body;
 
   type CartItem = { title: string; price: number; quantity: number };
   const total = cartItems.reduce(
@@ -47,32 +46,15 @@ export async function POST(req: NextRequest) {
   });
 
   try {
-    await connectDB();
+
     // 1️⃣ Create PayPal order
     const order = await client.execute(request);
 
-    // 2️⃣ Save to MongoDB aligned with schema
-    const newOrder = await Order.create({
-      paypalOrderId: order.result.id,
-      cartItems: cartItems.map((item: CartItem) => ({
-        name: item.title,
-        price: item.price,
-        quantity: item.quantity,
-      })),
-      userDetails: {
-        name: userDetails.fullName, // align with schema
-        email: userDetails.email,
-        phone: userDetails.phone,
-        address: userDetails.date,
-      },
-      total,
-      status: "PENDING",
-    });
+
     // 3️⃣ Return PayPal order ID
     return NextResponse.json({
       id: order.result.id,
       status: order.result.status,
-      data: newOrder,
     });
   } catch (err) {
     console.error("PayPal Error:", err);

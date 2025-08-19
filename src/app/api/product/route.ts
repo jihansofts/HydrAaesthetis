@@ -1,7 +1,5 @@
 import { NextResponse, NextRequest } from "next/server";
 import cloudinary from "@/lib/cloudinary";
-import { promises as fs } from "fs";
-import path from "path";
 import { ProductModel } from "@/model/Product"; // your model import
 import { connectDB } from "@/lib/mongoose"; // your DB connection
 import { requireRole } from "@/lib/roleCheck";

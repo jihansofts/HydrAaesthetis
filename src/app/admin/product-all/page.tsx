@@ -4,11 +4,12 @@ import ProductAdminCard from "@/common/ProductAdminCard";
 import Swal from "sweetalert2";
 
 type PreptideCardProps = {
-  productId: string;
-  index?: number;
+  handleDelete: () => void;
+  productId: { _id: string }; // nested object
+  key: number;
+  _id: string;
   name: string;
   description: string[];
-  slug: string;
   price: number;
   image: string;
 };
@@ -68,13 +69,13 @@ export default function Page() {
         const res = await fetch(`/api/product/${id}`, {
           method: "DELETE",
         });
-
+        console.log("res", res);
         if (!res.ok) {
           throw new Error("Failed to delete moderator");
         }
 
         // ✅ Remove from UI immediately
-        setVitamins((prev) => prev.filter((item) => item.productId !== id));
+        setVitamins((prev) => prev.filter((item) => item._id !== id));
 
         Swal.fire("Deleted!", "Moderator has been deleted.", "success");
       } catch (error) {
@@ -118,13 +119,14 @@ export default function Page() {
           {vitamins.map((item, index) => {
             return (
               <ProductAdminCard
-                key={item.productId}
-                index={index}
-                productId={item.productId}
+                handleDelete={() => handleDelete(item._id)}
+                key={index}
+                productId={item._id} // ✅ you pass a string here
                 title={item.name}
                 desc={item.description}
                 image={item.image}
                 price={item.price}
+                index={0}
               />
             );
           })}

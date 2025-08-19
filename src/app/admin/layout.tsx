@@ -51,14 +51,14 @@ export default async function AdminLayout({
             <Link
               href="/admin/order-all"
               className="col-span-1 flex gap-x-3 relative">
-              <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
+              {/* <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
                 Check Orders
               </span>
-              <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
+              <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" /> */}
             </Link>
             <div className="hidden md:flex">
-              <Link target="_blank" href="/admin/order-all">
-                <Button text="Add Moderators" borderLeanr="gradient-border" />
+              <Link  href="/admin/order-all">
+                <Button text=" Check Orders" borderLeanr="gradient-border" />
               </Link>
             </div>
           </div>

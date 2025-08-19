@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAppContext } from "@/context/AppContext";
+import Swal from "sweetalert2";
 
 const CheckOut = () => {
   const router = useRouter();
@@ -43,11 +44,21 @@ const CheckOut = () => {
                   }),
                 });
                 const data = await res.json();
-                return data.id;
+                if (data.id) {
+                  return data.id;
+                } else {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Error",
+                    text: "Product not found",
+                  });
+                }
               }}
               onApprove={async (data, actions) => {
                 const details = await actions.order?.capture();
+
                 clearCart();
+
                 await fetch("/api/send-order-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
@@ -57,7 +68,14 @@ const CheckOut = () => {
                     cartItems: cartItems,
                   }),
                 });
-                router.push("/");
+                Swal.fire({
+                  title: "Success",
+                  text: "Order placed successfully",
+                  icon: "success",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                // router.push("/");
               }}
             />
           </PayPalScriptProvider>

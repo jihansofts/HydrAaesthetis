@@ -4,8 +4,8 @@ import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
 
 type PreptideCardProps = {
-  productId: string;
-  key: string;
+  handleDelete: () => void;
+  productId: string; // expects string ✅
   index: number;
   title: string;
   desc: string[];
@@ -14,21 +14,15 @@ type PreptideCardProps = {
 };
 
 const DripsCard: React.FC<PreptideCardProps> = ({
+  handleDelete,
   productId,
-  key,
   index,
   title,
-  desc,
   price,
+  desc,
   image,
 }) => {
   const { addToCart, cartItems } = useAppContext();
-  const cartItem = cartItems.find((item) => item.productId === productId);
-  const itemQuantity = cartItem ? cartItem.quantity : 0;
-
-  const handleAddToCart = () => {
-    addToCart({ productId, title, price, quantity: 1 });
-  };
 
   return (
     <motion.div
@@ -64,9 +58,7 @@ const DripsCard: React.FC<PreptideCardProps> = ({
           Edit
         </a>
         <button
-          onClick={() => {
-            alert(key);
-          }}
+          onClick={handleDelete}
           className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">
           Delete
         </button>

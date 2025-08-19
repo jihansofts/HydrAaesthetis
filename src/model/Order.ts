@@ -7,16 +7,17 @@ export interface ICartItem {
   quantity: number;
 }
 
-export interface IUserDetails {
+export interface IUserDetail {
   name: string;
   email: string;
-  address?: string;
+  phone: string;
+  date: string;
 }
 
 export interface IOrder extends Document {
   paypalOrderId: string;
   cartItems: ICartItem[];
-  userDetails: IUserDetails;
+  userDetail: IUserDetail;
   total: number;
   status: "PENDING" | "PAID" | "CANCELLED";
 }
@@ -31,10 +32,11 @@ const OrderSchema = new Schema<IOrder>(
         quantity: { type: Number, required: true },
       },
     ],
-    userDetails: {
+    userDetail: {
       name: { type: String },
       email: { type: String },
-      address: { type: String },
+      phone: { type: String },
+      date: { type: String },
     },
     total: { type: Number, required: true },
     status: {
