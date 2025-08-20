@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import PreptideCard from "@/common/VitaminDripsCard";
 
-type PreptideCardProps = {
-  productId: string;
+type VitaminItem = {
+  _id: string; // ✅ match API response
   index?: number;
   name: string;
   description: string[];
-  slug: string;
+  slug?: string; // make optional if API doesn’t always return it
   price: number;
   image: string;
 };
 
 const VitaminsSection: React.FC = () => {
-  const [vitamins, setVitamins] = useState<PreptideCardProps[]>([]);
+  const [vitamins, setVitamins] = useState<VitaminItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -58,9 +58,9 @@ const VitaminsSection: React.FC = () => {
           {vitamins.map((item, index) => {
             return (
               <PreptideCard
-                key={item.productId || index}
+                key={index}
                 index={index}
-                productId={item.productId}
+                productId={item._id} // id found
                 title={item.name}
                 desc={item.description}
                 image={item.image}

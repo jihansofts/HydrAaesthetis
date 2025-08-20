@@ -1,6 +1,40 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+// --- API TYPES ---
+type CartItem = {
+  _id: string;
+  name: string;
+  price: number;
+  quantity: number;
+};
+
+type UserDetail = {
+  _id?: string; // optional, not always returned
+  name: string;
+  email: string;
+  phone: string;
+  date: string;
+};
+
+type OrderItem = {
+  _id: string;
+  paypalOrderId: string;
+  userDetail: UserDetail;
+  cartItems: CartItem[];
+  total: number;
+  status: "PAID" | "PENDING" | "FAILED";
+  createdAt: string;
+  updatedAt: string;
+};
+
+type OrdersResponse = {
+  orders: OrderItem[];
+  total: number;
+  totalPages: number;
+};
+
+// --- UI FLATTENED TYPE ---
 interface Order {
   _id: string;
   name: string;
@@ -21,8 +55,22 @@ export default function Orders() {
     setLoading(true);
     try {
       const res = await fetch(`/api/allorder?limit=10&page=${pageNum}`);
-      const data = await res.json();
-      setOrders((prev) => [...prev, ...data.orders]); // append new orders
+      const data: OrdersResponse = await res.json();
+
+      // transform each order into flat structure
+      const mapped: Order[] = data.orders.map((order) => ({
+        _id: order._id,
+        name: order.userDetail.name,
+        email: order.userDetail.email,
+        phone: order.userDetail.phone,
+        date: order.userDetail.date,
+        product: order.cartItems
+          .map((c) => `${c.name} (x${c.quantity})`)
+          .join(", "),
+        price: order.total,
+      }));
+
+      setOrders((prev) => [...prev, ...mapped]);
       setTotalPages(data.totalPages);
     } catch (error) {
       console.error("Error fetching orders:", error);
@@ -32,7 +80,7 @@ export default function Orders() {
   };
 
   useEffect(() => {
-    fetchOrders(1); // initial fetch
+    fetchOrders(1);
   }, []);
 
   const handleLoadMore = () => {
@@ -61,25 +109,20 @@ export default function Orders() {
               </tr>
             </thead>
             <tbody className="text-white">
-              {orders.map(
-                (item) => (
-                  console.log(item, "item"),
-                  (
-                    <tr
-                      key={item._id}
-                      className="bg-[#2E2E2E] rounded-lg shadow-sm">
-                      <td className="px-6 py-4 rounded-l-lg">{item.name}</td>
-                      <td className="px-6 py-4">{item.product}</td>
-                      <td className="px-6 py-4">
-                        {new Date(item.date).toLocaleDateString()}
-                      </td>
-                      <td className="px-6 py-4">{item.email}</td>
-                      <td className="px-6 py-4">{item.phone}</td>
-                      <td className="px-6 py-4 rounded-r-lg">${item.price}</td>
-                    </tr>
-                  )
-                )
-              )}
+              {orders.map((item) => (
+                <tr
+                  key={item._id}
+                  className="bg-[#2E2E2E] rounded-lg shadow-sm">
+                  <td className="px-6 py-4 rounded-l-lg">{item.name}</td>
+                  <td className="px-6 py-4">{item.product}</td>
+                  <td className="px-6 py-4">
+                    {new Date(item.date).toLocaleDateString()}
+                  </td>
+                  <td className="px-6 py-4">{item.email}</td>
+                  <td className="px-6 py-4">{item.phone}</td>
+                  <td className="px-6 py-4 rounded-r-lg">${item.price}</td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

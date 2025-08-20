@@ -59,7 +59,7 @@ const CheckOut = () => {
 
                 clearCart();
 
-                await fetch("/api/send-order-email", {
+                const result = await fetch("/api/send-order-email", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
@@ -68,14 +68,25 @@ const CheckOut = () => {
                     cartItems: cartItems,
                   }),
                 });
-                Swal.fire({
-                  title: "Success",
-                  text: "Order placed successfully",
-                  icon: "success",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                // router.push("/");
+                const emailData = await result.json();
+                console.log(emailData, "data");
+
+                if (emailData.success) {
+                  Swal.fire({
+                    title: "Success",
+                    text: "Order placed successfully",
+                    icon: "success",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  // router.push("/");
+                } else {
+                  Swal.fire({
+                    title: "Error",
+                    text: emailData.message || "Something went wrong",
+                    icon: "error",
+                  });
+                }
               }}
             />
           </PayPalScriptProvider>

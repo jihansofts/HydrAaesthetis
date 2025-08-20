@@ -3,9 +3,10 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { TbShoppingBagPlus } from "react-icons/tb";
+import { IoLockClosedOutline } from "react-icons/io5";
 import Button from "@/common/Button";
 import { getUserFromToken } from "@/lib/auth";
+import LogoutButton from "@/common/LogoutButton";
 
 export default async function AdminLayout({
   children,
@@ -48,16 +49,9 @@ export default async function AdminLayout({
           </div>
 
           <div className="flex justify-center items-center space-x-5">
-            <Link
-              href="/admin/order-all"
-              className="col-span-1 flex gap-x-3 relative">
-              {/* <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
-                Check Orders
-              </span>
-              <TbShoppingBagPlus className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" /> */}
-            </Link>
+            <LogoutButton />
             <div className="hidden md:flex">
-              <Link  href="/admin/order-all">
+              <Link href="/admin/order-all">
                 <Button text=" Check Orders" borderLeanr="gradient-border" />
               </Link>
             </div>

@@ -23,7 +23,7 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
   const { addToCart, cartItems } = useAppContext();
   const cartItem = cartItems.find((item) => item.productId === productId);
   const itemQuantity = cartItem ? cartItem.quantity : 0;
-
+  console.log(productId, "productId f");
   const handleAddToCart = () => {
     addToCart({ productId, title, price, quantity: 1 });
   };
