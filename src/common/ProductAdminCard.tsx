@@ -22,8 +22,7 @@ const DripsCard: React.FC<PreptideCardProps> = ({
   desc,
   image,
 }) => {
-  const { addToCart, cartItems } = useAppContext();
-
+  console.log(productId, "id");
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -51,12 +50,11 @@ const DripsCard: React.FC<PreptideCardProps> = ({
 
       {/* Buttons */}
       <div className="flex gap-3 w-full mt-4">
-        <a
-          target="_blank"
-          href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F"
+        <button
+          onClick={() => window.location.href = `/admin/${productId}`}
           className="bg-gradient w-full text-[#1E1E1E] font-bold text-sm py-3 px-4 rounded-md hover:opacity-90">
           Edit
-        </a>
+        </button>
         <button
           onClick={handleDelete}
           className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">

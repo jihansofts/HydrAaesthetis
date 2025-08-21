@@ -21,6 +21,7 @@ const AddModarator = () => {
     try {
       e.preventDefault();
       setLoading(true);
+
       const res = await fetch("/api/user/moderator", {
         method: "POST",
         headers: {
@@ -28,7 +29,20 @@ const AddModarator = () => {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
+
+      // 🔴 if not admin
+      if (res.status === 403) {
+        Swal.fire({
+          icon: "error",
+          title: "Unauthorized",
+          text: "Only Admins can add a moderator.",
+        });
+        setLoading(false);
+        return;
+      }
+
       if (res.ok) {
         Swal.fire({
           icon: "success",
@@ -37,24 +51,20 @@ const AddModarator = () => {
           timer: 1500,
         });
         router.push("/admin/moderator-all");
-        setFormData({
-          name: "",
-          email: "",
-          password: "",
-        });
-        setLoading(false);
-
-        setFormData({
-          name: "",
-          email: "",
-          password: "",
-        });
+        setFormData({ name: "", email: "", password: "" });
       }
+
+      setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.error("Error fetching drips:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: "Something went wrong. Please try again.",
+      });
     }
   }
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({

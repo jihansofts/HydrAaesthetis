@@ -6,10 +6,11 @@ export function requireRole(allowedRoles: string[]) {
   return (
     handler: (
       req: NextRequest,
+      context: { params?: string },
       user: IUser
     ) => Promise<NextResponse> | NextResponse
   ) => {
-    return async (req: NextRequest) => {
+    return async (req: NextRequest, context: { params?: string }) => {
       const user = await getUserFromToken();
 
       if (!user) {
@@ -26,7 +27,8 @@ export function requireRole(allowedRoles: string[]) {
         );
       }
 
-      return handler(req, user); // user is now IUser
+      // ✅ pass context (so you can access params) and user
+      return handler(req, context, user);
     };
   };
 }

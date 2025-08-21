@@ -19,91 +19,167 @@ function getPublicIdFromUrl(url: string) {
   return publicId;
 }
 
-export const PUT = requireRole(["admin", "moderator"])(async (req: Request) => {
-  await connectDB();
+export const PATCH = requireRole(["admin", "moderator"])(
+  async (req: NextRequest, { params }: { params: { id: string } }) => {
+    await connectDB();
 
-  try {
-    const formData = await req.formData();
-    const id = formData.get("id") as string;
-    const name = formData.get("name") as string;
-    const category = formData.get("category") as ProductCategory;
-    const price = formData.get("price") as string;
-    const description = formData.get("description") as string;
-    const newImage = formData.get("image") as File | null;
+    try {
+      const id = params.id;
+      console.log("Updating product with id:", id);
+      const formData = await req.formData();
+      const name = formData.get("name") as string;
+      const category = formData.get("category") as ProductCategory;
+      const price = formData.get("price") as string;
+      const description = formData.get("description") as string;
+      const newImage = formData.get("image") as File | null;
 
-    if (!id) {
+      if (!id) {
+        return NextResponse.json(
+          { error: "Missing product id" },
+          { status: 400 }
+        );
+      }
+
+      const product = await ProductModel.findById(id);
+      if (!product) {
+        return NextResponse.json(
+          { error: "Product not found" },
+          { status: 404 }
+        );
+      }
+
+      // Get old public_id from existing image URL
+      let imageUrl = product.image;
+      let publicId: string | null = imageUrl
+        ? getPublicIdFromUrl(imageUrl)
+        : null;
+
+      // If new image is uploaded, delete old image and upload new one
+      if (newImage) {
+        if (publicId) {
+          await cloudinary.uploader.destroy(publicId);
+        }
+
+        const buffer = Buffer.from(await newImage.arrayBuffer());
+
+        const result: { secure_url: string; public_id: string } =
+          await new Promise((resolve, reject) => {
+            const stream = cloudinary.uploader.upload_stream(
+              { folder: "/public/images" },
+              (error, result) => {
+                if (error) return reject(error);
+                if (!result)
+                  return reject(new Error("Cloudinary upload failed"));
+                resolve(result as { secure_url: string; public_id: string });
+              }
+            );
+            stream.end(buffer);
+          });
+
+        imageUrl = result.secure_url; // set new image URL
+        publicId = result.public_id; // update publicId (optional, for reference)
+      }
+
+      // Update product fields only if provided
+      if (name) product.name = name;
+      if (category) product.category = category;
+      if (price) product.price = Number(price);
+      if (description) product.description = description;
+      product.image = imageUrl;
+
+      await product.save();
+
+      return NextResponse.json(product, { status: 200 });
+    } catch (error) {
+      console.error("Update error:", error);
       return NextResponse.json(
-        { error: "Missing product id" },
-        { status: 400 }
+        { error: "Internal server error" },
+        { status: 500 }
       );
     }
+  }
+);
 
-    const product = await ProductModel.findById(id);
-    if (!product) {
-      return NextResponse.json({ error: "Product not found" }, { status: 404 });
+export const GET = requireRole(["admin", "moderator"])(
+  async (req: NextRequest, { params }: { params: { id: string } }) => {
+    await connectDB();
+
+    try {
+      const id = params.id;
+
+      if (!id) {
+        return NextResponse.json(
+          { error: "Missing product id" },
+          { status: 400 }
+        );
+      }
+
+      const product = await ProductModel.findById(id);
+      if (!product) {
+        return NextResponse.json(
+          { error: "Product not found" },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json(product, { status: 200 });
+    } catch (error) {
+      console.error("Fetch error:", error);
+      return NextResponse.json(
+        { error: "Internal server error" },
+        { status: 500 }
+      );
     }
+  }
+);
 
-    // Get old public_id from existing image URL
-    let imageUrl = product.image;
-    let publicId: string | null = imageUrl
-      ? getPublicIdFromUrl(imageUrl)
-      : null;
+export const DELETE = requireRole(["admin", "moderator"])(
+  async (req: NextRequest, { params }: { params: { id: string } }) => {
+    try {
+      await connectDB();
 
-    // If new image is uploaded, delete old image and upload new one
-    if (newImage) {
-      if (publicId) {
+      const id = params.id;
+
+      if (!id) {
+        return NextResponse.json(
+          { error: "Product ID is required" },
+          { status: 400 }
+        );
+      }
+
+      const product = await ProductModel.findById(id);
+
+      const imageUrl = product?.image;
+      if (imageUrl) {
+        const publicId = getPublicIdFromUrl(imageUrl);
         await cloudinary.uploader.destroy(publicId);
       }
 
-      const buffer = Buffer.from(await newImage.arrayBuffer());
+      if (!product) {
+        return NextResponse.json(
+          { error: "Product not found" },
+          { status: 404 }
+        );
+      }
 
-      const result: { secure_url: string; public_id: string } =
-        await new Promise((resolve, reject) => {
-          const stream = cloudinary.uploader.upload_stream(
-            { folder: "/public/images" },
-            (error, result) => {
-              if (error) return reject(error);
-              if (!result) return reject(new Error("Cloudinary upload failed"));
-              resolve(result as { secure_url: string; public_id: string });
-            }
-          );
-          stream.end(buffer);
-        });
+      const deleted = await ProductModel.findByIdAndDelete(id);
 
-      imageUrl = result.secure_url; // set new image URL
-      publicId = result.public_id; // update publicId (optional, for reference)
+      if (!deleted) {
+        return NextResponse.json(
+          { error: "Product not found" },
+          { status: 404 }
+        );
+      }
+
+      return NextResponse.json({
+        success: true,
+        message: "Product successfully deleted",
+      });
+    } catch (err) {
+      return NextResponse.json(
+        { error: "Internal Server Error", details: err.message },
+        { status: 500 }
+      );
     }
-
-    // Update product fields only if provided
-    if (name) product.name = name;
-    if (category) product.category = category;
-    if (price) product.price = Number(price);
-    if (description) product.description = description;
-    product.image = imageUrl;
-
-    await product.save();
-
-    return NextResponse.json(product, { status: 200 });
-  } catch (error) {
-    console.error("Update error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
-  }
-});
-
-export const DELETE = requireRole(["admin", "moderator"])(
-  async (req: NextRequest, params) => {
-    await connectDB();
-    const id = params.id;
-    const deleted = await ProductModel.deleteOne({ _id: id });
-    if (!deleted) {
-      return NextResponse.json({ error: "Product not found" }, { status: 404 });
-    }
-    return NextResponse.json({
-      success: true,
-      message: "Product successfully deleted",
-    });
   }
 );
