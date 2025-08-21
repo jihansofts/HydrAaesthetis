@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 interface DataProps {
   _id: string; // assuming your API returns an id for delete
@@ -10,16 +11,37 @@ interface DataProps {
 }
 
 export default function Page() {
+  const router = useRouter();
   const [data, setData] = useState<DataProps[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       const res = await fetch("/api/user/moderator");
+
+      if (res.status === 403) {
+        Swal.fire({
+          icon: "error",
+          title: "Unauthorized",
+          text: "Only Admins can add a moderator.",
+        });
+        router.push("/admin");
+        return;
+      }
+
+      if (!res.ok) {
+        throw new Error("Failed to load moderators");
+      }
+
       const result = await res.json();
       setData(result.users);
     } catch (error) {
-      console.error("Error fetching moderators:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        text: error instanceof Error ? error.message : "Something went wrong",
+      });
     } finally {
       setLoading(false);
     }

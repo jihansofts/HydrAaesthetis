@@ -15,6 +15,7 @@ export default async function AdminLayout({
 }) {
   // Get user from cookies (works in layouts)
   const user = await getUserFromToken();
+  console.log(user, "user");
 
   if (!user) {
     redirect("/login");
