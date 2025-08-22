@@ -1,13 +1,15 @@
 import { connectDB } from "@/lib/mongoose";
 import { IUser, UserModel } from "@/model/UserModel";
-import { requireRole } from "@/lib/roleCheck";
+import { requireRoleDynamic } from "@/lib/roleCheck";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
-export const PATCH = requireRole(["admin"])(
-  async (req: NextRequest, params) => {
+type Context = { params?: Record<string, string> | undefined };
+
+export const PATCH = requireRoleDynamic(["admin"])(
+  async (req: NextRequest, context: Context) => {
     await connectDB();
-    const id = params.id;
+    const id = context.params?.id;
     const { name, email, password } = await req.json();
 
     const updateData: Partial<IUser> = { name, email };
@@ -28,14 +30,14 @@ export const PATCH = requireRole(["admin"])(
   }
 );
 
-export const DELETE = requireRole(["admin"])(
-  async (req: NextRequest, currentUser) => {
+export const DELETE = requireRoleDynamic(["admin"])(
+  async (req: NextRequest, context: Context) => {
     await connectDB();
 
-    const id = req.url.split("/").pop();
+    const id = context.params?.id;
 
     // Prevent deleting yourself
-    if (currentUser.id === id) {
+    if (id === context.params?.id) {
       return NextResponse.json(
         { error: "Cannot delete your own admin account" },
         { status: 403 }

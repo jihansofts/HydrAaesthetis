@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ProductAdminCard from "@/common/ProductAdminCard";
 import Swal from "sweetalert2";
 
@@ -22,35 +22,38 @@ export default function Page() {
   const [totalPages, setTotalPages] = useState(1);
   const limit = 8;
 
-  const fetchVitamins = async (pageNumber: number, reset = false) => {
-    try {
-      setLoading(true);
-      const res = await fetch(
-        `/api/product?category=${sort}&limit=${limit}&page=${pageNumber}`
-      );
-      const data = await res.json();
+  const fetchVitamins = useCallback(
+    async (pageNumber: number, reset = false) => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          `/api/product?category=${sort}&limit=${limit}&page=${pageNumber}`
+        );
+        const data = await res.json();
 
-      setVitamins((prev) =>
-        reset ? data.products : [...prev, ...data.products]
-      );
-      setTotalPages(data.pagination.totalPages);
-    } catch (error) {
-      console.error("Error fetching drips:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setVitamins((prev) =>
+          reset ? data.products : [...prev, ...data.products]
+        );
+        setTotalPages(data.pagination.totalPages);
+      } catch (error) {
+        console.error("Error fetching drips:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [sort]
+  );
 
   // 🔥 initial fetch
   useEffect(() => {
     fetchVitamins(1, true);
-  }, []);
+  }, [fetchVitamins]);
 
   // 🔥 re-fetch when sort changes
   useEffect(() => {
     setPage(1);
     fetchVitamins(1, true);
-  }, [sort]);
+  }, [fetchVitamins, sort]);
 
   const handleDelete = async (id: string) => {
     const result = await Swal.fire({
@@ -79,7 +82,7 @@ export default function Page() {
 
         Swal.fire("Deleted!", "Moderator has been deleted.", "success");
       } catch (error) {
-        Swal.fire("Something went wrong");
+        Swal.fire("Something went wrong" + error);
       }
     }
   };

@@ -2,7 +2,7 @@ import { NextResponse, NextRequest } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 import { ProductModel } from "@/model/Product"; // your model import
 import { connectDB } from "@/lib/mongoose"; // your DB connection
-import { requireRole } from "@/lib/roleCheck";
+import { requireRoleStatic } from "@/lib/roleCheck";
 
 interface FormDataFields {
   name: string;
@@ -18,7 +18,7 @@ interface FormDataFields {
 //   },
 // };
 
-export const POST = requireRole(["admin", "moderator"])(
+export const POST = requireRoleStatic(["admin", "moderator"])(
   async (req: Request) => {
     await connectDB();
 
@@ -83,7 +83,6 @@ export const POST = requireRole(["admin", "moderator"])(
     }
   }
 );
-
 
 export async function GET(req: NextRequest) {
   await connectDB();

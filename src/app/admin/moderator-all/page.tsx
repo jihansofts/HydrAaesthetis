@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Swal from "sweetalert2";
 import { useRouter } from "next/navigation";
 
@@ -15,7 +15,7 @@ export default function Page() {
   const [data, setData] = useState<DataProps[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
       const res = await fetch("/api/user/moderator");
@@ -45,11 +45,14 @@ export default function Page() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [router]);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
   // 🗑️ Delete handler with SweetAlert2
   const handleDelete = async (id: string) => {
@@ -79,7 +82,7 @@ export default function Page() {
 
         Swal.fire("Deleted!", "Moderator has been deleted.", "success");
       } catch (error) {
-        Swal.fire("Admin Can not be deleted");
+        Swal.fire("Admin Can not be deleted" + error);
       }
     }
   };

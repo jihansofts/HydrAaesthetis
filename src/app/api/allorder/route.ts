@@ -1,57 +1,56 @@
 import { NextRequest, NextResponse } from "next/server";
 import Order from "@/model/Order";
 import { connectDB } from "@/lib/mongoose";
-import { requireRole } from "@/lib/roleCheck";
+import { requireRoleStatic } from "@/lib/roleCheck";
 
-// export const GET = requireRole(["admin"])(async (req: NextRequest) => {
-//   await connectDB();
+// Define RouteHandler type to match the handler signature
 
-//   const limit = parseInt(req.nextUrl.searchParams.get("limit") || "10", 10);
-//   const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
-//   const skip = (page - 1) * limit;
+export const GET = requireRoleStatic(["admin", "moderator"])(
+  async (req: NextRequest) => {
+    await connectDB();
 
-//   // ✅ Get total number of orders
-//   const totalOrders = await Order.countDocuments();
+    const limit = parseInt(req.nextUrl.searchParams.get("limit") || "10", 10);
+    const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
+    const skip = (page - 1) * limit;
 
-//   // ✅ Fetch paginated orders
-//   const orders = await Order.find()
-//     .skip(skip)
-//     .limit(limit)
-//     .sort({ createdAt: -1 }); // newest first (optional)
+    const [orders, total] = await Promise.all([
+      Order.find().skip(skip).limit(limit),
+      Order.countDocuments(),
+    ]);
 
-//   // ✅ Calculate total pages
-//   const totalPages = Math.ceil(totalOrders / limit);
+    return NextResponse.json({
+      orders,
+      total,
+      totalPages: Math.ceil(total / limit),
+    });
+  }
+);
 
-//   return NextResponse.json({
-//     orders,
-//     pagination: {
-//       totalOrders,
-//       totalPages,
-//       currentPage: page,
-//       limit,
-//       hasNextPage: page < totalPages,
-//       hasPrevPage: page > 1,
-//     },
-//   });
-// });
+// import { NextRequest, NextResponse } from "next/server";
+// import Order from "@/model/Order";
+// import { connectDB } from "@/lib/mongoose";
+// import { requireRole } from "@/lib/roleCheck";
 
+// type Context = { params?: Record<string, string> | undefined };
 
-// /api/orders/route.ts
-export const GET = requireRole(["admin"])(async (req: NextRequest) => {
-  await connectDB();
+// export const GET = requireRole(["admin"])(
+//   async (req: NextRequest, context: Context) => {
+//     await connectDB();
+//     const id = context.params?.id;
+//     const limit = parseInt(req.nextUrl.searchParams.get("limit") || "10", 10);
+//     const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
+//     const skip = (page - 1) * limit;
 
-  const limit = parseInt(req.nextUrl.searchParams.get("limit") || "10", 10);
-  const page = parseInt(req.nextUrl.searchParams.get("page") || "1", 10);
-  const skip = (page - 1) * limit;
+//     const [orders, total] = await Promise.all([
+//       Order.find().skip(skip).limit(limit),
+//       Order.countDocuments(),
+//     ]);
 
-  const [orders, total] = await Promise.all([
-    Order.find().skip(skip).limit(limit),
-    Order.countDocuments(),
-  ]);
-
-  return NextResponse.json({
-    orders,
-    total,
-    totalPages: Math.ceil(total / limit),
-  });
-});
+//     return NextResponse.json({
+//       id,
+//       orders,
+//       total,
+//       totalPages: Math.ceil(total / limit),
+//     });
+//   }
+// );

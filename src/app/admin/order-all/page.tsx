@@ -109,10 +109,8 @@ export default function Orders() {
               </tr>
             </thead>
             <tbody className="text-white">
-              {orders.map((item) => (
-                <tr
-                  key={item._id}
-                  className="bg-[#2E2E2E] rounded-lg shadow-sm">
+              {orders.map((item, index) => (
+                <tr key={index} className="bg-[#2E2E2E] rounded-lg shadow-sm">
                   <td className="px-6 py-4 rounded-l-lg">{item.name}</td>
                   <td className="px-6 py-4">{item.product}</td>
                   <td className="px-6 py-4">

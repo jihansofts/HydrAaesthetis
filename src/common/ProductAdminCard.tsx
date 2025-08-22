@@ -1,6 +1,5 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { useAppContext } from "@/context/AppContext";
 import Image from "next/image";
 
 type PreptideCardProps = {

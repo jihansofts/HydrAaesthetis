@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import cloudinary from "@/lib/cloudinary";
 
 import { connectDB } from "@/lib/mongoose";
-import { requireRole } from "@/lib/roleCheck";
+import { requireRoleDynamic } from "@/lib/roleCheck";
 import { ProductModel, ProductCategory } from "@/model/Product";
 
 export const config = {
@@ -11,22 +11,33 @@ export const config = {
   },
 };
 
+// type Context = { params?: Record<string, string> | undefined };
+
+// function getPublicIdFromUrl(url: string) {
+//   const parts = url.split("/");
+//   const filename = parts[parts.length - 1]; // abc123.png
+//   const publicIdWithExtension = `products/${filename}`;
+//   const publicId = publicIdWithExtension.replace(/\.[^/.]+$/, ""); // remove extension
+//   return publicId;
+// }
+
+type Params = { id: string };
+
 function getPublicIdFromUrl(url: string) {
   const parts = url.split("/");
-  const filename = parts[parts.length - 1]; // abc123.png
+  const filename = parts[parts.length - 1];
   const publicIdWithExtension = `products/${filename}`;
-  const publicId = publicIdWithExtension.replace(/\.[^/.]+$/, ""); // remove extension
+  const publicId = publicIdWithExtension.replace(/\.[^/.]+$/, "");
   return publicId;
 }
 
-export const PATCH = requireRole(["admin", "moderator"])(
-  async (req: NextRequest, { params }: { params: { id: string } }) => {
+export const PATCH = requireRoleDynamic<Params>(["admin", "moderator"])(
+  async (req: NextRequest, context: { params: Params }) => {
     await connectDB();
 
     try {
-      const id = params.id;
-      console.log("Updating product with id:", id);
       const formData = await req.formData();
+      const id = context.params.id; // Get ID from params instead of formData
       const name = formData.get("name") as string;
       const category = formData.get("category") as ProductCategory;
       const price = formData.get("price") as string;
@@ -76,8 +87,8 @@ export const PATCH = requireRole(["admin", "moderator"])(
             stream.end(buffer);
           });
 
-        imageUrl = result.secure_url; // set new image URL
-        publicId = result.public_id; // update publicId (optional, for reference)
+        imageUrl = result.secure_url;
+        publicId = result.public_id;
       }
 
       // Update product fields only if provided
@@ -100,12 +111,92 @@ export const PATCH = requireRole(["admin", "moderator"])(
   }
 );
 
-export const GET = requireRole(["admin", "moderator"])(
-  async (req: NextRequest, { params }: { params: { id: string } }) => {
+// export const PATCH = requireRoleDynamic<{ id: string }>(["admin", "moderator"])(
+//   async (req: NextRequest, context) => {
+//     await connectDB();
+
+//     try {
+//       const { id } = context.params;
+//       const formData = await req.formData();
+//       const name = formData.get("name") as string;
+//       const category = formData.get("category") as ProductCategory;
+//       const price = formData.get("price") as string;
+//       const description = formData.get("description") as string;
+//       const newImage = formData.get("image") as File | null;
+
+//       if (!id) {
+//         return NextResponse.json(
+//           { error: "Missing product id" },
+//           { status: 400 }
+//         );
+//       }
+
+//       const product = await ProductModel.findById(id);
+//       if (!product) {
+//         return NextResponse.json(
+//           { error: "Product not found" },
+//           { status: 404 }
+//         );
+//       }
+
+//       // Get old public_id from existing image URL
+//       let imageUrl = product.image;
+//       let publicId: string | null = imageUrl
+//         ? getPublicIdFromUrl(imageUrl)
+//         : null;
+
+//       // If new image is uploaded, delete old image and upload new one
+//       if (newImage) {
+//         if (publicId) {
+//           await cloudinary.uploader.destroy(publicId);
+//         }
+
+//         const buffer = Buffer.from(await newImage.arrayBuffer());
+
+//         const result: { secure_url: string; public_id: string } =
+//           await new Promise((resolve, reject) => {
+//             const stream = cloudinary.uploader.upload_stream(
+//               { folder: "/public/images" },
+//               (error, result) => {
+//                 if (error) return reject(error);
+//                 if (!result)
+//                   return reject(new Error("Cloudinary upload failed"));
+//                 resolve(result as { secure_url: string; public_id: string });
+//               }
+//             );
+//             stream.end(buffer);
+//           });
+
+//         imageUrl = result.secure_url; // set new image URL
+//         publicId = result.public_id; // update publicId (optional, for reference)
+//       }
+
+//       // Update product fields only if provided
+//       if (name) product.name = name;
+//       if (category) product.category = category;
+//       if (price) product.price = Number(price);
+//       if (description) product.description = description;
+//       product.image = imageUrl;
+
+//       await product.save();
+
+//       return NextResponse.json(product, { status: 200 });
+//     } catch (error) {
+//       console.error("Update error:", error);
+//       return NextResponse.json(
+//         { error: "Internal server error" },
+//         { status: 500 }
+//       );
+//     }
+//   }
+// );
+
+export const GET = requireRoleDynamic<Params>(["admin", "moderator"])(
+  async (req: NextRequest, context: { params: Params }) => {
     await connectDB();
 
     try {
-      const id = params.id;
+      const id = context.params?.id;
 
       if (!id) {
         return NextResponse.json(
@@ -133,12 +224,12 @@ export const GET = requireRole(["admin", "moderator"])(
   }
 );
 
-export const DELETE = requireRole(["admin", "moderator"])(
-  async (req: NextRequest, { params }: { params: { id: string } }) => {
+export const DELETE = requireRoleDynamic<Params>(["admin", "moderator"])(
+  async (req: NextRequest, context: { params: Params }) => {
     try {
       await connectDB();
 
-      const id = params.id;
+      const id = context.params?.id;
 
       if (!id) {
         return NextResponse.json(
@@ -177,7 +268,7 @@ export const DELETE = requireRole(["admin", "moderator"])(
       });
     } catch (err) {
       return NextResponse.json(
-        { error: "Internal Server Error", details: err.message },
+        { error: "Internal Server Error", details: err },
         { status: 500 }
       );
     }

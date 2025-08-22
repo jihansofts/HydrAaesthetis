@@ -30,7 +30,7 @@ const AddModarator = () => {
         body: JSON.stringify(formData),
       });
 
-      const data = await res.json();
+      await res.json();
 
       // 🔴 if not admin
       if (res.status === 403) {
@@ -60,7 +60,7 @@ const AddModarator = () => {
       Swal.fire({
         icon: "error",
         title: "Error",
-        text: "Something went wrong. Please try again.",
+        text: "Something went wrong. Please try again." + error,
       });
     }
   }

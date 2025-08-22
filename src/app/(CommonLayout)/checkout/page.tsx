@@ -1,13 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { useAppContext } from "@/context/AppContext";
 import Swal from "sweetalert2";
 
 const CheckOut = () => {
-  const router = useRouter();
   const { cartItems, cartTotal, userDetails, clearCart } = useAppContext();
   const [error] = useState<string>("");
 

@@ -3,7 +3,6 @@ import { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { IoLockClosedOutline } from "react-icons/io5";
 import Button from "@/common/Button";
 import { getUserFromToken } from "@/lib/auth";
 import LogoutButton from "@/common/LogoutButton";

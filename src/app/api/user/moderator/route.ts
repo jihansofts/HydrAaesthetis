@@ -1,11 +1,11 @@
 // app/api/users/create-moderator/route.ts
 import { connectDB } from "@/lib/mongoose";
 import { UserModel } from "@/model/UserModel";
-import { requireRole } from "@/lib/roleCheck";
+import { requireRoleStatic } from "@/lib/roleCheck";
 import bcrypt from "bcrypt";
 import { NextRequest, NextResponse } from "next/server";
 
-export const POST = requireRole(["admin"])(async (req: NextRequest) => {
+export const POST = requireRoleStatic(["admin"])(async (req: NextRequest) => {
   await connectDB();
 
   const body = await req.json();
@@ -24,7 +24,7 @@ export const POST = requireRole(["admin"])(async (req: NextRequest) => {
   return NextResponse.json(newUser, { status: 201 });
 });
 
-export const GET = requireRole(["admin"])(async (req: NextRequest) => {
+export const GET = requireRoleStatic(["admin"])(async () => {
   await connectDB();
   const users = await UserModel.find();
   return NextResponse.json({ users, status: 200 });
