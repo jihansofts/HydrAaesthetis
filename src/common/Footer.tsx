@@ -1,12 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import {
-  FaPhone,
-  FaMapMarkerAlt,
-  FaEnvelope,
-
-} from "react-icons/fa";
+import { FaPhone, FaMapMarkerAlt, FaEnvelope } from "react-icons/fa";
 import { LuMessageSquareText } from "react-icons/lu";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -72,12 +68,15 @@ const Footer = () => {
               <FaMapMarkerAlt className="text-[#C4AC7B] mt-1 mr-3 flex-shrink-0 text-xl" />
               <div>
                 <h3 className="font-bold mb-1 bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                  Burbank Location
+                  Location
                 </h3>
-                <p className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                  207 N Victory Blvd., Ste J <br /> Burbank, CA 91502
+                <Link
+                  target="_blank"
+                  href="https://www.google.com/maps/place/1030+S+Glendale+Ave+%23404,+Glendale,+CA+91205,+USA/@34.1337858,-118.2541787,17z/data=!3m1!4b1!4m6!3m5!1s0x80c2c11decaf89d3:0xd5de74f5cd7ea657!8m2!3d34.1337814!4d-118.2516038!16s%2Fg%2F11ll6tf078?entry=ttu&g_ep=EgoyMDI1MDgxOS4wIKXMDSoASAFQAw%3D%3D"
+                  className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
+                  1030 S. Glendale Ave Unit <br /> 404 Glendale CA 91205
                   <br />( Consultations only )
-                </p>
+                </Link>
               </div>
             </li>
 
