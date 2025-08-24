@@ -28,7 +28,7 @@ const CheckOut = () => {
 
           <PayPalScriptProvider
             options={{
-              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID_LIVE!,
+              clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID!,
             }}>
             <PayPalButtons
               style={{ layout: "vertical", color: "gold" }}
