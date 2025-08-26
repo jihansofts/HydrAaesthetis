@@ -17,7 +17,7 @@ export default function LogoutButton() {
   return (
     <button onClick={logout} className="col-span-1 flex gap-x-3 relative">
       <span className="text-gradient text-[16px] font-bold font-inter cursor-pointer">
-        Log Out
+        Lock Out
       </span>
       <IoLockClosedOutline className="w-6 h-6 text-[#d6b36b] hover:text-[#cbb688] cursor-pointer" />
     </button>
