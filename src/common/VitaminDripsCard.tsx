@@ -63,12 +63,12 @@ const PreptideCard: React.FC<PreptideCardProps> = ({
 
       {/* Buttons */}
       <div className="flex gap-3 w-full mt-4">
-        <a
+        {/* <a
           target="_blank"
           href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F"
           className="bg-gradient w-full text-[#1E1E1E] font-bold text-sm py-3 px-4 rounded-md hover:opacity-90">
           Consultation
-        </a>
+        </a> */}
         <button
           onClick={handleAddToCart}
           className=" w-full gradient-border cursor-pointer  text-[#BAA57B] text-sm py-3 px-4 rounded-md hover:bg-[#CAB485] hover:text-black transition">
