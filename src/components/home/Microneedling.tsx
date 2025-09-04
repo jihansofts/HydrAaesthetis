@@ -91,19 +91,19 @@ export default function Microneedling() {
             /> */}
           </motion.div>
           {/* Image */}
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="lg:col-span-5 md:col-span-12   rounded-lg ">
             <Image
-              src="/images/mico.png"
+              src="/images/Potenza.jpeg"
               alt=""
               width={500}
               height={500}
               className="w-full h-full"
             />
-          </motion.div> */}
+          </motion.div>
         </div>
       </div>
     </section>
