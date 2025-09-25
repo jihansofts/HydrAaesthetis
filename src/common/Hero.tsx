@@ -90,7 +90,7 @@ export default function Hero({ title, description }: HeroProps) {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
           <video
-            src="https://res.cloudinary.com/dhutuvffo/video/upload/v1755445492/Reel_1_sitgv9.mp4"
+            src="https://res.cloudinary.com/dho6v0kky/video/upload/v1758809550/Reel_1_wempsr.mp4"
             autoPlay
             loop
             muted
