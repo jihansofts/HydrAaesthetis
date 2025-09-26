@@ -29,12 +29,12 @@ const Footer = () => {
                 747 477 4050
               </span>
             </li>
-            <li className="flex items-center justify-center md:justify-start">
+            {/* <li className="flex items-center justify-center md:justify-start">
               <FaPhone className="text-[#EEE1BA] mr-3 text-xl" />
               <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
                 818 669 8271
               </span>
-            </li>
+            </li> */}
             <li className="flex items-center justify-center md:justify-start">
               <FaEnvelope className="text-[#D0BB8F] mr-3 text-xl" />
               <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
