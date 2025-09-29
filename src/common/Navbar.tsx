@@ -135,11 +135,14 @@ export default function Navbar() {
             )}
           </Link>
           <div className="hidden md:flex">
-            <a
+            {/* <Link
               target="_blank"
               href="https://www.myaestheticspro.com/BN/index.cfm?A78B66E7FFE2188433572F72D74E0F5F">
               <Button text="Contact Us" borderLeanr="gradient-border" />
-            </a>
+            </Link> */}
+            <Link target="_blank" href="tel:+1 818-669-8271">
+              <Button text="Contact Us" borderLeanr="gradient-border" />
+            </Link>
           </div>
         </div>
 

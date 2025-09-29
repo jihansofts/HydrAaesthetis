@@ -76,7 +76,7 @@ export default function Hero({ title, description }: HeroProps) {
             <a className="block" href="tel:+18186698271">
               <Button
                 bg="bg-bgColor"
-                text="Call Us +1 818 669 8271"
+                text="Call Us +1 818-669-8271"
                 borderLeanr="gradient-border"
               />
             </a>

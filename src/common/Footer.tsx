@@ -25,9 +25,11 @@ const Footer = () => {
           <ul className="space-y-4 flex flex-col items-start justify-start ">
             <li className="flex items-center justify-center md:justify-start">
               <LuMessageSquareText className="text-[#EEE1BA] mr-3 text-xl" />
-              <span className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
-                747 477 4050
-              </span>
+              <Link
+                href="tel:8186698271"
+                className="bg-gradient-to-r from-[#C4AC7B] via-[#EEE1BA] to-[#836539] bg-clip-text text-transparent">
+                818-669-8271
+              </Link>
             </li>
             {/* <li className="flex items-center justify-center md:justify-start">
               <FaPhone className="text-[#EEE1BA] mr-3 text-xl" />
